@@ -1,0 +1,1 @@
+<a href="{{route('login')}}" class="btn button btn-block">Get Started</a>

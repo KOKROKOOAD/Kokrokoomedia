@@ -1,0 +1,300 @@
+label.error:not(.form-control) {
+color: #EB5E28;
+font-weight: 300;
+font-size: 0.8em;
+}
+.test{
+    background: red;
+}
+.nopad {
+    padding-left: 2px !important;
+    padding-right: 0px !important;
+}
+/*image gallery*/
+.image-checkbox {
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 4px solid transparent;
+    margin-bottom: 0;
+    outline: 0;
+}
+.image-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.image-checkbox-checked {
+    border-color: #fff;
+}
+.image-checkbox .fa {
+    /*position: absolute;*/
+    color: #0c0c0c;
+    background-color: #F3F3EE;
+    padding-right: 5px;
+    top: 0;
+    right: 0;
+}
+.image-checkbox-checked .fa {
+    display: block !important;
+}
+.m-logos{
+    border-color: #0c0c0c;
+}
+.modal {
+    overflow-y:auto;
+}
+
+.table td:hover{
+    cursor: hand;
+}.form_date{
+height: 10px !important;line-height: 20px !important;width: 60px !important; padding:0px !important;
+
+}
+img {
+    filter: grayscale(0);
+    -webkit-filter: grayscale(0);
+    -moz-filter: grayscale(0);
+    -o-filter: grayscale(0);
+    -ms-filter: grayscale(0);
+    -webkit-transition: all 1500ms ease-in-out;
+    -moz-transition: all 400ms ease-in-out;
+    -o-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+
+}
+
+img:hover {
+    /*width: 140px !important;*/
+    /*height: 100px !important;*/
+    /*box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 22px 0 rgba(0, 0, 0, 0.2);*/
+    /*transition: transform .2s; !* Animation *!*/
+    transform: scale(1.07); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+
+}
+
+.uk-panel.uk-panel-box.uk-panel-box-primary.uk-scrollspy-inview.uk-animation-fade {
+    padding: 0 0 20px 0;
+}
+.uk-grid>*>:last-child {
+    margin-bottom: 0;
+}
+.uk-animation-fade {
+    -webkit-animation-name: uk-fade;
+    animation-name: uk-fade;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-timing-function: linear !important;
+    animation-timing-function: linear !important;
+}
+[class*='uk-animation-'] {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.uk-panel-box-primary {
+    background-color: #2d405e;
+    color: #b9c3d4;
+}
+.uk-panel-box {
+    padding: 20px;
+    background: rgba(35,40,40,0.02);
+    color: #324869;
+}
+.uk-panel, .uk-panel:hover {
+    text-decoration: none;
+}
+.uk-panel {
+    display: block;
+    position: relative;
+}
+.uk-grid-match>*>* {
+    -ms-flex: none;
+    -webkit-flex: none;
+    flex: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+.uk-text-center {
+    text-align: center !important;
+}
+
+.moji {
+    margin-bottom: 20px;
+}
+.uk-text-center {
+    text-align: center !important;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+.selected-media{
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(1);
+    -o-filter: grayscale(1);
+    -ms-filter: grayscale(1);
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 800ms ease-in-out;
+    -o-transition: all 800ms ease-in-out;
+    transition: all 800ms ease-in-out;
+}
+.sch-ad-th{
+    text-align: center;
+}
+.media-list{
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 100;
+}
+.badge-notify{
+    background:red;
+    position:relative;
+    top: -10px;
+    left: -35px;
+}
+fieldset .payment input {
+    float: none;
+    margin: 0;
+    position: relative;
+    top: -16px;
+    width: 20px;
+}
+fieldset .payment
+{
+    float: none;
+    margin-left: 25%;
+}
+fieldset .payment label
+{
+    display: inline;
+    float: none;
+    width: 30px;
+}
+fieldset img{
+    vertical-align:middle;
+}
+.mtn{
+    color: #F8CD00;
+    font-weight:bold;
+    font-family: "Roboto Slab", serif;
+    font-size : 16px;
+}
+.voda{
+    color: #F90000;
+    font-weight:bold;
+    font-family: "Roboto Slab", serif;
+    font-size : 16px;
+
+
+}
+.airtel{
+    color: #F90000;
+    font-weight:bold;
+    font-family: "Roboto Slab", serif;
+    font-size : 16px;
+
+
+}
+.app-credit{
+    color: #004580;
+    font-weight:bold;
+    font-family: "Roboto Slab", serif;
+    font-size : 16px;
+
+
+}
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    z-index: 2000;
+    position: fixed;
+    height: 90px;
+    width: 90px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.pace.pace-inactive .pace-activity {
+    display: none;
+}
+
+.pace .pace-activity {
+    position: fixed;
+    z-index: 2000;
+    display: block;
+    position: absolute;
+    left: -30px;
+    top: -30px;
+    height: 90px;
+    width: 90px;
+    display: block;
+    border-width: 30px;
+    border-style: double;
+    border-color: #29d transparent transparent;
+    border-radius: 50%;
+
+    -webkit-animation: spin 1s linear infinite;
+    -moz-animation: spin 1s linear infinite;
+    -o-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+.pace .pace-activity:before {
+    content: ' ';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 50px;
+    width: 50px;
+    display: block;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #29d transparent transparent;
+    border-radius: 50%;
+}
+
+@-webkit-keyframes spin {
+    100% { -webkit-transform: rotate(359deg); }
+}
+
+@-moz-keyframes spin {
+    100% { -moz-transform: rotate(359deg); }
+}
+
+@-o-keyframes spin {
+    100% { -moz-transform: rotate(359deg); }
+}
+
+@keyframes spin {
+    100% {  transform: rotate(359deg); }
+}
+
+
+
+
+/*.modal-lg{*/
+    /*width: 900px !important;*/
+/*}*/
+/*@media (min-width: 992px) {*/
+    /*.modal-lg {*/
+        /*width: 1100px !important;*/
+    /*}*/
+/*}*/

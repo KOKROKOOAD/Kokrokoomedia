@@ -1,0 +1,1 @@
+{{--<a href="{{route('create.ad')}}" class="btn button second">Publish ad</a>--}}
