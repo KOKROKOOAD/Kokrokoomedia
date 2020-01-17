@@ -75,6 +75,10 @@ Route::get('/down', 'ExcelController@downloads')->name('download');
 //
 Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::get('dashboard', function () {
+        $path = Storage::disk('doc')->path(auth()->user()->logo);
+
+        die($path);
+
         return view('userDashboard.dashboard');
     })->name('dashboard');
 
