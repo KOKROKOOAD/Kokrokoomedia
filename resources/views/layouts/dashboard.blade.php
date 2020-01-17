@@ -107,7 +107,7 @@
                           
 
                             @auth()
-                            <img class="img-fluid" src="{{asset('var/www/html/register/logos/'.auth()->user()->logo)}}" width="50px" height="10px" alt="" />
+                            <img class="img-fluid" src="{{asset('http://media.kokrokooad.com/register/logos/'.auth()->user()->logo)}}" width="50px" height="10px" alt="" />
                             @endauth
 {{--                             <a class="navbar-brand" href="#"><img src="/images/kokro-yellow.png"  alt="kokrokoo"></a>
  --}}
