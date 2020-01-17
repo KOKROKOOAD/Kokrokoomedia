@@ -54,6 +54,10 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'docs' => [
+            'driver' => 'local',
+            'root' =>  '/var/www/html/register/logos/',
+        ],
 
         's3' => [
             'driver' => 's3',
