@@ -13,8 +13,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Kokrokoo'),
-    'file_upload' => env('FILE_UPLOAD_PATH'),
+    'name' => env('APP_NAME', 'Kokrokooad.com'),
+    'avatars' => env('AVATARS_URL'),
+    'logos' => env('MEDIA_LOGOS_URL'),
     'merchant_id' => env('MERCHANT_ID'),
     'item_desc' => env('ITEM_DESC'),
     'merchant_username' => env('MERCHANT_USERNAME'),
