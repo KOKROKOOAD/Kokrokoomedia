@@ -82,9 +82,11 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
 
 
 
-    Route::get('/fetch-images',function(){
-        $path =   \Illuminate\Support\Facades\Storage::disk('docs');
-        dd($path);
+    Route::get('/fetch',function(){
+       // $path =   \Illuminate\Support\Facades\Storage::disk('docs');
+       // dd($path);
+
+        return view('<h1>Hello world</h1>');
     });
 
 
