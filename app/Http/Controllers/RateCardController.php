@@ -8,6 +8,7 @@ use App\PrintRateCard;
 use App\RateCards;
 use App\RateCardTitles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
@@ -108,12 +109,29 @@ class RateCardController extends Controller
     public function fetchRateCards(){
 
         if(Auth::guard()->check()){
-            $rateCared =    RateCardTitles:: whereMedia_house_id(auth()->user()->client_id)->latest()->paginate(50);
-            return response()->json($rateCared);
+
+            $rateCards  = DB::table('rate_card_titles')
+                ->join('rate_cards','rate_card_titles.rate_card_title_id','=','rate_cards.rate_card_title_id')
+                ->select('rate_card_titles.*')
+                ->where('rate_card_titles.media_house_id','=', auth()->user()
+                    ->client_id)->where('rate_cards.media_house_id','=',auth()->user()->client_id)
+                ->latest()->paginate(10);     //whereRate_card_title_id(Input::get('rateCardTitleId'))->g;
+
+            return response()->json($rateCards);
         }
         elseif(Auth::guard('admin')->check()){
-            $rateCared =    RateCardTitles:: whereMedia_house_id(Auth::guard('admin')->user()->media_house_id)->latest()->paginate(50);
-            return response()->json($rateCared);
+//            $rateCared =    RateCardTitles:: whereMedia_house_id(Auth::guard('admin')->user()->media_house_id)->latest()->paginate(50);
+//            return response()->json($rateCared);
+
+            $rateCards  = DB::table('rate_card_titles')
+                ->join('rate_cards','rate_card_titles.rate_card_title_id','=','rate_cards.rate_card_title_id')
+                ->select('rate_card_titles.*')
+                ->where('rate_card_titles.media_house_id','=', auth()
+                    ->user()->client_id)->where('rate_cards.media_house_id','=',auth()
+                    ->user()->client_id)->latest()->paginate(10);     //whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
+                        return response()->json($rateCards);
+
+
         }
    
     }
@@ -128,15 +146,34 @@ class RateCardController extends Controller
    public function  viewRateCard(Request $request){
 
     if(auth()->user()->media != 'Print'){
-        $rate_cards = RateCards::whereMedia_house_id(auth()->user()->client_id)->whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
-        $rate_cards_title = RateCardTitles::select('rate_card_title')->whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
-        $segments = json_decode($rate_cards[0]->segments);
-        $w_segments = json_decode($rate_cards[0]->weekend_segments);
-        $days_of_week = $rate_cards[0]->days_of_week;
-        $days_of_weekends = $rate_cards[0]->days_of_weekend;
+
+        $rate_cards  = DB::table('rate_card_titles')
+            ->join('rate_cards','rate_card_titles.rate_card_title_id','=','rate_cards.rate_card_title_id')
+            ->select('rate_card_titles.rate_card_title', 'rate_cards.*')
+            ->where('rate_cards.media_house_id','=', auth()->user()->client_id)->where('rate_card_titles.rate_card_title_id','=',Input::get('rateCardTitleId'))->get();     //whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
 
 
-       return response()->json(['rate_card'=>$rate_cards, 'rate_card_title'=> $rate_cards_title,'segments'=>$segments,'days_of_week' => $days_of_week,'days_of_weekends'=>$days_of_weekends,'w_segments'=>$w_segments]);
+        if($rate_cards){
+            $segments = $rate_cards[0]->segments;
+            $w_segments = json_decode($rate_cards[0]->weekend_segments);
+            $days_of_week = json_decode($rate_cards[0]->days_of_week);
+            $days_of_weekends = $rate_cards[0]->days_of_weekend;
+
+            return response()->json(['rate_card'=>$rate_cards, 'rate_card_title'=> $rate_cards[0]->rate_card_title,'segments'=>$segments,'days_of_week' => $days_of_week,'days_of_weekends'=>$days_of_weekends,'w_segments'=>$w_segments]);
+        }
+
+//        $rate_cards = RateCards::whereMedia_house_id(auth()->user()->client_id)->whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
+//        $rate_cards_title = RateCardTitles::select('rate_card_title')->whereRate_card_title_id(Input::get('rateCardTitleId'))->first();
+//      //  die($rate_cards);
+//
+//              $segments = $rate_cards[0]->segments;
+//              $w_segments = $rate_cards[0]->weekend_segments;
+//              $days_of_week = $rate_cards[0]->days_of_week;
+//              $days_of_weekends = $rate_cards[0]->days_of_weekend;
+//
+//       return response()->json(['rate_card'=>$rate_cards, 'rate_card_title'=> $rate_cards_title,'segments'=>$segments,'days_of_week' => $days_of_week,'days_of_weekends'=>$days_of_weekends,'w_segments'=>$w_segments]);
+
+
     }
     elseif(auth()->user()->media == 'Print'){
 

@@ -471,7 +471,7 @@ export default new Vuex.Store({
         rateCardForloginMedia(context, page_url) {
             page_url = page_url || 'fetch-ratecards/api';
             return axios.get(page_url).then(res => {
-                  console.log(res.data);
+                //  console.log(res.data);
                 context.commit('setRateCards', res.data.data);
                 context.commit('setPagination', {
                     current_page: res.data.current_page,

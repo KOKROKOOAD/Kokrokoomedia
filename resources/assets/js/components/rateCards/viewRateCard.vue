@@ -32,7 +32,7 @@
                             <tr class="table-primary">
                                 <th>#</th>
                                 <th>Rate card ID</th>
-                                <th>Media house</th>
+<!--                                <th>Media house</th>-->
                                 <th>Rate Card</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
@@ -43,9 +43,10 @@
 
                             <!--</div>-->
                             <tr v-for="(cards,index) in rateCards">
+
                                 <th scope="row" >{{index + 1}}</th>
                                 <td>{{cards.rate_card_title_id}}</td>
-                                <td>{{media_h}}</td>
+<!--                                <td>{{media_h}}</td>-->
                                 <td>{{cards.rate_card_title}}</td>
                                 <td>{{cards.created_at}}</td>
                                 <td>{{cards.updated_at}}</td>
@@ -392,8 +393,8 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <div class="d-inline" v-for="title in rate_card_title">
-                                            <h4 class="animated fadeIn"><strong class="text-danger">{{title.rate_card_title}}</strong> Rate Card <span v-show="media != 'Print'">for {{day}}</span></h4>
+                                        <div class="d-inline" >
+                                            <h4 class="animated fadeIn"><strong class="text-danger">{{rate_card_title}}</strong> Rate Card <span v-show="media != 'Print'">for {{day}}</span></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -437,9 +438,6 @@
                                             <th v-show="days_of_week.sec4 > 0">{{days_of_week.sec4 + days_of_week.time4}}</th>
                                             <th v-show="days_of_week.sec5 > 0">{{days_of_week.sec5 + days_of_week.time5}}</th>
                                         </tr>
-
-
-
 
                                         <!--show if  view weekends button is clicked-->
                                         <tr class="table-primary animated fadeIn" v-for="(card,index) in view_rate_card_w" v-show="weekends">
@@ -563,8 +561,7 @@
             store.dispatch('rateCardForloginMedia',this.pagi.current_page);
           //  this.fetchRateCards();
             this.confirmDeleteToUser(this.message);
-            this.fetchMediaHouse();
-
+           // this.fetchMediaHouse();
         },
         methods:{
             addRow(){
@@ -658,7 +655,7 @@
                 else{
                     axios.get('view-ratecard/api',{params : {'rateCardTitleId' :rateCardId}}).then(function (res) {
                         if (res.data) {
-                            self.view_rate_card =  res.data.segments;
+                            self.view_rate_card =  JSON.parse(res.data.segments);
                             self.view_rate_card_w = res.data.w_segments;
                             self.days_of_week  = JSON.parse(res.data.days_of_week);
                             self.days_of_weekend = JSON.parse(res.data.days_of_weekends);
