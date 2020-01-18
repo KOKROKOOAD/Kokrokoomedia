@@ -44,8 +44,7 @@ class TestController extends Controller
 //     }
 
   public function  imagePaths(){
-      $path  = Storage::disk('docs')->get('1579263995_Francis_Ocrannalo.jpeg');
-      return view("<img src=$path/>");
-   //   dd($path);
+      $path  = Storage::get('1579263995_Francis_Ocrannalo.jpeg');
+      dd($path);
   }
 }
