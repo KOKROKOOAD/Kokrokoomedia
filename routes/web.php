@@ -18,10 +18,6 @@ use Illuminate\Database\Eloquent\Collection;
 |
 */
 
-Route::get('/fetch-images',function(){
-  $path =   \Illuminate\Support\Facades\Storage::disk('docs');
-  dd($path);
-});
 
 //
 Route::get('/', function () {
@@ -80,12 +76,18 @@ Route::get('/down', 'ExcelController@downloads')->name('download');
 //
 Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::get('dashboard', function () {
-        $path = Storage::disk('docs')->path(auth()->user()->logo);
-
-        die($path);
 
         return view('userDashboard.dashboard');
     })->name('dashboard');
+
+
+
+    Route::get('/fetch-images',function(){
+        $path =   \Illuminate\Support\Facades\Storage::disk('docs');
+        dd($path);
+    });
+
+
 
     Route::get('active-subscription', function () {
         return view('userDashboard.activeSubscription');
