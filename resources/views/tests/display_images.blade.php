@@ -1,1 +1,1 @@
-<img src="{{$path.auth()->user()->logo}}"/>
+<img src="{{'http://uploads.kokrokooad.com/uploads'.auth()->user()->logo}}"/>
