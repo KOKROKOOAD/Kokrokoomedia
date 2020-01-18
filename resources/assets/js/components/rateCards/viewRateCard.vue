@@ -389,12 +389,12 @@
                 <div class="modal-content">
                     <div class="page-wrapper">
                         <!-- Page-header start -->
-                        <div class="page-header" v-show="processing">
+                        <div class="page-header">
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
-                                    <div class="page-header-title">
+                                    <div class="page-header-title" >
                                         <div class="d-inline" >
-                                            <h4 class="animated fadeIn"><strong class="text-danger">{{rate_card_title}}</strong> Rate Card <span v-show="media != 'Print'">for {{day}}</span></h4>
+                                            <h4 class="animated fadeIn" v-show="ratecard_table"><strong class="text-danger">{{rate_card_title}}</strong> Rate Card <span v-show="media != 'Print'">for {{day}}</span></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -420,7 +420,7 @@
                             <div class="card-block table-border-style">
                                <view-print-rate-card v-show="media == 'Print'" :print_segments="print_segments" v-if="processing"></view-print-rate-card>
                                 <div class="table-responsive" v-show="media != 'Print'">
-                                    <table id="simpletable" class="table  table-striped table-bordered nowrap">
+                                    <table id="simpletable" class="table  table-striped table-bordered nowrap" v-show="ratecard_table">
                                         <thead>
                                         <tr class="table-primary animated fadeIn" v-show="weekdays">
 
@@ -489,7 +489,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" v-show="ratecard_table">
                         <button type="button" v-show="media != 'Print'" class="btn btn-primary" @click="viewWeekendSegments">{{label}}</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
@@ -552,7 +552,8 @@
                 media_h : '',
                 print_segments : [],
                 processing : false,
-                loader : true,
+                loader : false,
+                ratecard_table : false
 
 
             }
@@ -638,11 +639,14 @@
             //fetch rate cards for login user
             viewRateCard(rateCardId) {
                 let self = this;
+                self.loader =  true;
                 if(self.media == 'Print'){
                     axios.get('view-ratecard/api',{params : {'rateCardTitleId' :rateCardId}}).then(function (res) {
                         if (res.data) {
                             self.print_segments = res.data.rate_card;
-                            self.loader = false;
+                            setTimeout(function () {
+                                self.loader = false;
+                            },3000);
                             self.processing = true;
 
                            // console.log(self.print_segments);
@@ -660,8 +664,9 @@
                             self.days_of_week  = JSON.parse(res.data.days_of_week);
                             self.days_of_weekend = JSON.parse(res.data.days_of_weekends);
                             self.rate_card_title = res.data.rate_card_title;
-                            self.loader = false;
-                            self.processing = true;
+                                self.loader = false;
+                                self.ratecard_table = true;
+
                         }
                     });
                 }
