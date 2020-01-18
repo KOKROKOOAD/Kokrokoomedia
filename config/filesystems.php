@@ -56,7 +56,8 @@ return [
         ],
         'docs' => [
             'driver' => 'local',
-            'root' =>  '/var/www/html/register/logos/',
+           // 'root' =>  '/var/www/html/register/logos/',
+              'root' => 'http://uploads.kokrokooad.com/',
         ],
 
         's3' => [
