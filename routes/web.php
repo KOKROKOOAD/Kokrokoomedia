@@ -81,13 +81,7 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     })->name('dashboard');
 
 
-
-    Route::get('/fetch',function(){
-       // $path =   \Illuminate\Support\Facades\Storage::disk('docs');
-       // dd($path);
-
-        return view('<h1>Hello world</h1>');
-    });
+    Route::get('/fetch','TestController@imagePaths');
 
 
 
