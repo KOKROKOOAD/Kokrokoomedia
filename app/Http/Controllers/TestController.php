@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ScheduledAd;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Contracts\DataTable;
 use Yajra\DataTables\DataTables;
 
@@ -43,6 +44,7 @@ class TestController extends Controller
 //     }
 
   public function  imagePaths(){
-      dd('hello world');
+      $path  = Storage::disk('docs');
+      dd($path);
   }
 }
