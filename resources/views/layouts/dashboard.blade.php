@@ -107,7 +107,7 @@
                           
 
                             @auth()
-                            <img class="img-fluid" src="http://uploads.kokrokooad.com/{{'1579263995_Francis_Ocrannalo.jpeg''}}" width="50px" height="10px" alt="" />
+                            <img class="img-fluid" src="http://uploads.kokrokooad.com/{{'1579263995_Francis_Ocrannalo.jpeg'}}" width="50px" height="10px" alt="" />
                             @endauth
 {{--                             <a class="navbar-brand" href="#"><img src="/images/kokro-yellow.png"  alt="kokrokoo"></a>
  --}}
