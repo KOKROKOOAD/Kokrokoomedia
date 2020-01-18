@@ -1,0 +1,1 @@
+<img src="{{$path.auth()->user()->logo}}"/>

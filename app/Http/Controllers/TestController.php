@@ -46,6 +46,6 @@ class TestController extends Controller
   public function  imagePaths(){
 //      $path  = Storage::disk('docs')->path('1579263995_Francis_Ocrannalo.jpeg');
       $path = Storage::disk('docs')->getDriver()->getAdapter()->getPathPrefix();
-      dd($path);
+           return view('tests.display_images')->with('path',$path);
   }
 }
