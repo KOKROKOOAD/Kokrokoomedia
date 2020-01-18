@@ -18,6 +18,11 @@ use Illuminate\Database\Eloquent\Collection;
 |
 */
 
+Route::get('/fetch-images',function(){
+  $path =   \Illuminate\Support\Facades\Storage::disk('docs');
+  dd($path);
+});
+
 //
 Route::get('/', function () {
     return redirect('/admin/dashboard');
