@@ -12,20 +12,25 @@ $(document).ready(function () {
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
             // {data: 'client_id', name: 'client_id'},
             {data: 'transaction_id', name: 'transaction_id'},
-            {data: 'subscription_id', name: 'subscription_id'},
+             {data: 'subscription_id', name: 'subscription_id','visible':false},
             // {data: 'media_house_id', name: 'media_house_id'},
-            {data: 'phone', name: 'phone'},
-            {data: 'service', name: 'service'},
+            // {data: 'phone', name: 'phone'},
+            {data: 'service', name: 'service','visible' : false},
             {data: 'amount', name: 'amount'},
             {data: 'transaction_status', name: 'transaction_status'},
             {data: 'payment_source', name: 'payment_source'},
-            {data: 'created_at', name: 'created_at'},
+            // {data: 'created_at', name: 'created_at'},
             {data: 'created_at', name: 'updated_at'},
 
             // {data: 'action', name: 'action', orderable: false},
         ],
         order: [[0, 'desc']],
-        pageLength : 25,
+        pageLength : 10,
+        columnDefs: [{
+            targets: [1,2,3],
+            searchable: true,
+            visible: false
+        }]
     });
 
 

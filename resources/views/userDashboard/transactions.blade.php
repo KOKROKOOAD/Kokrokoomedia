@@ -57,14 +57,14 @@
                             <th>ID</th>
                             <th>#</th>
                             <th>Transaction ID</th>
-                            <th>Invoice number</th>
-                            <th>Phone</th>
-                            <th>Service</th>
+{{--                            <th>Invoice number</th>--}}
+{{--                            <th>Phone</th>--}}
+{{--                            <th>Service</th>--}}
                             <th>Amount</th>
                             <th>Status</th>
                             <th>Channel</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
+                            <th>Transaction date</th>
+{{--                            <th>Updated at</th>--}}
                             <th>Action</th>
                         </tr>
                         </thead>
