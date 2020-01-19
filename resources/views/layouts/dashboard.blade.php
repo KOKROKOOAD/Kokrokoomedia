@@ -551,14 +551,14 @@
                     <script src="https://colorlib.com//polygon/adminty/files/assets/js/vartical-layout.min.js"></script>
                     <script src="https://colorlib.com//polygon/adminty/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
                     {{--<script type="text/javascript" src="https://colorlib.com//polygon/adminty/files/assets/js/script.js"></script>--}}
-{{--                    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--}}
-                    <script src="../files/assets/pages/data-table/js/vfs_fonts.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
-                    <script src="../files/bower_components/datatables.net-buttons/js/buttons.print.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
-                    <script src="../files/bower_components/datatables.net-buttons/js/buttons.html5.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
-                    <script src="../files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
-                    <script src="../files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
-                    <script src="../files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
-                    <script src="../files/assets/pages/data-table/js/data-table-custom.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
+                    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+{{--                    <script src="../files/assets/pages/data-table/js/vfs_fonts.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
+{{--                    <script src="../files/bower_components/datatables.net-buttons/js/buttons.print.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
+{{--                    <script src="../files/bower_components/datatables.net-buttons/js/buttons.html5.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
+{{--                    <script src="../files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
+{{--                    <script src="../files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
+{{--                    <script src="../files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
+{{--                    <script src="../files/assets/pages/data-table/js/data-table-custom.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
 
                     <script src="{{ asset('js/datatable-files/transactions.js') }}"></script>
 
