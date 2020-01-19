@@ -45,6 +45,8 @@
                                     <th>Rate card</th>
                                     <th>Status</th>
                                     <th>Created date</th>
+                                    <th>Action</th>
+
                                 </tr>
                                 </thead>
                             </table>
