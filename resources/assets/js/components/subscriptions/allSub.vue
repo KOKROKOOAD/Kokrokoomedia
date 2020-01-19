@@ -32,14 +32,29 @@
                   <th>End Date</th>
                   <th>Spots</th>
                   <th>Subscription title</th>
-<!--                  <th>Segment</th>-->
+                  <th>Segment</th>
                   <th>Duration</th>
                   <th>Rate card</th>
                   <th>Status</th>
                   <th>Created date</th>
                 </tr>
               </thead>
-
+              <tbody>
+                <tr v-for="(sub,index) in allSubs" :key="index">
+                  <th scope="row">{{index + 1 }}</th>
+                  <td>{{sub.subscription_id}}</td>
+                  <td>{{sub.created_ad_data[0].startDate}}</td>
+                  <td>{{sub.created_ad_data[0].endDate}}</td>
+                  <td>{{sub.created_ad_data[0].spot}}</td>
+                  <td>{{sub.title}}</td>
+                  <td>{{sub.created_ad_data[0].startTime}}-{{sub.created_ad_data[0].endTime}}</td>
+                  <td>{{sub.created_ad_data[0].durations}} sec</td>
+                  <td>{{sub.created_ad_data[0].rate_card}}</td>
+                  <td v-show="show">{{sub_status = sub.status}}</td>
+                  <td class="text-info" style="font-weight: bolder">{{sub_status}}</td>
+                  <td>{{sub.created_at}}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
