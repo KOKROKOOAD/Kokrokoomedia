@@ -146,7 +146,7 @@ class SubController extends Controller
 //            $subs  =  ScheduledAd::whereMedia_house_id(auth()->user()->client_id)->latest()->paginate(50);
 //            return view('userDashboard.createSub')->with('subs', $subs);
 //        }
-
+         $schedAds = null;
         if(request()->ajax()) {
             $schedAds  = DB::table('scheduled_ads')
                 ->join('users', 'scheduled_ads.media_house_id','=','users.client_id')
@@ -169,7 +169,7 @@ class SubController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
-                    return view('userDashboard.createSub');
+                    return view('userDashboard.createSub')->with('schedAds',$schedAds);
 
     }
 
