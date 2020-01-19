@@ -320,40 +320,40 @@
                                         <li>
                                             <a href="{{route('sub.all')}}">
                                                 <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                                                <span class="pcoded-mtext">All</span>
+                                                <span class="pcoded-mtext">Subscription</span>
                                             </a>
                                         </li>
-                                        <li class="">
-                                            <a href="{{route('sub.pending')}}">
-                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                                                <span class="pcoded-mtext">Pending</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="{{route('sub.new')}}">
-                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                                                <span class="pcoded-mtext">Accepted</span>
-                                            </a>
-                                        </li>
+{{--                                        <li class="">--}}
+{{--                                            <a href="{{route('sub.pending')}}">--}}
+{{--                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>--}}
+{{--                                                <span class="pcoded-mtext">Pending</span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="">--}}
+{{--                                            <a href="{{route('sub.new')}}">--}}
+{{--                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>--}}
+{{--                                                <span class="pcoded-mtext">Accepted</span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
 
-                                        <li class="">
-                                            <a href="{{route('sub.active')}}">
-                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                                                <span class="pcoded-mtext">Active</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="{{route('sub.expired')}}">
-                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                                                <span class="pcoded-mtext">Expired</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="{{route('sub.reject')}}">
-                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                                                <span class="pcoded-mtext">Rejected</span>
-                                            </a>
-                                        </li>
+{{--                                        <li class="">--}}
+{{--                                            <a href="{{route('sub.active')}}">--}}
+{{--                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>--}}
+{{--                                                <span class="pcoded-mtext">Active</span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="">--}}
+{{--                                            <a href="{{route('sub.expired')}}">--}}
+{{--                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>--}}
+{{--                                                <span class="pcoded-mtext">Expired</span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="">--}}
+{{--                                            <a href="{{route('sub.reject')}}">--}}
+{{--                                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>--}}
+{{--                                                <span class="pcoded-mtext">Rejected</span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
                                     </ul>
                                 </li>
                                 <li class="pcoded-hasmenu active pcoded-trigger">
