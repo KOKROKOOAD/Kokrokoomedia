@@ -35,6 +35,7 @@
                                     <th>#</th>
                                     <th>ID</th>
                                     <th>Client ID</th>
+                                    <th>Rate card ID</th>
                                     <th>Subscription ID</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
