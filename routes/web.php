@@ -264,7 +264,7 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::post('test-check-segment', 'SegmentController@eventCheck');
     Route::post('check-sub/api', 'SubController@checkIfSubExist');
     Route::get('fetch-transac/api', 'SubController@fetchUserTransac');
-    Route::get('/media/admin/view-subscription', 'SubController@viewFile')->name('view-file');
+    Route::get('/media/admin/view-subscription/{id}', 'SubController@viewFile')->name('view-file');
 
 
 
