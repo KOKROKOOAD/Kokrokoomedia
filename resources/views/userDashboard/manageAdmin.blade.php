@@ -29,7 +29,7 @@
         <div class="page-body">
             <!-- Default Styling table start -->
             <div class="card">
-                <search></search>
+{{--                <search></search>--}}
                 <!--                <div class="card-header">-->
                 <!--                    &lt;!&ndash;<h5>Default Styling</h5>&ndash;&gt;-->
                 <!--                    &lt;!&ndash;<span>use class <code>table table-styling</code> inside table element</span>&ndash;&gt;-->
