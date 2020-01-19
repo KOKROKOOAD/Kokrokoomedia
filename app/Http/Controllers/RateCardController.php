@@ -14,12 +14,25 @@ use Illuminate\Support\Facades\Redirect;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use App\AdminAuditTrail;
+use Illuminate\Support\Facades\Validator;
+
 class RateCardController extends Controller
 {
 
     // create rate card title
+    /**
+     * Store a new blog post.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
     public function storeRateCardTitle(Request $request)
     {
+
+        $validateRequest  = request()->validate([
+            'rateCardTitle' => 'required|unique:rate_card_titles'
+        ]);
+
         $unique_id = uniqid('K', true);
         if (RateCardTitles::where('rate_card_title_id', '=', $unique_id)) {
             $unique_id = uniqid('K', true);

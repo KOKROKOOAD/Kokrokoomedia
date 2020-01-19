@@ -37,7 +37,7 @@
                                     <input name="select" class="form-control form-control-primary"  v-model="rateCardTitle">
                                 </div>
                                 <div class="animated fadeIn" style="padding-left: 16px;">
-                                    <button v-show="rateCardTitle !== ''" :disabled="disabled"  role="button" type="button" class="btn btn-primary" @click="storeRateCardTitle()">Submit
+                                    <button v-show="false"   role="button" type="button" class="btn btn-primary" @click="storeRateCardTitle()">Submit
                                         <img v-show="disabled"  src="/images/loading.gif" width="20" height="20">
 
                                     </button>
@@ -93,6 +93,11 @@
 
 
             },
+            showSubmitButton(){
+                if(this.rateCardTitle.length > 0){
+                    return true;
+                }
+            }
 
         },
         computed:{

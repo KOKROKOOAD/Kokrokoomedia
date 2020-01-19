@@ -3,6 +3,7 @@
 @section('dashboard')
     <div class="page-wrapper">
         <!-- Page-header start -->
+
         <div class="page-header">
             <div class="row align-items-end">
                 <div class="col-lg-8">
@@ -37,13 +38,19 @@
                                 {{ csrf_field() }}
                                 <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xl-12 m-b-30">
+                                    <div class="form-group{{ $errors->has('rateCardTitle') ? ' has-error' : '' }}">
                                     <h4 class="sub-title">Provide rate card title</h4>
                                     <input name="rateCardTitle" class="form-control form-control-primary">
+                                    @if ($errors->has('rateCardTitle'))
+                                        <span class="error" role="alert">
+                                        <strong>{{ $errors->first('rateCardTitle') }}</strong>
+                                    </span>
+                                    @endif
+                                    </div>
                                 </div>
                                 <div class="animated fadeIn" style="padding-left: 16px;">
                                     <button   role="button" type="submit" class="btn btn-primary">Submit
 {{--                                        <img v-show="disabled"  src="/images/loading.gif" width="20" height="20">--}}
-
                                     </button>
                                 </div>
                             </div>

@@ -191,14 +191,15 @@ class SubController extends Controller
         }
         $ext = explode('/', $f_type);
 
-        $file_path = public_path() . "/storage/" . $f_name;
+      //  $file_path = public_path() . "/storage/" . $f_name;
         $headers = [
             'Content-Type' => 'application/' . $ext[0]
         ];
 
-        $file = storage_path('app') . $f_name;
+       // $file = storage_path('app') . $f_name;
+        $file = env('SUB_FILES_URL').$f_name;
 
-        return response()->download($file_path, $f_name, $headers);
+        return response()->download($file, $f_name, $headers);
     }
 
     //  pending subs are updated to accept when pass review
