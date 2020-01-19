@@ -178,9 +178,11 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     })->name('create.rate.cards');
 
 
-    Route::get('view-rate-card', function () {
-        return view('userDashboard.viewRateCard');
-    })->name('view.ratecard');
+//    Route::get('view-rate-card', function () {
+//        return view('userDashboard.viewRateCard');
+//    })->name('view.ratecard');
+
+    Route::get('view-rate-card','RateCardController@index')->name('view.ratecard');
 
     //    Route::get('manage-admins',function (){
     //        return view('userDashboard.manageAdmin');

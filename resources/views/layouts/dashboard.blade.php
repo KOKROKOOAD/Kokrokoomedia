@@ -563,6 +563,8 @@
 
 {{--                    <script src="{{ asset('js/datatable-files/transactions.js') }}"></script>--}}
                     <script src="{{ asset('js/datatable-files/subscriptions.js') }}"></script>
+                    <script src="{{ asset('js/datatable-files/rate_cards.js') }}"></script>
+
 
 
 

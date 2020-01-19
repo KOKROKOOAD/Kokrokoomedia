@@ -19,6 +19,33 @@ use Illuminate\Support\Facades\Validator;
 class RateCardController extends Controller
 {
 
+    public function index(){
+        if(request()->ajax()) {
+            $rate_cards  =  DB::table('rate_cards')
+                ->join('rate_card_titles', 'rate_cards.rate_card_title_id','=','rate_card_titles.rate_card_title_id')
+                ->join('users', 'rate_cards.media_house_id','=','users.client_id')
+                ->select('rate_cards.*','rate_card_titles.rate_card_title', 'users.media_house')
+                ->get();
+            return datatables()->of($rate_cards)
+                ->addColumn('action', function($row){
+
+                    $btn =  '<a href="ratecard/'.$row->rate_card_id.'" data-toggle="tooltip"     data-id="'.$row->rate_card_id.'" 
+                    data-original-title="view" class="edit btn btn-success btn-sm view-sub"><i class="fa fa-eye"></i></a>';
+                    return $btn;
+
+                    $btn = '<div class="btn-group btn-group-sm"> ';
+                    $btn =$btn.  '<button data-toggle="tooltip"  data-id="'.$row->rate_card_id.'" data-original-title="Edit" class="edit btn btn-success btn-sm accept-user" id="accept-users"><i class="fa fa-check"></i></button>';
+                    $btn = $btn.' <button data-toggle="tooltip"  data-id="'.$row->rate_card_id.'" data-original-title="Delete" class="btn btn-danger btn-sm block-user"><i class="fa fa-trash"></i> </button>';
+                    $btn = $btn . '</div';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+          return view('userDashboard.viewRateCard');
+    }
+
     // create rate card title
     /**
      * Store a new blog post.
