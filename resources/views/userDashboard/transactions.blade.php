@@ -26,6 +26,7 @@
             <div class="col-sm-12">
         <div class="card">
 {{--            <search></search>--}}
+            <div class="card-block">
 
             <div  class="dt-responsive table-responsive">
                     <table id="laravel_datatable" class="table table-striped table-bordered nowrap">
@@ -47,6 +48,7 @@
                     </table>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     </div>
