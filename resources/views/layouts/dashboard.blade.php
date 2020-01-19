@@ -452,7 +452,6 @@
             </div>
 
         </div>
-    </div>
 
 
 @endsection
@@ -560,7 +559,7 @@
                     <script src="../files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
                     <script src="../files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
 {{--                    <script src="../files/assets/pages/data-table/js/data-table-custom.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
-
+                    @yield('datatable-scripts')
 {{--                    <script src="{{ asset('js/datatable-files/transactions.js') }}"></script>--}}
 {{--                    <script src="{{ asset('js/datatable-files/subscriptions.js') }}"></script>--}}
 {{--                    <script src="{{ asset('js/datatable-files/rate_cards.js') }}"></script>--}}
@@ -621,4 +620,4 @@
     
 @endsection
 
-@yield('datatable-scripts')
+@section('datatable-scripts')

@@ -35,6 +35,7 @@
 <div class="modal-overlay"></div>
 
     @yield('scripts')
+
         <script src="{{asset('/js/app.js')}}"></script>
         <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
 </body>
