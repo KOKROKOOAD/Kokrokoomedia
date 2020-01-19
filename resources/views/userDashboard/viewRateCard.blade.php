@@ -41,6 +41,7 @@
                             <table id="laravel_datatable" class="table table-striped table-bordered nowrap">
                                 <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>ID</th>
                                     <th>Rate card ID</th>
                                     <th>Rate card</th>
