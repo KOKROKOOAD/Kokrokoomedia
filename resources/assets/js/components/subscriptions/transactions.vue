@@ -46,10 +46,10 @@
                                 <th>#</th>
                                 <th>Transaction Date</th>
                                 <th>Transaction id</th>
-                                <th>Subscription id</th>
+<!--                                <th>Subscription id</th>-->
                                 <th>Payment source</th>
                                 <th>Amount Paid(GHC)</th>
-                                <th>Payment status</th>
+                                <th>Status</th>
 
                             </tr>
                             </thead>
@@ -61,7 +61,7 @@
                                 <td>{{trans.service}}</td>
                                 <td>{{trans.payment_source}}</td>
                                 <td>{{trans.amount}}</td>
-                                <td></td>
+<!--                                <td></td>-->
 
                             </tr>
                             </tbody>
