@@ -17,6 +17,8 @@ $(document).ready(function () {
             {data: 'action', name: 'action', orderable: false},
         ],
         order: [[0, 'desc']],
+        "pageLength": 10,
+
 
     });
 

@@ -42,7 +42,6 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>#</th>
                                     <th>Rate card ID</th>
                                     <th>Rate card</th>
                                     <th>Created at</th>
