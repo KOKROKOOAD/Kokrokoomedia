@@ -2,5 +2,5 @@
 
 @section('dashboard')
 
-{{--    <accepted-sub></accepted-sub>--}}
+    <accepted-sub></accepted-sub>
 @endsection

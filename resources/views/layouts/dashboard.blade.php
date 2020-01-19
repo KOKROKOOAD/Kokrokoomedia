@@ -562,6 +562,8 @@
 {{--                    <script src="../files/assets/pages/data-table/js/data-table-custom.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
 
                     <script src="{{ asset('js/datatable-files/transactions.js') }}"></script>
+                    <script src="{{ asset('js/datatable-files/subscriptions.js') }}"></script>
+
 
 
 
