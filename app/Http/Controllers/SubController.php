@@ -197,7 +197,9 @@ class SubController extends Controller
         ];
 
        // $file = storage_path('app') . $f_name;
-        $file = env('SUB_FILES_URL').$f_name;
+       // $file = env('SUB_FILES_URL').$f_name;
+        $file = '/var/www/html/uploads/subscription-files/'.$f_name;
+
 
         return response()->download($file, $f_name, $headers);
     }

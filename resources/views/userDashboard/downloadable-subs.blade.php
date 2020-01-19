@@ -61,10 +61,8 @@
                             <td>{{$subs->file_type}}</td>
 
                             <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="download-sub/{{$subs->subscription_id}}" type="button" class="btn btn-default"><i class="fa fa-download"> </i></a>
+                                    <a href="download-sub/{{$subs->subscription_id}}" role="button" class="btn btn-default btn-sm"><i class="fa fa-download"> </i></a>
                                     <!--                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg" ><i class="fa fa-edit"> </i> </button>-->
-                                </div>
                             </td>
                         </tr>
                             @endforeach
