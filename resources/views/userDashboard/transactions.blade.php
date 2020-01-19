@@ -55,6 +55,6 @@
 </div>
 
 @endsection
-@section('scripts')
+@section('datatable-scripts)
     <script src="{{ asset('js/datatable-files/transactions.js') }}"></script>
 @stop

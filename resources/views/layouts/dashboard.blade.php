@@ -620,3 +620,5 @@
 
     
 @endsection
+
+@yield('datatable-scripts')
