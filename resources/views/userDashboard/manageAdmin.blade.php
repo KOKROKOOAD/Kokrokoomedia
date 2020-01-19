@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="page-header-breadcrumb">
-                        <a href="{{route('staff.create.admins')}}" role="button" class="btn btn-primary">New admin</a>
+                        <a href="{{route('create.admins')}}" role="button" class="btn btn-primary">New admin</a>
 
                     </div>
                 </div>
