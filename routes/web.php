@@ -217,7 +217,7 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::get('download-sub/{id}', 'SubController@downloadFile')->name('download.sub');
 
     //admin controller routes
-    Route::get('manage-admins', 'AdminController@viewAdmins')->name('manage.admins');
+    Route::get('/manage-admins', 'AdminController@viewAdmins')->name('manage.admins');
     Route::post('/store-admin', 'AdminController@storeAdmin')->name('admin.store');
     Route::get('admin-edit', 'AdminController@editAdmin')->name('edit.admin');
     Route::post('admin-update', 'AdminController@updateAdmin')->name('update.admin');
