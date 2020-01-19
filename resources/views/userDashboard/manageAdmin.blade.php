@@ -47,40 +47,40 @@
                                 <th>Title</th>
                                 <th>Role</th>
                                 <th>Status</th>
-{{--                                <th>Last login</th>--}}
                                 <th>Created at</th>
                                 <th>Updated at</th>
                                 <th>Action</th>
+
                             </tr>
                             </thead>
-{{--                            <tbody>--}}
-{{--                            @foreach($admins as $key => $admin)--}}
-{{--                            <tr>--}}
-{{--                                <th>{{$key + 1}}</th>--}}
-{{--                                <td>{{$admin->name}}</td>--}}
-{{--                                <td>{{$admin->email}}</td>--}}
-{{--                                <td>{{$admin->phone}}</td>--}}
-{{--                                <td>{{$admin->job_title}}</td>--}}
-{{--                                <td>{{$admin->admin_type}}</td>--}}
-{{--                                <td>{{$admin->status}}</td>--}}
-{{--                                <td>{{$admin->created_at}}</td>--}}
-{{--                                <td>{{$admin->updated_at}}</td>--}}
-{{--                                <td>--}}
-{{--                                    <div class="btn-group" role="group" aria-label="Basic example">--}}
-{{--                                        @if(Auth::guard()->check())--}}
-{{--                                        <a href="{{ \Illuminate\Support\Facades\URL::route('edit.admin') }}?&id={{urlencode($admin->admin_id)}}" type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="feather icon-edit"> </i></a>--}}
-{{--                                    --}}
-{{--                                        @elseif(Auth::guard('admin')->check() && Auth::guard('admin')->user()->admin_type == 'super_admin')--}}
-{{--                                        <a href="{{ \Illuminate\Support\Facades\URL::route('staff.edit.admin') }}?&id={{urlencode($admin->admin_id)}}" type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="feather icon-edit"> </i></a>--}}
-{{--                                        @endif--}}
+                            <tbody>
+                            @foreach($admins as $key => $admin)
+                            <tr>
+                                <th>{{$key + 1}}</th>
+                                <td>{{$admin->name}}</td>
+                                <td>{{$admin->email}}</td>
+                                <td>{{$admin->phone}}</td>
+                                <td>{{$admin->job_title}}</td>
+                                <td>{{$admin->admin_type}}</td>
+                                <td>{{$admin->status}}</td>
+                                <td>{{$admin->created_at}}</td>
+                                <td>{{$admin->updated_at}}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        @if(Auth::guard()->check())
+                                        <a href="{{ \Illuminate\Support\Facades\URL::route('edit.admin') }}?&id={{urlencode($admin->admin_id)}}" type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="feather icon-edit"> </i></a>
 
-{{--                                        <update-admin-controls :id="'{{$admin->admin_id}}'" :status="'{{$admin->status}}'"></update-admin-controls>--}}
-{{--                                    </div>--}}
-{{--                                </td>--}}
-{{--                            </tr>--}}
-{{--                                @endforeach--}}
+                                        @elseif(Auth::guard('admin')->check() && Auth::guard('admin')->user()->admin_type == 'super_admin')
+                                        <a href="{{ \Illuminate\Support\Facades\URL::route('staff.edit.admin') }}?&id={{urlencode($admin->admin_id)}}" type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="feather icon-edit"> </i></a>
+                                        @endif
 
-{{--                            </tbody>--}}
+                                        <update-admin-controls :id="'{{$admin->admin_id}}'" :status="'{{$admin->status}}'"></update-admin-controls>
+                                    </div>
+                                </td>
+                            </tr>
+                                @endforeach
+
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -230,6 +230,3 @@
 
 
 @endsection
-@section('datatable-scripts')
-    <script src="{{ asset('js/datatable-files/manage_admin.js') }}"></script>
-@stop

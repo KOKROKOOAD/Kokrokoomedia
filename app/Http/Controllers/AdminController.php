@@ -30,31 +30,13 @@ class AdminController extends Controller
         /* $admins = Admin::whereMedia_house_id(auth()->user()->client_id)->latest()->paginate(50);
         return view('userDashboard.manageAdmin')->with('admins', $admins); */
 
-//        if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->admin_type == 'super_admin') {
-//            $admins = Admin::whereMedia_house_id(Auth::guard('admin')->user()->media_house_id)->latest()->paginate(50);
-//            return view('userDashboard.manageAdmin')->with('admins', $admins);
-//        } elseif (Auth::guard()->check()) {
-//            $admins = Admin::whereMedia_house_id(auth()->user()->client_id)->latest()->paginate(50);
-//            return view('userDashboard.manageAdmin')->with('admins', $admins);
-//        }
-
-        if(request()->ajax()) {
-            $users  = Admin::all();
-            return datatables()->of($users)
-                ->addColumn('action', function($row){
-                    $btn = '<div class="btn-group btn-group-sm"> ';
-                    $btn =$btn.  '<button data-toggle="tooltip"   data-id="'.$row->admin_id.'" data-original-title="Edit" class="edit btn btn-success btn-sm unblock-admin" id="'.$row->status.'"><i class="fa fa-edit"></i></button>';
-                    $btn =$btn.  '<button data-toggle="tooltip"   data-id="'.$row->admin_id.'" data-original-title="Edit" class="edit btn btn-success btn-sm unblock-admin" id="'.$row->status.'"><i class="fa fa-unlock"></i></button>';
-                    $btn = $btn.' <button data-toggle="tooltip"  data-id="'.$row->admin_id.'" data-original-title="Delete" class="btn btn-danger btn-sm block-admin" id="'.$row->status.'"><i class="fa fa-trash"></i> </button>';
-                    $btn = $btn . '</div';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->addIndexColumn()
-                ->make(true);
+        if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->admin_type == 'super_admin') {
+            $admins = Admin::whereMedia_house_id(Auth::guard('admin')->user()->media_house_id)->latest()->paginate(50);
+            return view('userDashboard.manageAdmin')->with('admins', $admins);
+        } elseif (Auth::guard()->check()) {
+            $admins = Admin::whereMedia_house_id(auth()->user()->client_id)->latest()->paginate(50);
+            return view('userDashboard.manageAdmin')->with('admins', $admins);
         }
-
-
     }
 
 
