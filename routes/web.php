@@ -122,9 +122,11 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::get('pending-subscription', 'SubController@pendingSubs')->name('sub.pending');
 
 
-    Route::get('transactions', function () {
-        return view('userDashboard.transactions');
-    })->name('transact');
+//    Route::get('transactions', function () {
+//        return view('userDashboard.transactions');
+//    })->name('transact');
+//
+    Route::get('transactions','TransactionsController@index')->name('transact');
 
     Route::get('user-profile', function () {
         return view('userDashboard.accountSettings');

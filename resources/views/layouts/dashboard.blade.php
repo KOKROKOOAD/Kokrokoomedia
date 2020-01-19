@@ -43,6 +43,8 @@
     {{--<link rel="stylesheet" type="text/css" href="https://colorlib.com//polygon/adminty/files/assets/css/style.css">--}}
     <link rel="stylesheet" type="text/css" href="https://colorlib.com//polygon/adminty/files/assets/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" type="text/css" href="https://colorlib.com//polygon/adminty/files/bower_components/datedropper/css/datedropper.min.css">
+    <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
 @stop
 {{--@section('dashboard')--}}
     {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
@@ -546,6 +548,9 @@
                     <script src="https://colorlib.com//polygon/adminty/files/assets/js/vartical-layout.min.js"></script>
                     <script src="https://colorlib.com//polygon/adminty/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
                     {{--<script type="text/javascript" src="https://colorlib.com//polygon/adminty/files/assets/js/script.js"></script>--}}
+                    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+                    <script src="{{ asset('js/datatable-files/transactions.js') }}"></script>
+
 
 
                     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
