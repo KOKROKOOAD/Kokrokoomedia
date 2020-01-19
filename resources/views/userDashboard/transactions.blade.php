@@ -22,6 +22,8 @@
     <!-- Page-body start -->
     <div class="page-body">
         <!-- Default Styling table start -->
+        <div class="row">
+            <div class="col-sm-12">
         <div class="card">
 {{--            <search></search>--}}
 
@@ -47,6 +49,8 @@
             </div>
         </div>
     </div>
+    </div>
+</div>
 
 @endsection
 
