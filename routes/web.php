@@ -148,7 +148,7 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
         return view('userDashboard.createSub', ['subs' => $subs]); 
     })->name('sub.all');*/
 
-    Route::get('/subscription', 'SubController@fetchSubscriptions')->name('sub.all');
+    Route::get('/subscriptions', 'SubController@fetchSubscriptions')->name('sub.all');
 
     // Route::get('alls-subscription', 'subController@fetchSubScriptions');
 
