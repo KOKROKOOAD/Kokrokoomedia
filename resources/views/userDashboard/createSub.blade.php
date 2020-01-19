@@ -63,3 +63,6 @@
 
 @endsection
 
+@section('scripts')
+    <script src="{{ asset('js/datatable-files/subscriptions.js') }}"></script>
+@stop

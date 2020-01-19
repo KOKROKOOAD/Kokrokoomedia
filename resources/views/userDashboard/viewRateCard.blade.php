@@ -62,3 +62,6 @@
 
 
 @endsection
+@section('scripts')
+    <script src="{{ asset('js/datatable-files/rate_cards.js') }}"></script>
+@stop
