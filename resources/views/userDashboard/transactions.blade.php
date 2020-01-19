@@ -28,7 +28,7 @@
 {{--            <search></search>--}}
 
             <div  class="dt-responsive table-responsive">
-                    <table id="laravel_datatable" class="table table-striped table-bordered nowrap">
+                    <table id="dom-table" class="table table-striped table-bordered nowrap">
                         <thead>
                         <tr>
                             <th>ID</th>
