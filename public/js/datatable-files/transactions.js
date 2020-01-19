@@ -31,14 +31,14 @@ $(document).ready(function () {
 
 
 //hide datatable search box and label
-    $('input[type=search]').hide();
-    $('#laravel_datatable_filter label').hide();
-
-    // key up event for custom search
-    oTable = table.DataTable();   //pay attention to capital D, which is mandatory to retrieve "api" datatables' object, as @Lionel said
-    $('#search').keyup(function () {
-        oTable.search($(this).val()).draw();
-    });
+//     $('input[type=search]').hide();
+//     $('#laravel_datatable_filter label').hide();
+//
+//     // key up event for custom search
+//     oTable = table.DataTable();   //pay attention to capital D, which is mandatory to retrieve "api" datatables' object, as @Lionel said
+//     $('#search').keyup(function () {
+//         oTable.search($(this).val()).draw();
+//     });
 
 
 });
