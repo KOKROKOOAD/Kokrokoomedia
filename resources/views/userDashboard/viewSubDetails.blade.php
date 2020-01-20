@@ -43,8 +43,7 @@
 
 
                                           @if($subs->file_type === 'mp3' || $subs->file_type === 'wav')
-                                                <audio controls>
-                                                      <source src="{{$subs->file_path.$subs->file_name}}" type="audio/*">
+                                                <audio controls src="{{$subs->file_path.$subs->file_name}}" type="audio/*">
 
                                                 </audio>
 {{--                                                <audio src="{{$subs->file_path.$subs->file_name}}"  ></audio>--}}
