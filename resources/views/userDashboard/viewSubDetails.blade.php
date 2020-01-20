@@ -72,7 +72,7 @@
                               </div>
                         </div>
                         <div class="btn-group  pull-right" style="padding-left: 20px;">
-                              @if($subs->status !== 'pending')
+                              @if($subs->status === 'pending')
                               <a href="#" class="btn btn-primary">Approve</a>
                               <a href="#" class="btn btn-danger">Reject</a>
                               @endif
