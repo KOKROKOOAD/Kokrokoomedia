@@ -33,18 +33,18 @@
                   <!-- Default Styling table start -->
                   <div class="row">
                         <div class="col-sm-12">
-                              <div class="card">
+                              <div class="card text-center">
                                     {{--            <search></search>--}}
-                                    <div class="card-block text-center">
+                                    <div class="card-block ">
                                           <img src="http://uploads.kokrokooad.com/subscription-files/1579427231_Joojo_Arthurmasonry-2.jpg"  alt="image">
-                                          <div class="btn-group">
-                                                <a href="#" class="btn btn-primary">Approve</a>
-                                                <a href="#" class="btn btn-danger">Reject</a>
-                                                <a href="{{route('sub.all')}}" class="btn btn-danger">Back to subscriptions</a>
 
-                                          </div>
                                     </div>
+                                    <div class="btn-group">
+                                          <a href="#" class="btn btn-primary">Approve</a>
+                                          <a href="#" class="btn btn-danger">Reject</a>
+                                          <a href="{{route('sub.all')}}" class="btn btn-danger">Back to subscriptions</a>
 
+                                    </div>
                               </div>
                         </div>
                   </div>
