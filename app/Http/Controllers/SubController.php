@@ -240,13 +240,13 @@ class SubController extends Controller
     {
         if (Auth::guard()->check()) {
             $accSub =    ScheduledAd::whereMedia_house_id(auth()->user()->client_id)->whereSubscription_id($request->input('sub_id'))->update([
-                'status' => 'accepted'
+                'status' => 'approved'
             ]);
 
             AdminAuditTrail::create(['action_by' => Auth::guard()->user()->name, 'activities' => "Approved a subscription with id " . $request->input('sub_id')]);
         } elseif (Auth::guard('admin')->check()) {
             $accSub =    ScheduledAd::whereMedia_house_id(Auth::guard('admin')->user()->media_house_id)->whereSubscription_id($request->input('sub_id'))->update([
-                'status' => 'accepted'
+                'status' => 'approved'
             ]);
 
             AdminAuditTrail::create(['action_by' => Auth::guard('admin')->user()->name, 'activities' => "Approved a subscription with id " . $request->input('sub_id')]);
@@ -256,7 +256,8 @@ class SubController extends Controller
         Notification::send($users, new AcceptSubscriptionNotificaton());
 
         session()->flash('sub-reviewed', "1  subscription successfully  accepted");
-        return  response()->json('success');
+         return redirect()->back()->with('sub-reviewed','subscription successfully  approved');
+       // return  response()->json('success');
     }
 
 
