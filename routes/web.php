@@ -386,7 +386,7 @@ Route::prefix('media/staff')->group(function () {
     Route::get('check-spots-api/{segment}', 'SegmentController@checkSpots');
     Route::post('sub-update-api', 'SubController@updateAds');
     Route::get('downloadable-subscriptions', 'SubController@downloadableSub')->name('staff.downloadable.subs');
-    Route::get('download-sub/{id}', 'SubController@downloadSub')->name('download.sub');
+    Route::get('download-file/{id}', 'SubController@downloadSub')->name('download.sub');
 
     //admin controller routes
     Route::get('manage-admins', 'AdminController@viewAdmins')->name('staff.manage.admins');
