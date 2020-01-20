@@ -199,7 +199,7 @@ class SubController extends Controller
 
     public function viewFile($id){
         $test = $id;
-        return view('userDashboard.viewSubDetails')->with($test);
+        return view('userDashboard.viewSubDetails')->with('test',$test);
     }
 
     //download file
