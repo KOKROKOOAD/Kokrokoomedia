@@ -72,8 +72,10 @@
                               </div>
                         </div>
                         <div class="btn-group  pull-right" style="padding-left: 20px;">
+                              @if($subs->status !== 'pending')
                               <a href="#" class="btn btn-primary">Approve</a>
                               <a href="#" class="btn btn-danger">Reject</a>
+                              @endif
                               <a href="download-sub/{{$subs->subscription_id}}"  role="button" class="btn btn-secondary"> Download <i class="fa fa-download"></i> </a>
                               <a href="{{route('sub.all')}}" class="btn btn-default">Back</a>
 

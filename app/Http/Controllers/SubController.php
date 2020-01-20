@@ -199,7 +199,7 @@ class SubController extends Controller
     }
 
     public function viewFile($id){
-        $sub = ScheduledAd::select('subscription_id','file_name','file_path','file_size','file_type')->where('subscription_id',$id)->get();
+        $sub = ScheduledAd::select('subscription_id','file_name','file_path','file_size','file_type','status')->where('subscription_id',$id)->get();
         return view('userDashboard.viewSubDetails')->with('sub',$sub);
     }
 
