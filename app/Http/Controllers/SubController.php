@@ -199,6 +199,7 @@ class SubController extends Controller
 
     public function viewFile($id){
         $test = $id;
+        dd($id);
         return view('userDashboard.viewSubDetails',['test'=> $test]);
     }
 
