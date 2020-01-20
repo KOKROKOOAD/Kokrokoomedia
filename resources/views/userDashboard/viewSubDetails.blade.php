@@ -45,7 +45,7 @@
                         <div class="btn-group  pull-right" style="padding-left: 20px;">
                               <a href="#" class="btn btn-primary">Approve</a>
                               <a href="#" class="btn btn-danger">Reject</a>
-                              <a href="{{route('sub.all')}}" class="btn btn-default">Back to subscriptions</a>
+                              <a href="{{route('sub.all')}}" class="btn btn-secondary">Back to subscriptions</a>
 
                         </div>
                   </div>
