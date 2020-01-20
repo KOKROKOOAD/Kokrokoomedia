@@ -21,7 +21,7 @@
                                     <div class="d-inline">
                                           <h4>Subscription Details</h4>
                                           @foreach($sub as $subs)
-                                          <span class="pull-right">{{$subs->file_name}} | {{$subs->file_type}}</span>
+                                          <p class="pull-right">{{$subs->file_name}} | {{$subs->file_type}}</p>
                                                 @endforeach
                                     </div>
                               </div>
