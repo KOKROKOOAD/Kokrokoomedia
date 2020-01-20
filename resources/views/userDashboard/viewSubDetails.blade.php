@@ -36,7 +36,7 @@
                               <div class="card">
                                     {{--            <search></search>--}}
                                     <div class="card-block">
-                                          <img src="http://uploads.kokrokooad.com/subscription-files/1579427231_Joojo_Arthurmasonry-2.jpg" alt="image">
+                                          <img src="http://uploads.kokrokooad.com/subscription-files/1579427231_Joojo_Arthurmasonry-2.jpg" width="320" height="240px" frameborder="0" alt="image">
 
                                     </div>
                               </div>
