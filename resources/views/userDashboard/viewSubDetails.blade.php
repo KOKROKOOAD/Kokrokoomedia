@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('dashboard')
 
-      {{$test}}
+      <h3>My id is : {{$test}}</h3>
 
 
     @endsection
