@@ -46,7 +46,7 @@
                                                 @elseif($subs->file_type == 'mp4' || $subs->file_type == 'avi' || $subs->file_type == 'wma')
                                                       <video src="{{$subs->file_path.$subs->file_name}}"  ></video>
 
-                                                @elseif($subs->file_type == 'mp3' || $subs->file_type == 'wav')
+                                                @elseif($subs->file_type == 'mp3' || $subs->file_type == 'wav' || $subs->file_type == 'Mp3')
                                                       <audio src="{{$subs->file_path.$subs->file_name}}"  ></audio>
 
                                                 @else
