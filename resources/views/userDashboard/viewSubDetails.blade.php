@@ -76,6 +76,7 @@
                                     <div class="contain">
                                     <form method="post" action="{{route('admin.accept.subs')}}">
                                           @csrf
+                                          <input type="hidden" value="{{$subs->subscription_id}}" name="sub_id">
                                           <button type="submit" role="button" class="btn btn-primary">Approve</button>
                                     </form>
 
