@@ -35,7 +35,7 @@
                         <div class="col-sm-12">
                               <div class="card">
                                     {{--            <search></search>--}}
-                                    <div class="card-block">
+                                    <div class="card-block text-center">
                                           <img src="http://uploads.kokrokooad.com/subscription-files/1579427231_Joojo_Arthurmasonry-2.jpg"  alt="image">
 
                                     </div>
