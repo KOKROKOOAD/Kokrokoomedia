@@ -31,14 +31,27 @@
             <!-- Page-body start -->
             <div class="page-body">
                   <!-- Default Styling table start -->
+                  @foreach($sub as $subs)
                   <div class="row">
                         <div class="col-sm-12">
                               <div class="card text-center">
                                     {{--            <search></search>--}}
                                     <div class="card-block ">
-                                          <img src="http://uploads.kokrokooad.com/subscription-files/1579427231_Joojo_Arthurmasonry-2.jpg"  alt="image">
-                                          {{$sub}}
+                                          @if($subs->file_type == 'jpeg' || $subs->file_type == 'jpg' || $subs->file_type == 'png')
+                                          <img src="{{$subs->file_path.$subs->file_name}}"  alt="image">
+
+                                                @elseif($subs->file_type == 'mp4' || $subs->file_type == 'avi' || $subs->file_type == 'wma')
+                                                      <video src="{{$subs->file_path.$subs->file_name}}"  ></video>
+
+                                                @elseif($subs->file_type == 'mp3' || $subs->file_type == 'wav')
+                                                      <video src="{{$subs->file_path.$subs->file_name}}"  ></video>
+
+                                                @else
+                                                <p>Please download file to view</p>
+                                                <a href="download-sub/{{$subs->subscription_id}}" class="btn btn-primary"> Download file <i class="fa fa-download"></i> </a>
+                                                @endif
                                     </div>
+
 
                               </div>
                         </div>
@@ -49,6 +62,7 @@
 
                         </div>
                   </div>
+                        @endforeach
             </div>
       </div>
 
