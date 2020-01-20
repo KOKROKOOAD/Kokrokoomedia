@@ -43,11 +43,7 @@
 
 
                                           @if($subs->file_type === 'mp3' || $subs->file_type === 'wav')
-                                                <audio controls src="{{$subs->file_path.$subs->file_name}}" type="audio/*">
-
-                                                </audio>
-{{--                                                <audio src="{{$subs->file_path.$subs->file_name}}"  ></audio>--}}
-                                                <p>File is  audio</p>
+                                                <audio controls src="{{$subs->file_path.$subs->file_name}}" type="audio/*"></audio>
                                           @endif
 
                                           @if($subs->file_type === 'jpeg' || $subs->file_type == 'jpg' || $subs->file_type == 'png')
@@ -60,7 +56,7 @@
 
 
 
-                                                @if($subs->file_type == 'csv' || $subs->file_type == 'odt' || $subs->file_type == 'xslx' || $subs->file_type == 'xls' || $subs->file_type == 'docx' || $subs->file_type == 'doc')
+                                                @if($subs->file_type == 'csv' || $subs->file_type == 'odt' || $subs->file_type == 'xlsx' || $subs->file_type == 'xls' || $subs->file_type == 'docx' || $subs->file_type == 'doc')
                                                 <p>Please download file to view</p>
                                                 <a href="download-sub/{{$subs->subscription_id}}" class="btn btn-primary"> Download file <i class="fa fa-download"></i> </a>
                                                 @endif
