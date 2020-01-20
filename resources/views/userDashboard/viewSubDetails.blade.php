@@ -37,14 +37,14 @@
                                     {{--            <search></search>--}}
                                     <div class="card-block text-center">
                                           <img src="http://uploads.kokrokooad.com/subscription-files/1579427231_Joojo_Arthurmasonry-2.jpg"  alt="image">
+                                          <div class="btn-group">
+                                                <a href="#" class="btn btn-primary">Approve</a>
+                                                <a href="#" class="btn btn-danger">Reject</a>
+                                                <a href="{{route('sub.all')}}" class="btn btn-danger">Back to subscriptions</a>
 
+                                          </div>
                                     </div>
-                                    <div class="btn-group">
-                                          <a href="#" class="btn btn-primary">Approve</a>
-                                          <a href="#" class="btn btn-danger">Reject</a>
-                                          <a href="{{route('sub.all')}}" class="btn btn-danger">Back to subscriptions</a>
 
-                                    </div>
                               </div>
                         </div>
                   </div>
