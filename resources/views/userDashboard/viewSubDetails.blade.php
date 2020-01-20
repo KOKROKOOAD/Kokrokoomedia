@@ -79,9 +79,9 @@
                                           <button type="submit" role="button" class="btn btn-primary">Approve</button>
                                     </form>
 
-                                    <form method="post" action="{{route('admin.reject.subs')}}">
-                                    <button type="submit" class="btn btn-danger">Reject</button>
-                                    </form>
+{{--                                    <form method="post" action="{{route('admin.reject.subs')}}">--}}
+{{--                                    <button type="submit" class="btn btn-danger">Reject</button>--}}
+{{--                                    </form>--}}
                                     </div>
                               @endif
                               <a href="download-sub/{{$subs->subscription_id}}"  role="button" class="btn btn-secondary"> Download <i class="fa fa-download"></i> </a>
