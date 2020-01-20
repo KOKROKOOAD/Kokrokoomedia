@@ -20,6 +20,9 @@
                               <div class="page-header-title">
                                     <div class="d-inline">
                                           <h4>Subscription Details</h4>
+                                          @foreach($sub as $subs)
+                                          <span class="pull-right">{{$subs->file_name}}</span>
+                                                @endforeach
                                     </div>
                               </div>
                         </div>
