@@ -20,10 +20,17 @@
                               <div class="page-header-title">
                                     <div class="d-inline">
                                           <h4>Subscription Details</h4>
-                                          @foreach($sub as $subs)
-                                          <p class="float-right">{{$subs->file_name}} | {{$subs->file_size .'kb'}}</p>
-                                                @endforeach
+
                                     </div>
+                              </div>
+                        </div>
+                        <div class="col-lg-4">
+                              <div class="page-header-breadcrumb">
+                                    <ul class="breadcrumb-title">
+                                          @foreach($sub as $subs)
+                                                <p class="float-right">{{$subs->file_name}} | {{$subs->file_size .'kb'}}</p>
+                                          @endforeach
+                                    </ul>
                               </div>
                         </div>
 
