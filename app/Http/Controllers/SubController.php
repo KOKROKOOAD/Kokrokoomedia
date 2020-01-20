@@ -152,7 +152,7 @@ class SubController extends Controller
                 ->join('users', 'scheduled_ads.media_house_id','=','users.client_id')
                 ->join('rate_card_titles', 'scheduled_ads.rate_card_id','=','rate_card_titles.rate_card_title_id')
                 ->select('scheduled_ads.*', 'users.media_house','users.id','users.client_id','users.name','rate_card_titles.rate_card_title_id','rate_card_titles.rate_card_title')
-                ->where('scheduled.status','=','pending')
+                ->where('scheduled_ads.status','=','pending')
                 ->get();
 
             //die($schedAds);
