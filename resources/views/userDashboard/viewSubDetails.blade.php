@@ -21,7 +21,7 @@
                                     <div class="d-inline">
                                           <h4>Subscription Details</h4>
                                           @foreach($sub as $subs)
-                                          <span class="pull-right">{{$subs->file_name}}</span>
+                                          <span class="pull-right">{{$subs->file_name}} | {{$subs->file_type}}</span>
                                                 @endforeach
                                     </div>
                               </div>
@@ -47,7 +47,7 @@
                                                       <video src="{{$subs->file_path.$subs->file_name}}"  ></video>
 
                                                 @elseif($subs->file_type == 'mp3' || $subs->file_type == 'wav')
-                                                      <video src="{{$subs->file_path.$subs->file_name}}"  ></video>
+                                                      <audio src="{{$subs->file_path.$subs->file_name}}"  ></audio>
 
                                                 @else
                                                 <p>Please download file to view</p>
