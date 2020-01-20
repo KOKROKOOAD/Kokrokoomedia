@@ -73,14 +73,16 @@
                         </div>
                         <div class="btn-group  pull-right" style="padding-left: 20px;">
                               @if($subs->status === 'pending')
+                                    <div class="contain">
                                     <form method="post" action="{{route('accept.subs')}}">
                                           @csrf
                                           <button type="submit" role="button" class="btn btn-primary">Approve</button>
                                     </form>
-                                    <form method="post" action="{{route('reject.subs')}}">
 
+                                    <form method="post" action="{{route('reject.subs')}}">
                                     <button type="submit" class="btn btn-danger">Reject</button>
                                     </form>
+                                    </div>
                               @endif
                               <a href="download-sub/{{$subs->subscription_id}}"  role="button" class="btn btn-secondary"> Download <i class="fa fa-download"></i> </a>
                               <a href="{{route('sub.all')}}" class="btn btn-default">Back</a>
