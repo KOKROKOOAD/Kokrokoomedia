@@ -74,12 +74,12 @@
                         <div class="btn-group  pull-right" style="padding-left: 20px;">
                               @if($subs->status === 'pending')
                                     <div class="contain">
-                                    <form method="post" action="{{route('accept.subs')}}">
+                                    <form method="post" action="{{route('admin,accept.subs')}}">
                                           @csrf
                                           <button type="submit" role="button" class="btn btn-primary">Approve</button>
                                     </form>
 
-                                    <form method="post" action="{{route('reject.subs')}}">
+                                    <form method="post" action="{{route('admin.reject.subs')}}">
                                     <button type="submit" class="btn btn-danger">Reject</button>
                                     </form>
                                     </div>

@@ -241,8 +241,8 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::get('fetch-rejected-subs/api', 'SubController@fetchRejectedSubs');
     Route::get('fetch-expired-subs/api', 'SubController@fetchExpiredSubs');
     Route::get('fetch-all-subs/api', 'SubController@fetchAllSubs');
-    Route::post('accept-sub/api', 'SubController@acceptSubs');
-    Route::post('reject-sub/api', 'SubController@rejectSubs');
+    Route::post('accept-sub/api', 'SubController@acceptSubs')->name('admin.accept.subs');
+    Route::post('reject-sub/api', 'SubController@rejectSubs')->name('admin.reject.subs');
 
     Route::get('test-date', 'SubController@testDate');
     Route::post('test-date', 'SubController@demo')->name('demo');
