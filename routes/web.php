@@ -215,6 +215,7 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::post('sub-update-api', 'SubController@updateAds');
     Route::get('downloadable-subscriptions', 'SubController@downloadableSub')->name('downloadable.subs');
     Route::get('download-sub/{id}', 'SubController@downloadFile')->name('download.sub');
+    Route::get('view-subscription/download-sub/{id}', 'SubController@downloadFile')->name('download.sub');
 
     //admin controller routes
     Route::get('/manage-admins', 'AdminController@viewAdmins')->name('manage.admins');
