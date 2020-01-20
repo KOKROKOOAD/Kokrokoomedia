@@ -27,7 +27,7 @@
                               <div class="page-header-breadcrumb">
                                     <ul class="breadcrumb-title">
                                           @foreach($sub as $subs)
-                                                <h4 class="float-right">{{$subs->file_name}} | {{$subs->file_size .'kb'}}</h4>
+                                                <span class="float-right">{{$subs->file_name}} | {{$subs->file_size .'kb'}}</span>
                                           @endforeach
                                     </ul>
                               </div>
