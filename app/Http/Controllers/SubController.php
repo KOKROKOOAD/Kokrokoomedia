@@ -238,7 +238,7 @@ class SubController extends Controller
     //  pending subs are updated to accept when pass review
     public function acceptSubs(Request $request)
     {
-        die($request->sub_id);
+        die($request->all());
         if (Auth::guard()->check()) {
             $accSub =    ScheduledAd::whereMedia_house_id(auth()->user()->client_id)->whereSubscription_id($request->input('sub_id'))->update([
                 'status' => 'approved'
