@@ -17,6 +17,7 @@ $(document).ready(function () {
             {data: 'end', name: 'end'},
             {data: 'spots', name: 'spots'},
             {data: 'title', name: 'title'},
+            {data: 'file_type', name: 'file_type'},
             // {data: 'created_ad_data', name: 'created_ad_data'},
             {data: 'durations', name: 'durations'},
             {data: 'rate_card_title', name: 'rate_card_title'},

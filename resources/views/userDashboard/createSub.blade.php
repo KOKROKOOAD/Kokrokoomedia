@@ -41,7 +41,7 @@
                                     <th>End Date</th>
                                     <th>Spots</th>
                                     <th>Subscription title</th>
-{{--                                    <th>Segment</th>--}}
+                                    <th>File extension</th>
                                     <th>Duration</th>
                                     <th>Rate card</th>
                                     <th>Status</th>
