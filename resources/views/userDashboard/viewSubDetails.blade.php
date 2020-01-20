@@ -40,13 +40,15 @@
                               <div class="card text-center">
                                     {{--            <search></search>--}}
                                     <div class="card-block ">
-                                          <audio controls>
-                                                  <source src="{{$subs->file_path.$subs->file_name}}" type="audio/*">
 
-                                          </audio>
 
                                           @if($subs->file_type === 'mp3' || $subs->file_type === 'wav')
-                                                <audio src="{{$subs->file_path.$subs->file_name}}"  ></audio>
+                                                <audio controls>
+                                                      <source src="{{$subs->file_path.$subs->file_name}}" type="audio/*">
+
+                                                </audio>
+{{--                                                <audio src="{{$subs->file_path.$subs->file_name}}"  ></audio>--}}
+                                                <p>File is  audio</p>
                                           @endif
 
                                           @if($subs->file_type === 'jpeg' || $subs->file_type == 'jpg' || $subs->file_type == 'png')
