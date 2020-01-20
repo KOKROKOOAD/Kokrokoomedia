@@ -409,8 +409,8 @@ Route::prefix('media/staff')->group(function () {
     Route::get('fetch-rejected-subs/api', 'SubController@fetchRejectedSubs');
     Route::get('fetch-expired-subs/api', 'SubController@fetchExpiredSubs');
     Route::get('fetch-all-subs/api', 'SubController@fetchAllSubs');
-    Route::post('accept-sub/api', 'SubController@acceptSubs')->name('accept.subs');
-    Route::post('reject-sub/api', 'SubController@rejectSubs')->name('reject.subs');
+//    Route::post('accept-sub/api', 'SubController@acceptSubs')->name('accept.subs');
+//    Route::post('reject-sub/api', 'SubController@rejectSubs')->name('reject.subs');
 
     Route::get('test-date', 'SubController@testDate');
     Route::post('test-date', 'SubController@demo')->name('demo');
