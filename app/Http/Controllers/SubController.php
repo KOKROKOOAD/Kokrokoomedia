@@ -199,7 +199,7 @@ class SubController extends Controller
     }
 
     public function viewFile($id){
-        $sub = ScheduledAd::select('subscription_id','file_name','file_path','file_size','file_type','status')->where('subscription_id',$id)->get();
+        $sub = ScheduledAd::select('subscription_id','file_name','file_path','file_size','file_type','status','client_id')->where('subscription_id',$id)->get();
         return view('userDashboard.viewSubDetails')->with('sub',$sub);
     }
 
@@ -238,7 +238,6 @@ class SubController extends Controller
     //  pending subs are updated to accept when pass review
     public function acceptSubs(Request $request)
     {
-        die($request->input('sub_id'));
         if (Auth::guard()->check()) {
             $accSub =    ScheduledAd::whereMedia_house_id(auth()->user()->client_id)->whereSubscription_id($request->input('sub_id'))->update([
                 'status' => 'approved'
@@ -256,7 +255,7 @@ class SubController extends Controller
         $users =  User::find($request->input('user_id'));
         Notification::send($users, new AcceptSubscriptionNotificaton());
 
-        session()->flash('sub-reviewed', "1  subscription successfully  accepted");
+     //   session()->flash('sub-reviewed', "1  subscription successfully  accepted");
          return redirect()->back()->with('sub-reviewed','subscription successfully  approved');
        // return  response()->json('success');
     }
@@ -269,7 +268,7 @@ class SubController extends Controller
             $accSub =    ScheduledAd::whereMedia_house_id(auth()->user()->client_id)->whereSubscription_id($request->input('sub_id'))->update([
                 'status' => 'rejected'
             ]);
-            AdminAuditTrail::create(['action_by' => Auth::guard('admin')->user()->name, 'activities' => "Rejected a subscription with id " . $request->input('sub_id')]);
+            AdminAuditTrail::create(['action_by' => Auth::guard()->user()->name, 'activities' => "Rejected a subscription with id " . $request->input('sub_id')]);
         } elseif (Auth::guard('admin')->check()) {
             $accSub =    ScheduledAd::whereMedia_house_id(Auth::guard('admin')->user()->media_house_id)->whereSubscription_id($request->input('sub_id'))->update([
                 'status' => 'rejected'
@@ -279,9 +278,10 @@ class SubController extends Controller
 
         $users =  User::find($request->input('user_id'));
         Notification::send($users, new RejectedSubscriptionNotificaton());
-        session()->flash('sub-rejected', "1  subscription rejected");
+     //   session()->flash('sub-rejected', "1  subscription rejected");
+        return redirect()->back()->with('sub-reviewed','subscription successfully  rejected');
 
-        return  response()->json('success');
+       // return  response()->json('success');
     }
 
     public function activeDate()

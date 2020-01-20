@@ -132,8 +132,13 @@
                             </li>
                             
                         </ul>
-                        {{--<show-processing></show-processing>--}}
 
+                        @if(session()->has('sub-reviewed'))
+
+                            <div class="alert alert-success text-center animated fade-in" id="approve-user" style="position: absolute;z-index: 999;width: 100%">
+                                <p>{{session('sub-reviewed')}}</p>
+                            </div>
+                        @endif
                         <ul class="nav-right">
 
 

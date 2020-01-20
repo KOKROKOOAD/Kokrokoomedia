@@ -71,28 +71,33 @@
 
                               </div>
                         </div>
-                        <div class="btn-group  pull-right" style="padding-left: 20px;">
                               @if($subs->status === 'pending')
-                                    <div class="contain">
                                     <form method="post" action="{{route('admin.accept.subs')}}">
                                           @csrf
                                           <input type="hidden" value="{{$subs->subscription_id}}" name="sub_id">
-                                          <button type="submit" role="button" class="btn btn-primary">Approve</button>
-                                    </form>
+                                          <input type="hidden" value="{{$subs->client_id}}" name="user_id">
 
-{{--                                    <form method="post" action="{{route('admin.reject.subs')}}">--}}
-{{--                                    <button type="submit" class="btn btn-danger">Reject</button>--}}
-{{--                                    </form>--}}
-                                    </div>
+                                          <button type="submit" role="button" class="btn btn-secondary" style="margin-left: 15px;">Approve</button>
+                                    </form>
+                                          <form method="post" action="{{route('admin.reject.subs')}}">
+                                                @csrf
+                                                <input type="hidden" value="{{$subs->subscription_id}}" name="sub_id">
+                                                <input type="hidden" value="{{$subs->client_id}}" name="user_id">
+                                                <button type="submit" class="btn btn-danger">Reject</button>
+                                          </form>
+
                               @endif
-                              <a href="download-sub/{{$subs->subscription_id}}"  role="button" class="btn btn-secondary"> Download <i class="fa fa-download"></i> </a>
-                              <a href="{{route('sub.all')}}" class="btn btn-default">Back</a>
+
+                        <div class="btn-group float-right">
+                              <a href="download-sub/{{$subs->subscription_id}}"  role="button" class="btn btn-secondary"> Download <i class="fa fa-download" ></i> </a>
+                              <a href="{{route('sub.all')}}" class="btn btn-secondary">Back</a>
+                        </div>
+
 
                         </div>
                   </div>
                         @endforeach
             </div>
-      </div>
 
 
 
