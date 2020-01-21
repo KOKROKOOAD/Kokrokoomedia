@@ -39,7 +39,7 @@ class CheckSubsEndTime extends Command
      */
     public function handle()
     {
-        $dueAds = ScheduledAd::where('end', 'like', '%' . substr(Carbon::now()->toDateString(),0,16) . '%')->whereStatus('Live')->update([
+        $dueAds = ScheduledAd::where('end', '=',substr(Carbon::now()->toDateString(),0,16))->whereStatus('Live')->update([
             'status' => 'completed'
         ]);
     }
