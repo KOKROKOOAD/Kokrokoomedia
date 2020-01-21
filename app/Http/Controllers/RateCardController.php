@@ -102,7 +102,7 @@ class RateCardController extends Controller
     }
 
 
-    public function showRateCardDetails (){
+    public function showRateCardDetails ($id){
         return view('userDashboard.viewRateCardDetails');
     }
 
