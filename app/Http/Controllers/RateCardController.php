@@ -34,8 +34,8 @@ class RateCardController extends Controller
 //                    return $btn;
 
                     $btn = '<div class="btn-group btn-group-sm"> ';
-                    $btn =$btn.  '<button data-toggle="tooltip"  data-id="'.$row->rate_card_id.'" data-original-title="Edit" class="edit btn btn-success btn-sm" ><i class="fa fa-eye"></i></button>';
-                    $btn = $btn.' <button data-toggle="tooltip"  data-id="'.$row->rate_card_id.'" data-original-title="Delete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>';
+                    $btn =$btn.  '<a href="/ratecard/'.$row->rate_card_id.'" data-toggle="tooltip"  data-id="'.$row->rate_card_id.'" data-original-title="Edit" class="edit btn btn-success btn-sm" ><i class="fa fa-eye"></i></a>';
+                    $btn = $btn.' <a href="#" data-toggle="tooltip"  data-id="'.$row->rate_card_id.'" data-original-title="Delete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
                     $btn = $btn . '</div';
                     return $btn;
                 })
@@ -99,6 +99,11 @@ class RateCardController extends Controller
             return Redirect::route('create.rate.cards');
 
         }
+    }
+
+
+    public function showRateCardDetails (){
+        return view('userDashboard.viewRateCardDetails');
     }
 
     public  function storeRateCards(Request $request)

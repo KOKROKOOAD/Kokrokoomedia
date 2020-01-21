@@ -183,6 +183,8 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
 //    })->name('view.ratecard');
 
     Route::get('ratecards','RateCardController@index')->name('view.ratecard');
+    Route::get('ratecards/{id}','RateCardController@show')->name('show.ratecard');
+
 
     //    Route::get('manage-admins',function (){
     //        return view('userDashboard.manageAdmin');
