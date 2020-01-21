@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\CheckDueAds;
+use App\Console\Commands\CheckSubsEndTime;
 use App\Console\Commands\CheckSubsWithCurrentTime;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -17,7 +18,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         CheckDueAds::class,
-        CheckSubsWithCurrentTime::class
+        CheckSubsWithCurrentTime::class,
+        CheckSubsEndTime::class
     ];
 
     /**
@@ -32,6 +34,9 @@ class Kernel extends ConsoleKernel
             ->everyMinute();
 
         $schedule->command('command:checkSubsWithCurrentTime')
+            ->everyMinute();
+
+        $schedule->command('command:checkSubEndTime')
             ->everyMinute();
     }
 
