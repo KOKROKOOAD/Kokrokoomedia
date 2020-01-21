@@ -6,14 +6,14 @@ use App\Models\ScheduledAd;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 
-class CheckDueAds extends Command
+class CheckSubsWithCurrentTime extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:checkdueads';
+    protected $signature = 'command:checkSubsWithCurrentTime';
 
     /**
      * The console command description.
@@ -39,10 +39,8 @@ class CheckDueAds extends Command
      */
     public function handle()
     {
-        $dueAds = ScheduledAd::where('start', 'like', '%' . Carbon::now()->toDateString() . '%')->whereStatus('approved')->update([
-            'status' => 'active'
+        $dueAds = ScheduledAd::where('start', 'like', '%' . substr(Carbon::now()->toDateString(),10,6) . '%')->whereStatus('active')->update([
+            'status' => 'live'
         ]);
-
-
     }
 }
