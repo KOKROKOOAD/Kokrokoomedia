@@ -140,12 +140,7 @@ class SubController extends Controller
 
     public function fetchSubscriptions(Request $request)
     {
-//        if ($request->ajax) {
-//            return response($request->get('query'));
-//        } else {
-//            $subs  =  ScheduledAd::whereMedia_house_id(auth()->user()->client_id)->latest()->paginate(50);
-//            return view('userDashboard.createSub')->with('subs', $subs);
-//        }
+
          $schedAds = null;
         if(request()->ajax()) {
             $schedAds  = DB::table('scheduled_ads')

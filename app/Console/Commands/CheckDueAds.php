@@ -39,7 +39,7 @@ class CheckDueAds extends Command
      */
     public function handle()
     {
-        $dueAds = ScheduledAd::where('start', 'like', '%' . Carbon::now()->toDateString() . '%')->whereStatus('pending')->update([
+        $dueAds = ScheduledAd::where('start', 'like', '%' . Carbon::now()->toDateString() . '%')->whereStatus('approved')->update([
             'status' => 'active'
         ]);
     }
