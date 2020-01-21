@@ -112,6 +112,8 @@ Vue.component('form-validation-message', require('./components/info-panel/infoPa
 Vue.component('update-admin-controls', require('./components/updateAdminControls/updateAdminControls').default);
 Vue.component('data-tables', require('./components/tests/datatables').default);
 Vue.component('view-print-rate-card', require('./components/rateCards/printRateCare').default);
+Vue.component('rate-card-details', require('./components/rateCards/viewSingleRatecard').default);
+
 
 const app = new Vue({
     el: '#app',

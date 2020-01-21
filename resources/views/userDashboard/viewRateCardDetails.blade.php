@@ -60,6 +60,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -67,6 +68,6 @@
 
 
 @endsection
-@section('datatable-scripts')
-    <script src="{{ asset('js/datatable-files/rate_cards.js') }}"></script>
-@stop
+{{--@section('datatable-scripts')--}}
+{{--    <script src="{{ asset('js/datatable-files/rate_cards.js') }}"></script>--}}
+{{--@stop--}}

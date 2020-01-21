@@ -54,6 +54,7 @@
                         </div>
                     </div>
                 </div>
+                <rate-card-details  media="{{ auth()->user()->media}}"></rate-card-details>
             </div>
         </div>
     </div>

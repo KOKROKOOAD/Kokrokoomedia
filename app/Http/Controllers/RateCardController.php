@@ -19,12 +19,14 @@ use Illuminate\Support\Facades\Validator;
 class RateCardController extends Controller
 {
 
-    public function index(){
+    public function index(Request $request){
+
         if(request()->ajax()) {
             $rate_cards  =  DB::table('rate_cards')
                 ->join('rate_card_titles', 'rate_cards.rate_card_title_id','=','rate_card_titles.rate_card_title_id')
                 ->join('users', 'rate_cards.media_house_id','=','users.client_id')
                 ->select('rate_cards.*','rate_card_titles.rate_card_title', 'users.media_house')
+                ->where('rate_card_titles.media_house_id','=', auth()->user()->client_id)
                 ->get();
             return datatables()->of($rate_cards)
                 ->addColumn('action', function($row){
@@ -34,8 +36,8 @@ class RateCardController extends Controller
 //                    return $btn;
 
                     $btn = '<div class="btn-group btn-group-sm"> ';
-                    $btn =$btn.  '<a href="/media/admin/ratecard/'.$row->rate_card_id.'" data-toggle="tooltip"  data-id="'.$row->rate_card_id.'" data-original-title="Edit" class="edit btn btn-success btn-sm" ><i class="fa fa-eye"></i></a>';
-                    $btn = $btn.' <a href="#" data-toggle="tooltip"  data-id="'.$row->rate_card_id.'" data-original-title="Delete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
+                    $btn =$btn.  '<button   data-id="'.$row->rate_card_title_id.'" title="View rate card" class="edit btn btn-success btn-sm viewRateCard" data-toggle="modal"><i class="fa fa-eye"></i></button>';
+                    $btn = $btn.' <a href="#" data-toggle="tooltip"  data-id="'.$row->rate_card_title_id.'" data-original-title="Delete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
                     $btn = $btn . '</div';
                     return $btn;
                 })
@@ -198,6 +200,7 @@ class RateCardController extends Controller
             ->where('rate_cards.media_house_id','=', auth()->user()->client_id)->where('rate_card_titles.rate_card_title_id','=',Input::get('rateCardTitleId'))->get();     //whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
 
 
+
         if($rate_cards){
             $segments = $rate_cards[0]->segments;
             $w_segments = json_decode($rate_cards[0]->weekend_segments);
@@ -256,6 +259,8 @@ class RateCardController extends Controller
 
 
     }
+
+
 
 
 

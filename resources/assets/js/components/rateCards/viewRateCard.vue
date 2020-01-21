@@ -97,7 +97,7 @@
                                                         </select></th>
                                                     <th class="create-ad-tb-th"><input type="number"  class="spin" v-model="durations.sec2" style="width: 50px !important;border: none">
                                                         <select v-model="durations.time2">
-                                                            <option v-for="s in time">{{s.sec}}</option>
+                               v-show="processing"                             <option v-for="s in time">{{s.sec}}</option>
                                                             <option v-for=" min in time">{{min.min}}</option>
                                                             <option v-for="hr in time">{{hr.hr}}</option>
                                                         </select>
