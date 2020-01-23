@@ -60,6 +60,8 @@ class RateCardController extends Controller
     public function storeRateCardTitle(Request $request)
     {
 
+        die('hello');
+
         $validateRequest  = request()->validate([
             'rateCardTitle' => 'required|unique:rate_card_titles'
         ]);
@@ -68,7 +70,7 @@ class RateCardController extends Controller
         if (RateCardTitles::where('rate_card_title_id', '=', $unique_id)) {
             $unique_id = uniqid('K', true);
         }
-         
+
         if(Auth::guard()->check()){
          RateCardTitles::create(['rate_card_title'=>$request->input('rateCardTitle'),'media_house_id' => Auth::guard()->user()->client_id,'rate_card_title_id'=> $unique_id]);
 
