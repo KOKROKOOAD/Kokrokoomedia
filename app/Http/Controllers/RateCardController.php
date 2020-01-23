@@ -60,7 +60,7 @@ class RateCardController extends Controller
     public function storeRateCardTitle(Request $request)
     {
 
-        die('hello');
+        die($request->input('rateCardTitle'));
 
         $validateRequest  = request()->validate([
             'rateCardTitle' => 'required|unique:rate_card_titles'
