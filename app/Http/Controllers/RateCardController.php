@@ -60,39 +60,35 @@ class RateCardController extends Controller
     public function storeRateCardTitle(Request $request)
     {
 
-//
 //        $validateRequest  = request()->validate([
 //            'rateCardTitle' => 'required|unique:rate_card_titles'
 //        ]);
 
-//        $unique_id = uniqid('K', true);
-//        if (RateCardTitles::where('rate_card_title_id', '=', $unique_id)) {
-//            $unique_id = uniqid('K', true);
-//        }
-
-        die($request->input('rateCardTitle'));
-
+        $unique_id = uniqid('K', true);
+        if (RateCardTitles::where('rate_card_title_id', '=', $unique_id)) {
+            $unique_id = uniqid('K', true);
+        }
 
         if(Auth::guard()->check()){
          RateCardTitles::create(['rate_card_title'=>$request->input('rateCardTitle'),'media_house_id' => Auth::guard()->user()->client_id,'rate_card_title_id'=> $unique_id]);
 
-//         $title = RateCardTitles::select('rate_card_title','rate_card_title_id')->where('media_house_id',Auth::guard()->user()->client_id)->where(function($query){
-//             $query->where('rate_card_title',Input::get('rateCardTitle'));
-//         })->get();
+         $title = RateCardTitles::select('rate_card_title','rate_card_title_id')->where('media_house_id',Auth::guard()->user()->client_id)->where(function($query){
+             $query->where('rate_card_title',Input::get('rateCardTitle'));
+         })->get();
 
         AdminAuditTrail::create([ 'action_by' => Auth::guard()->user()->name, 'activities'=> "Created rate card title: ".$request->input('rateCardTitle')]);
 
         }
-//        else if(Auth::guard('admin')->check()){
-//                     RateCardTitles::create(['rate_card_title'=>$request->input('rateCardTitle'),'media_house_id' => Auth::guard('admin')->user()->media_house_id,'rate_card_title_id'=> $unique_id]);
-//
-//                     $title = RateCardTitles::select('rate_card_title','rate_card_title_id')->where('media_house_id',Auth::guard('admin')->user()->media_house_id)->where(function($query){
-//             $query->where('rate_card_title',Input::get('rateCardTitle'));
-//         })->get();
-//
-//         AdminAuditTrail::create([ 'action_by' => Auth::guard('admin')->user()->name, 'activities'=> "Created rate card title: ".$request->input('rateCardTitle')]);
-//
-//        }
+        else if(Auth::guard('admin')->check()){
+                     RateCardTitles::create(['rate_card_title'=>$request->input('rateCardTitle'),'media_house_id' => Auth::guard('admin')->user()->media_house_id,'rate_card_title_id'=> $unique_id]);
+
+                     $title = RateCardTitles::select('rate_card_title','rate_card_title_id')->where('media_house_id',Auth::guard('admin')->user()->media_house_id)->where(function($query){
+             $query->where('rate_card_title',Input::get('rateCardTitle'));
+         })->get();
+
+         AdminAuditTrail::create([ 'action_by' => Auth::guard('admin')->user()->name, 'activities'=> "Created rate card title: ".$request->input('rateCardTitle')]);
+
+        }
 
         $r_title = null;
         $_r_id = null;
