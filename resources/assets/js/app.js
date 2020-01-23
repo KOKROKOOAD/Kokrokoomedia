@@ -113,7 +113,7 @@ Vue.component('update-admin-controls', require('./components/updateAdminControls
 Vue.component('data-tables', require('./components/tests/datatables').default);
 Vue.component('view-print-rate-card', require('./components/rateCards/printRateCare').default);
 Vue.component('rate-card-details', require('./components/rateCards/viewSingleRatecard').default);
-Vue.component('delete-rate-card', require('./components/rateCards/deleteRateCard').default);
+Vue.component('delete-card', require('./components/rateCards/deleteRateCard').default);
 
 
 
