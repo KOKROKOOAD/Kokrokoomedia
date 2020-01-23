@@ -370,7 +370,7 @@ Route::prefix('media/staff')->group(function () {
     })->name('staff.create.admins');
 
     Route::post('store-ratecard/api', 'RateCardController@storeRateCards');
-    Route::post('rate-card-title/api-store', 'RateCardController@storeRateCardTitle')->name('store.rate.card.title');
+ //   Route::post('rate-card-title/api-store', 'RateCardController@storeRateCardTitle')->name('store.rate.card.title');
     Route::get('ratecard-title/api/{ratecard_id}', 'RateCardController@fetchRateCardTitle');
     Route::get('fetch-ratecards/api', 'RateCardController@getRateCards')->name('fetch.rate.cards');
     Route::get('view-ratecard/api', 'RateCardController@viewRateCard')->name('view.rate.card');
