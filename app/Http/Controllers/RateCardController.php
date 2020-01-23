@@ -39,7 +39,7 @@ class RateCardController extends Controller
 
                     $btn = '<div class="btn-group btn-group-sm"> ';
                     $btn =$btn.  '<button   data-id="'.$row->rate_card_title_id.'" title="View rate card" class="edit btn btn-success btn-sm viewRateCard" data-toggle="modal"><i class="fa fa-eye"></i></button>';
-                    $btn = $btn.' <a href="#" data-toggle="tooltip"  data-id="'.$row->rate_card_title_id.'" data-original-title="Delete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
+                    $btn = $btn.' <a href="#" data-toggle="tooltip"  data-id="'.$row->rate_card_title_id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteRateCard"><i class="fa fa-trash"></i> </a>';
                     $btn = $btn . '</div';
                     return $btn;
                 })

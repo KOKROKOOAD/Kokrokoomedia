@@ -672,6 +672,7 @@
                 }
 
             },
+
             deleteRateCard(rateCardId){
                 let self = this;
                 let formData = new FormData();
