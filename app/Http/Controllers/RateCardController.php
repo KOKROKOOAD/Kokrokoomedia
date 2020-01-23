@@ -65,10 +65,10 @@ class RateCardController extends Controller
             'rateCardTitle' => 'required|unique:rate_card_titles'
         ]);
 
-        $unique_id = uniqid('K', true);
-        if (RateCardTitles::where('rate_card_title_id', '=', $unique_id)) {
-            $unique_id = uniqid('K', true);
-        }
+//        $unique_id = uniqid('K', true);
+//        if (RateCardTitles::where('rate_card_title_id', '=', $unique_id)) {
+//            $unique_id = uniqid('K', true);
+//        }
 
         die($request->input('rateCardTitle'));
 
