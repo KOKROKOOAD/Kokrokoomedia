@@ -170,10 +170,11 @@
                     axios.get('view-ratecard/api',{params : {'rateCardTitleId' : self.id, 'media' : self.media}}).then(function (res) {
                         if (res.data) {
                             self.print_segments = res.data.rate_card;
-                            self.loader = false;
-                            self.processing = true;
+
                             self.rate_card_title = res.data.rate_card_title;
                             // $('.bd-example-modal-lg1').modal('show');
+                            self.loader = false;
+                            self.processing = true;
 
                         }
                     });
