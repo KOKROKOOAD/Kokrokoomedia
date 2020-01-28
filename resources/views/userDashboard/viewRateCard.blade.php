@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <rate-card-details  media="{{ auth()->user()->media}}"></rate-card-details>
-                <delete-rate-card></delete-rate-card>
+{{--                <delete-rate-card></delete-rate-card>--}}
             </div>
         </div>
     </div>
