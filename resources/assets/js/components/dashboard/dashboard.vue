@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+<!--                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>-->
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+<!--                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>-->
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+<!--                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>-->
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+<!--                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>-->
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+<!--                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>-->
                         </div>
                     </div>
                 </div>
@@ -110,12 +110,12 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+<!--                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>-->
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-simple-c-black update-card">
+                    <div class="card bg-simple-c-pink update-card">
                         <div class="card-block">
                             <div class="row align-items-end">
                                 <div class="col-8">
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+<!--                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>-->
                         </div>
                     </div>
                 </div>
