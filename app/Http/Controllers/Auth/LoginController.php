@@ -45,6 +45,16 @@ class LoginController extends Controller
         $user->update(['last_login' => Carbon::now()]);
     }
 
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|exists:users,' . $this->username() . ',isActive,active,account_type,media house',
+            'password' => 'required',
+        ], [
+            $this->username() . '.exists' => 'Email and password does not match.'
+        ]);
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
