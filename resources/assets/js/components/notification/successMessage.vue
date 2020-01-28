@@ -18,12 +18,12 @@
             successMessage(message){
                  if(message !== ''){
                      new PNotify({
-                         title: "Payment successful",
-                         type: "info",
+                         title: "Delete successful",
+                         type: "success",
                          text:  message,
                          desktop: {
                              desktop: true,
-                             icon: "assets/images/pnotify/info.png"
+                             icon: "assets/images/pnotify/success.png"
                          }
                      });
                  }
