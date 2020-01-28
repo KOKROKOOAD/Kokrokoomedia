@@ -68,7 +68,7 @@ class AdminController extends Controller
                 'password' => Hash::make($password),
             ]);
 
-            Notification::send($admin, new AdminCreationNotificaton($admin, $password));
+          //  Notification::send($admin, new AdminCreationNotificaton($admin, $password));
 
             return redirect()->back()->with('admin-created', 'Admin  successfully created');
         } else {
