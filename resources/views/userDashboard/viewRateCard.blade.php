@@ -56,6 +56,9 @@
                 </div>
                 <rate-card-details  media="{{ auth()->user()->media}}"></rate-card-details>
                 <delete-card></delete-card>
+                @if(session()->has('delete-ratecard'))
+                <success-message message="{{session()->get('delete-ratecard')}}"></success-message>
+                    @endif
             </div>
         </div>
     </div>

@@ -242,7 +242,7 @@ class RateCardController extends Controller
 
         }
              AdminAuditTrail::create(['action_by' => auth()->user()->name, 'activities' => "Deleted rate card with id  " . $request->input('rateCardTitleId')]);
-             $request->session()->flash('delete', 'Rate card successfully deleted');
+             $request->session()->flash('delete-ratecard', 'Rate card successfully deleted');
              return response()->json('success');
 
 
