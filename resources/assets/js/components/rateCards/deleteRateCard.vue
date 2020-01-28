@@ -11,10 +11,10 @@
             }
         },
         mounted() {
-            this.deleteRateCard();
+            this.deleteCard();
         },
         methods:{
-            deleteRateCard(){
+            deleteCard(){
                 let self = this;
                 let  ratecard_id = null;
                 $(document).on('click', '.deleteRateCard', function(){
