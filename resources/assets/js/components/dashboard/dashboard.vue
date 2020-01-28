@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-simple-c-pink update-card">
+                    <div class="card bg-simple-c-orange update-card">
                         <div class="card-block">
                             <div class="row align-items-end">
                                 <div class="col-8">
