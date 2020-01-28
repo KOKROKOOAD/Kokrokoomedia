@@ -45,7 +45,7 @@
                         axios.post('delete-ratecard/api',formData).then(function (res) {
 
                             if (res.data === 'success') {
-                                window.location = "view-rate-card";
+                                window.location.replace("http://media.kokrokooad.com/media/admin/ratecards");
                             }
                         }).
                         catch(function (error) {
