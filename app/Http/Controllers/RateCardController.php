@@ -90,9 +90,9 @@ class RateCardController extends Controller
 
         }
 
-        $r_title = null;
-        $_r_id = null;
-        if ($title){
+            $r_title = null;
+            $_r_id = null;
+            if ($title){
             foreach ($title as $title){
                 $r_title = $title->rate_card_title;
                 $_r_id = $title->rate_card_title_id;
@@ -115,7 +115,7 @@ class RateCardController extends Controller
 
         if (auth()->user()->media == 'Print') {
             $unique_id = uniqid('K', true);
-            if (RateCardTitles::where('rate_card_title_id', '=', $unique_id)) {
+            if (PrintRateCard::where('rate_card_id', '=', $unique_id)) {
                 $unique_id = uniqid('K', true);
             }
 
@@ -123,33 +123,19 @@ class RateCardController extends Controller
         }
             else {
                 $unique_id = uniqid('K', true);
-                if (RateCardTitles::where('rate_card_title_id', '=', $unique_id)) {
+                if (RateCards::where('rate_card_id', '=', $unique_id)) {
                     $unique_id = uniqid('K', true);
                 }
 
                 $rate_cards = RateCards::create(['rate_card_id' => $unique_id, 'rate_card_title_id' => $request->input('rate_card_title_id'),
                     'media_house_id' => auth()->user()->client_id, 'days_of_week' => $request->input('mons_to_fridays'),
                     'segments' => json_decode($request->input('weekdays')), 'days_of_weekend' => $request->input('sat_to_sun'),
-                    'weekend_segments' => $request->input('weekends')]);
+                    'weekend_segments' => json_decode($request->input('weekends'))]);
             }
 
-//                  else if(Auth::guard('admin')->check()){
-//
-//                      $rate_cards =  RateCards::create(['rate_card_id'=> $unique_id,'rate_card_title_id' => $request->input('rate_card_title_id'), 'media_house_id' => auth()->user()->media_house_id, 'segments'=>$request->input('weekdays'),
-//                      'weekend_segments' => $request->input('weekends')]);
-//
-//
-//                     }
-
-            // AdminAuditTrail::create([ 'action_by' => Auth::guard('admin')->user()->name, 'activities'=> "Created rate card with id: ".$request->input('rate_card_title_id')]);
+             AdminAuditTrail::create([ 'action_by' => auth()->user()->name, 'activities'=> "Created rate card with id: ".$request->input('rate_card_title_id')]);
             return response()->json('success');
 
-//        else{
-////            $rate_cards =  RateCards::create(['ad_types_id' => $id->id, 'client_id' => $client_id, 'segments'=>$data[0]]);
-//        }
-
-
-//        return  response()->json($rate_cards->segments);
         }
 
 

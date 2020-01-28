@@ -486,7 +486,7 @@
             },
             insertResults(){
                 let self = this;
-               let formData = new FormData();
+                let formData = new FormData();
                   console.log(JSON.stringify(self.data_list));
                 formData.append('mons_to_fridays', JSON.stringify(self.days_of_the_week_and_durations));
                 formData.append('sat_to_sun', JSON.stringify(self.wdurations));
