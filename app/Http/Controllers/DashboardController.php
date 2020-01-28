@@ -47,6 +47,7 @@ class DashboardController extends Controller
             DB::raw('DATE(created_at) AS date'),
             DB::raw('COUNT(id) AS count'),
             ])
+            ->whereMediaHouseId(auth()->user()->client_id)
             ->whereBetween('created_at', [Carbon::now()->subDays(7), Carbon::now()])
             ->groupBy('date')
             ->orderBy('date', 'ASC')

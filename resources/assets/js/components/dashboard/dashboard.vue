@@ -64,7 +64,7 @@
                             <div class="row align-items-end">
                                 <div class="col-8">
                                     <h4 class="text-white">{{totalExpSubs}}</h4>
-                                    <h6 class="text-white m-b-0">Expired Subscriptions</h6>
+                                    <h6 class="text-white m-b-0">Completed Subscriptions</h6>
                                 </div>
                                 <div class="col-4 text-right">
                                     <canvas id="update-chart-4" height="50"></canvas>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-simple-c-yellow update-card">
+                    <div class="card bg-simple-c-blue update-card">
                         <div class="card-block">
                             <div class="row align-items-end">
                                 <div class="col-8">
@@ -217,6 +217,7 @@
                         self.totalExpSubs = res.data.totalExpSub;
                         self.totalPenSubs = res.data.totalPenSub;
                         self.totalRevSubs = res.data.totalRevSub;
+                        console.log(res.data.days);
                         self.days = [res.data.days[0].date,res.data.days[1].date,res.data.days[2].date,res.data.days[3].date,res.data.days[4].date,res.data.days[5].date,res.data.days[6].date];
 
                        self.charts(res.data.days[0].count,res.data.days[1].count,res.data.days[2].count,res.data.days[3].count,res.data.days[4].count,res.data.days[5].count,res.data.days[6].count);
