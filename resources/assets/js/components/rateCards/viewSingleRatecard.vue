@@ -163,6 +163,7 @@
             },
             getSelectedRatedCard(id){
                 let self = this;
+                self.loader = true;
                 let m = self.media.toLowerCase();
                 self.medi  = m.charAt(0).toUpperCase() + m.slice(1);
                 if(self.medi == 'Print'){
@@ -178,10 +179,10 @@
                     });
                 }
                 else{
+                    self.loader = true;
                     axios.get('view-ratecard/api',{params : {'rateCardTitleId' : id, 'media' : self.media}}).then(function (res) {
                         if (res.data) {
                             console.log(res.data.w_segments);
-
                             self.view_rate_card =  JSON.parse(res.data.segments);
                             self.days_of_week  = JSON.parse(res.data.days_of_week);
                             self.days_of_weekend = JSON.parse(res.data.days_of_weekends);
