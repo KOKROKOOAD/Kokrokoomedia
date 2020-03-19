@@ -38,9 +38,9 @@
                                 {{ csrf_field() }}
                                 <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xl-12 m-b-30">
-                                    <div class="form-group{{ $errors->has('rateCardTitle') ? ' has-error' : '' }}">
+                                    <div class="form-group">
                                     <h4 class="sub-title">Provide rate card title</h4>
-                                    <input name="rateCardTitle" class="form-control form-control-primary">
+                                    <input name="rateCardTitle" class="form-control form-control-primary {{ $errors->has('rateCardTitle') ? 'input-errors' : '' }}" value="{{old('rateCardTitle')}}">
                                     @if ($errors->has('rateCardTitle'))
                                         <span class="error" role="alert">
                                         <strong>{{ $errors->first('rateCardTitle') }}</strong>

@@ -112,9 +112,11 @@
                         <a href="{{route('dashboard')}}">
                           
 
-                            @auth()
-                            <img class="img-fluid" src="{{config('app.avatars').auth()->user()->logo}}" width="50px" height="10px" alt="" />
-                            @endauth
+                            @if(auth()->user()->role == 'super_admin')
+                            <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
+                            @else
+                             <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" />
+                            @endif
 {{--                             <a class="navbar-brand" href="#"><img src="/images/kokro-yellow.png"  alt="kokrokoo"></a>
  --}}
                         </a>
@@ -158,9 +160,15 @@
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                         <li>
                                             <a href="{{route('profile')}}">
-                                                <i class="feather icon-settings"></i> Settings
+                                                <i class="feather icon-settings"></i> Profile
                                             </a>
                                         </li>
+                                         <li>
+                                            <a href="{{route('show.change.password')}}">
+                                                <i class="feather icon-lock"></i> Change Password
+                                            </a>
+                                        </li>
+
 
 
                                         <li>
@@ -399,7 +407,7 @@
                                 </li>
                                 
                                 <ul class="pcoded-item pcoded-left-item">
-
+                                    @if(auth()->user()->role != 'marketers')
                                     <li class=" ">
                                         <a href="{{route('transact')}}">
                                             <span class="pcoded-micon"><i class="feather icon-edit-1"></i></span>
@@ -407,7 +415,30 @@
                                             <!--<span class="pcoded-badge label label-warning">NEW</span>-->
                                         </a>
                                     </li>
-                                  
+                                    @endif
+                                     <li class="pcoded-hasmenu active pcoded-trigger">
+                                        <a href="javascript:void(0)">
+                                            <span class="pcoded-micon"><i class="feather icon-shield"></i></span>
+                                            <span class="pcoded-mtext">Reports</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li>
+                                                <a href="{{route('reports.daily')}}">
+                                                    <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
+                                                    <span class="pcoded-mtext">Daily report</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('reports')}}">
+                                                    <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
+                                                    <span class="pcoded-mtext">General report</span>
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                        @if(auth()->user()->role == 'super_admin')
                                         <li class="pcoded-hasmenu active pcoded-trigger">
                                         <a href="javascript:void(0)">
                                             <span class="pcoded-micon"><i class="feather icon-shield"></i></span>
@@ -434,6 +465,7 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    @endif
                                 </ul>
                             </ul>
                         </div>
@@ -563,6 +595,7 @@
                     <script src="../files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
                     <script src="../files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
                     <script src="../files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 {{--                    <script src="../files/assets/pages/data-table/js/data-table-custom.js" type="07d460b7aca8f7ed44a5121c-text/javascript"></script>--}}
                     @yield('datatable-scripts')
 {{--                    <script src="{{ asset('js/datatable-files/transactions.js') }}"></script>--}}

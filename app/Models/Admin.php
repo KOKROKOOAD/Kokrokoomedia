@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 09 Feb 2019 14:34:46 +0000.
+ * Date: Tue, 03 Mar 2020 09:15:56 +0000.
  */
 
 namespace App\Models;
@@ -13,13 +13,17 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * Class Admin
  * 
  * @property int $id
+ * @property string $admin_id
  * @property string $name
  * @property string $email
  * @property string $phone
- * @property string $title
- * @property string $user_type
+ * @property string $job_title
+ * @property string $admin_type
  * @property bool $status
+ * @property string $client_id
+ * @property \Carbon\Carbon $last_login
  * @property string $password
+ * @property string $created_by
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -32,19 +36,27 @@ class Admin extends Eloquent
 		'status' => 'bool'
 	];
 
+	protected $dates = [
+		'last_login'
+	];
+
 	protected $hidden = [
 		'password',
 		'remember_token'
 	];
 
 	protected $fillable = [
+		'admin_id',
 		'name',
 		'email',
 		'phone',
-		'title',
-		'user_type',
+		'job_title',
+		'admin_type',
 		'status',
+		'client_id',
+		'last_login',
 		'password',
+		'created_by',
 		'remember_token'
 	];
 }

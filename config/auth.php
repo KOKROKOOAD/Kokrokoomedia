@@ -49,7 +49,7 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-       
+
     ],
 
     /*
@@ -75,10 +75,10 @@ return [
             'model' => App\User::class,
         ],
 
-         'admins' => [
-             'driver' => 'eloquent',
-             'model' => App\Admin::class,
-         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
 
     ],
 
@@ -108,7 +108,7 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
-       
+
     ],
 
 ];

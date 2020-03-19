@@ -40,7 +40,7 @@
                         <div  class="dt-responsive table-responsive">
                             <table id="laravel_datatable" class="table table-striped table-bordered nowrap">
                                 <thead>
-                                <tr>
+                                <tr class="table-primary">
                                     <th>#</th>
                                     <th>ID</th>
                                     <th>Rate card ID</th>

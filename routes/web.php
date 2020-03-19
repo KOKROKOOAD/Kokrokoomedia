@@ -4,7 +4,7 @@ use App\Models\ScheduledAd;
 use App\AdminAuditTrail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
-
+use App\Models\User;
 
 
 /*
@@ -80,8 +80,12 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
         return view('userDashboard.dashboard');
     })->name('dashboard');
 
+    Route::get('/relation', function () {
+        echo  User::find(13)->user_id;
+    });
 
-    Route::get('/fetch','TestController@imagePaths');
+
+    Route::get('/fetch', 'TestController@imagePaths');
 
 
 
@@ -122,11 +126,11 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::get('pending-subscription', 'SubController@pendingSubs')->name('sub.pending');
 
 
-//    Route::get('transactions', function () {
-//        return view('userDashboard.transactions');
-//    })->name('transact');
-//
-    Route::get('transactions','TransactionsController@index')->name('transact');
+    //    Route::get('transactions', function () {
+    //        return view('userDashboard.transactions');
+    //    })->name('transact');
+    //
+    Route::get('transactions', 'TransactionsController@index')->name('transact');
 
     Route::get('user-profile', function () {
         return view('userDashboard.accountSettings');
@@ -149,7 +153,10 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     })->name('sub.all');*/
 
     Route::get('/subscriptions', 'SubController@fetchSubscriptions')->name('sub.all');
+    //securyity routes
+    Route::get('/password-reset', 'ChangePasswordController@index')->name('show.change.password');
 
+    Route::post('/change-password', 'ChangePasswordController@changePassword')->name('change.password');
     // Route::get('alls-subscription', 'subController@fetchSubScriptions');
 
     Route::get('rejected-subscription', function () {
@@ -178,12 +185,12 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     })->name('create.rate.cards');
 
 
-//    Route::get('view-rate-card', function () {
-//        return view('userDashboard.viewRateCard');
-//    })->name('view.ratecard');
+    //    Route::get('view-rate-card', function () {
+    //        return view('userDashboard.viewRateCard');
+    //    })->name('view.ratecard');
 
-    Route::get('ratecards','RateCardController@index')->name('view.ratecard');
-    Route::get('/ratecard/{id}','RateCardController@showRateCardDetails')->name('show.ratecard');
+    Route::get('ratecards', 'RateCardController@index')->name('view.ratecard');
+    Route::get('/ratecard/{id}', 'RateCardController@showRateCardDetails')->name('show.ratecard');
 
 
     //    Route::get('manage-admins',function (){
@@ -232,6 +239,17 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
 
 
     Route::post('/tests', 'AdminController@test')->name('test.store');
+    Route::get('/reports', 'ReportsController@index')->name('reports');
+    Route::get('/reports-daily', 'ReportsController@showDailyReports')->name('reports.daily');
+    Route::get('/fetch-dailyTrans/api', 'ReportsController@fetchDailyTransactionReport');
+    Route::get('/fetch-dailySubs/api', 'ReportsController@fetchDailySubscriptionReport');
+    Route::get('/fetch-generalSubs/api', 'ReportsController@fetchDailySubscriptionReportWithDate');
+    Route::get('/fetch-generalTrans/api', 'ReportsController@fetchDailyTransactionReportWithDate');
+
+
+
+
+
 
 
 
@@ -249,17 +267,12 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::get('test-date', 'SubController@testDate');
     Route::post('test-date', 'SubController@demo')->name('demo');
 
-
-
-
     //fetch total subscription for login in media house and display on dashboard
     Route::get('fetch-total-ads/api', 'DashboardController@fetchTotalSubs');
     Route::get('search/{q}', 'SearchController@searchSub');
     Route::get('fetch-ratecards/api', 'RateCardController@fetchRateCards');
 
-
-    Route::get('fetch-media/api','RateCardController@getMediaHouse');
-
+    Route::get('fetch-media/api', 'RateCardController@getMediaHouse');
 
     Route::get('test-api', 'SegmentController@api');
     Route::post('test-post', 'SegmentController@apiPost');
@@ -268,7 +281,7 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     Route::post('check-sub/api', 'SubController@checkIfSubExist');
     Route::get('fetch-transac/api', 'SubController@fetchUserTransac');
     Route::get('/view-subscription/{id}', 'SubController@viewFile')->name('view.file');
-
+    Route::get('fetch-trans-subs/{id}', 'SubController@fetchTransSubs')->name('trans.subs');
 
 
 
@@ -370,7 +383,7 @@ Route::prefix('media/staff')->group(function () {
     })->name('staff.create.admins');
 
     Route::post('store-ratecard/api', 'RateCardController@storeRateCards');
- //   Route::post('rate-card-title/api-store', 'RateCardController@storeRateCardTitle')->name('store.rate.card.title');
+    //   Route::post('rate-card-title/api-store', 'RateCardController@storeRateCardTitle')->name('store.rate.card.title');
     Route::get('ratecard-title/api/{ratecard_id}', 'RateCardController@fetchRateCardTitle');
     Route::get('fetch-ratecards/api', 'RateCardController@getRateCards')->name('fetch.rate.cards');
     Route::get('view-ratecard/api', 'RateCardController@viewRateCard')->name('view.rate.card');
@@ -411,8 +424,8 @@ Route::prefix('media/staff')->group(function () {
     Route::get('fetch-rejected-subs/api', 'SubController@fetchRejectedSubs');
     Route::get('fetch-expired-subs/api', 'SubController@fetchExpiredSubs');
     Route::get('fetch-all-subs/api', 'SubController@fetchAllSubs');
-//    Route::post('accept-sub/api', 'SubController@acceptSubs')->name('accept.subs');
-//    Route::post('reject-sub/api', 'SubController@rejectSubs')->name('reject.subs');
+    //    Route::post('accept-sub/api', 'SubController@acceptSubs')->name('accept.subs');
+    //    Route::post('reject-sub/api', 'SubController@rejectSubs')->name('reject.subs');
 
     Route::get('test-date', 'SubController@testDate');
     Route::post('test-date', 'SubController@demo')->name('demo');

@@ -2,25 +2,29 @@
 
 namespace App;
 
+use App\Models\Avatar;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
     use Notifiable;
+   
+
     protected $guard = 'admin';
-//
-//    public function role(){
-//        return $this->hasOne('App\Roles');
-//    }
+    //
+    //    public function role(){
+    //        return $this->hasOne('App\Roles');
+    //    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email','phone','job_title','status', 'role','media_house_id','admin_type','admin_id','password','logo'
+        'name', 'email', 'phone1', 'title', 'isActive', 'role', 'password', 'logo','created_by','account_type'
     ];
 
     /**
@@ -38,6 +42,11 @@ class Admin extends Authenticatable
      *
      * @var string
      */
-   // protected $table = 'users';
+    // protected $table = 'users';
 
+
+    public function avatar()
+    {
+        return $this->belongsTo(Avatar::class, 'client_id', 'client_id');
+    }
 }

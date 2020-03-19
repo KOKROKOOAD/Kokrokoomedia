@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
- require('./bootstrap');
+require('./bootstrap');
 // require('./dashboard/js/moment');
 // require('./dashboard/js/plugins/perfect-scrollbar.jquery.min');
 // require('./dashboard/js/plugins/bootstrap-notify');
@@ -15,9 +15,9 @@
 // require('./dashboard/js/jquery.bootstrap.wizard');
 // require('./dashboard/js/lib/sweetalert/sweetalert.min');
 // require('./dashboard/js/core/jquery-ui');
- require("./dashboard/js/jquery.validate.min");
+require("./dashboard/js/jquery.validate.min");
 // require("./dashboard/js/notify.min");
- require('jquery-validation');
+require('jquery-validation');
 //require('./dashboard/js/multi-step-modal');
 require('./dashboard/js/validations');
 require('./calender/segment-validation');
@@ -35,26 +35,26 @@ require('./calender/segment-validation');
 // require('../dash/js/vartical-layout.min');
 // require('../dash/js/pcoded.min');
 require('../js/calender/notify');
- require('../js/calender/script');
-/*  require('chart.js');
- */require('../js/app/app');
+require('../js/calender/script');
+//require('chartjs');
+require('../js/app/app');
 //require('viewerjs');
 
 // //require('../dash/js/jquery.mCustomScrollbar.concat.min');
 
 window.Vue = require('vue');
-import  VueRouter from 'vue-router';
+import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-import {routes} from './vue-router/routes';
+import { routes } from './vue-router/routes';
 
 
 import FullCalendar from 'vue-full-calendar'; //Import Full-calendar
 Vue.use(FullCalendar);
 
 
-const router  = new VueRouter({
-    mode : 'history',
+const router = new VueRouter({
+    mode: 'history',
     routes
 });
 
@@ -115,6 +115,9 @@ Vue.component('view-print-rate-card', require('./components/rateCards/printRateC
 Vue.component('rate-card-details', require('./components/rateCards/viewSingleRatecard').default);
 Vue.component('delete-card', require('./components/rateCards/deleteRateCard').default);
 Vue.component('success-message', require('./components/notification/successMessage').default);
+Vue.component('trans-subs', require('./components/payment/viewTransacSubs').default);
+Vue.component('daily-reports', require('./components/reports/dailyReports').default);
+Vue.component('general-reports', require('./components/reports/generalReports').default);
 
 
 

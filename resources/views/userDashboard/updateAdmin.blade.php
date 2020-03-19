@@ -34,12 +34,14 @@
                         @foreach($admin as $user)
                         <form  method="post" action="{{route('update.admin')}}">
                             @csrf
-                            <input name="id" value="{{$user->admin_id}}" type="hidden">
+                            <input name="id" value="{{$user->client_id}}" type="hidden">
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Full name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control {{ $errors->has('name') ? 'input-errors' : '' }}" id="name" placeholder="Enter fullname" name="name" value="{{$user->name}}">
+                                    <input type="text" class="form-control {{ $errors->has('name') ? 'input-errors' : '' }}" id="name" placeholder="Enter fullname" name="name" value="{{$user->name}}" required>
+                                    <input type="hidden" name="id" value="{{$user->client_id}}">
+
                                     <span class="messages"></span>
                                     @if ($errors->has('name'))
                                         <span class="error" role="alert" style="color: red;font-weight: lighter">
@@ -51,7 +53,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control {{ $errors->has('email') ? 'input-errors' : '' }}" id="email" placeholder="Enter  email" name="email" value="{{$user->email}}">
+                                    <input type="text" class="form-control {{ $errors->has('email') ? 'input-errors' : '' }}" id="email" placeholder="Enter  email" name="email" value="{{$user->email}}" required>
                                     <span class="messages"></span>
                                     @if ($errors->has('email'))
                                         <span class="error" role="alert">
@@ -63,10 +65,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Phone</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control {{ $errors->has('phone') ? 'input-errors' : '' }}" id="phone" placeholder="Enter phone number" name="phone" value="{{$user->phone}}">
-                                    @if ($errors->has('phone'))
+                                    <input type="text" class="form-control {{ $errors->has('phone1') ? 'input-errors' : '' }}" id="phone" placeholder="Enter phone number" name="phone1" value="{{$user->phone1}}" required>
+                                    @if ($errors->has('phone1'))
                                         <span class="error" role="alert">
-                                        <strong>{{ $errors->first('phone') }}</strong>
+                                        <strong>{{ $errors->first('phone1') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -75,7 +77,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control {{ $errors->has('title') ? 'input-errors' : '' }}" id="title" PLACEHOLDER="Enter  admin title" name="title" value="{{$user->job_title}}">
+                                    <input type="text" class="form-control {{ $errors->has('title') ? 'input-errors' : '' }}" id="title" PLACEHOLDER="Enter  admin title" name="title" value="{{$user->title}}" required>
                                     <span class="messages"></span>
                                     @if ($errors->has('title'))
                                         <span class="error" role="alert">
@@ -87,7 +89,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Current Role</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" disabled  value="{{$user->admin_type}}">
+                                    <input type="text" class="form-control" disabled  value="{{$user->role}}" required>
 
                                 </div>
                             </div>
@@ -96,8 +98,8 @@
                                 <div class="col-sm-10">
                                     <select  class="form-control {{ $errors->has('role') ? 'input-errors' : '' }}" name="role" id="role">
                                         <option value="">Select a role</option>
-                                        <option value="super_admin">super_admin</option>
-                                        <option value="marketers">marketers</option>
+                                        <option value="admin">admin</option>
+                                        <option value="marketers">marketer</option>
                                         <option value="finance">finance</option>
                                         <option value="broadcaster">broadcaster</option>
                                     </select>

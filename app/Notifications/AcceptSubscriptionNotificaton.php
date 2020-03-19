@@ -10,15 +10,18 @@ use Illuminate\Notifications\Messages\MailMessage;
 class AcceptSubscriptionNotificaton extends Notification implements ShouldQueue
 {
     use Queueable;
+    public $sub_id;
+    public $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($sub_id, $user)
     {
-        //
+        $this->sub_id = $sub_id;
+        $this->user = $user;
     }
 
     /**
@@ -40,7 +43,9 @@ class AcceptSubscriptionNotificaton extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('Mail.subscriptions.approvedSub');
+        return (new MailMessage)
+            ->subject('Subscription approved')
+            ->markdown('Mail.subscriptions.approvedSub', ['sub_id' => $this->sub_id, 'user' => $this->user]);
     }
 
     /**

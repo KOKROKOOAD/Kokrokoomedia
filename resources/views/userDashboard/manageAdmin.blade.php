@@ -59,22 +59,18 @@
                                 <th>{{$key + 1}}</th>
                                 <td>{{$admin->name}}</td>
                                 <td>{{$admin->email}}</td>
-                                <td>{{$admin->phone}}</td>
-                                <td>{{$admin->job_title}}</td>
-                                <td>{{$admin->admin_type}}</td>
-                                <td>{{$admin->status}}</td>
+                                <td>{{$admin->phone1}}</td>
+                                <td>{{$admin->title}}</td>
+                                <td>{{$admin->role}}</td>
+                                <td>{{$admin->isActive}}</td>
                                 <td>{{$admin->created_at}}</td>
                                 <td>{{$admin->updated_at}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        @if(Auth::guard()->check())
-                                        <a href="{{ \Illuminate\Support\Facades\URL::route('edit.admin') }}?&id={{urlencode($admin->admin_id)}}" type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="feather icon-edit"> </i></a>
+                                       
+                                        <a href="{{ \Illuminate\Support\Facades\URL::route('staff.edit.admin') }}?&id={{urlencode($admin->client_id)}}" role="button" type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-top:5px;"><i class="feather icon-edit"> </i></a>
 
-                                        @elseif(Auth::guard('admin')->check() && Auth::guard('admin')->user()->admin_type == 'super_admin')
-                                        <a href="{{ \Illuminate\Support\Facades\URL::route('staff.edit.admin') }}?&id={{urlencode($admin->admin_id)}}" type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="feather icon-edit"> </i></a>
-                                        @endif
-
-                                        <update-admin-controls :id="'{{$admin->admin_id}}'" :status="'{{$admin->status}}'"></update-admin-controls>
+                                        <update-admin-controls :id="'{{$admin->client_id}}'" :status="'{{$admin->isActive}}'"></update-admin-controls>
                                     </div>
                                 </td>
                             </tr>
@@ -131,7 +127,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Full name</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control {{ $errors->has('name') ? 'input-errors' : '' }}" id="name" placeholder="Enter fullname" name="name" value="{{old('name')}}">
+                                                        <input type="text" class="form-control {{ $errors->has('name') ? 'input-errors' : '' }}" id="name" placeholder="Enter fullname" name="name" value="{{old('name')}}" required>
                                                         <span class="messages"></span>
                                                         @if ($errors->has('name'))
                                                             <span class="error" role="alert" style="color: red;font-weight: lighter">
@@ -143,7 +139,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Email</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control {{ $errors->has('email') ? 'input-errors' : '' }}" id="email" placeholder="Enter  email" name="email" value="{{old('email')}}">
+                                                        <input type="text" class="form-control {{ $errors->has('email') ? 'input-errors' : '' }}" id="email" placeholder="Enter  email" name="email" value="{{old('email')}}" required>
                                                         <span class="messages"></span>
                                                         @if ($errors->has('email'))
                                                             <span class="error" role="alert">
@@ -155,7 +151,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Phone</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control {{ $errors->has('phone') ? 'input-errors' : '' }}" id="phone" placeholder="Enter phone number" name="phone" value="{{old('phone')}}">
+                                                        <input type="text" class="form-control {{ $errors->has('phone') ? 'input-errors' : '' }}" id="phone" placeholder="Enter phone number" name="phone" value="{{old('phone')}}" required>
                                                         @if ($errors->has('phone'))
                                                             <span class="error" role="alert">
                                         <strong>{{ $errors->first('phone') }}</strong>
@@ -167,19 +163,19 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Title</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control {{ $errors->has('title') ? 'input-errors' : '' }}" id="title" PLACEHOLDER="Enter  admin title" name="title" value="{{old('title')}}">
+                                                        <input type="text" class="form-control {{ $errors->has('title') ? 'input-errors' : '' }}" id="title" PLACEHOLDER="Enter  admin title" name="title" value="{{old('title')}}" required>
                                                         <span class="messages"></span>
                                                         @if ($errors->has('title'))
                                                             <span class="error" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
+                                                        <strong>{{ $errors->first('title') }}</strong>
+                                                     </span>
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Select Role</label>
                                                     <div class="col-sm-10">
-                                                        <select  class="form-control {{ $errors->has('role') ? 'input-errors' : '' }}" name="role" id="role">
+                                                        <select  class="form-control {{ $errors->has('role') ? 'input-errors' : '' }}" name="role" id="role" required>
                                                             <option value="">Select a role</option>
                                                             <option value="super_admin">super_admin</option>
                                                             <option value="marketers">marketers</option>
@@ -188,13 +184,11 @@
                                                         </select>
                                                         @if ($errors->has('role'))
                                                             <span class="error" role="alert">
-                                        <strong>{{ $errors->first('role') }}</strong>
-                                    </span>
+                                                            <strong>{{ $errors->first('role') }}</strong>
+                                                            </span>
                                                         @endif
                                                     </div>
                                                 </div>
-
-
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label"></label>
                                                     <div class="col-sm-10">

@@ -5,9 +5,11 @@ namespace App;
 use App\Models\ScheduledAd;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Avatar;
 
 class User extends Authenticatable
 {
+
     use Notifiable;
 
     protected $primaryKey = 'client_id';
@@ -20,10 +22,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'title','email','phone1','phone2','address','website','company_profile','company_name','media','media_house','client_id','file_size','file_path',
-        'industry_type','policies','logo',
-        'role','is_admin','isActive','activation_code','last_login',
-        'account_type', 'password',
+        'name',
+        'title',
+        'email',
+        'phone1',
+        'media',
+        'media_house',
+        'client_id',
+        'logo',
+        'role',
+        'isActive',
+        'last_login',
+        'account_type',
+        'created_by',
+        'password',
     ];
 
     /**
@@ -35,33 +47,46 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function ads(){
-      return  $this->hasMany(Ads::class, 'client_id', 'client_id');
+    public function avatar()
+    {
+        return $this->belongsTo(Avatar::class, 'client_id', 'client_id');
     }
 
-    public function scheduledAds(){
+    public function avatar2()
+    {
+        return $this->belongsTo(Avatar::class, 'created_by', 'created_by');
+    }
+
+    public function userProfile()
+    {
+        return $this->belongsTo(UserProfile::class, 'client_id', 'client_id');
+    }
+
+
+
+
+    public function scheduledAds()
+    {
         return  $this->hasMany(ScheduledAd::class, 'client_id', 'client_id');
-
     }
 
 
-    public  function segmentTitle(){
-        return $this->hasMany('App\Models\ProgramTitle','client_id', 'client_id');
-    }
-
-
-
-    public  function transaction(){
-      return  $this->hasMany(Transactions::class, 'client_id', 'client_id');
+    public  function segmentTitle()
+    {
+        return $this->hasMany('App\Models\ProgramTitle', 'client_id', 'client_id');
     }
 
 
 
-    public function invoice(){
+    public  function transaction()
+    {
+        return  $this->hasMany(Transaction::class, 'media_house_id', 'client_id');
+    }
+
+
+
+    public function invoice()
+    {
         return $this->hasMany(Invoices::class, 'client_id', 'client_id');
     }
-
-
-
-
 }

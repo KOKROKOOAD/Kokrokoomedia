@@ -13,6 +13,7 @@
                             <span></span>
                         </div>
                     </div>
+                    <hr>
                 </div>
 {{--                <div class="col-lg-4">--}}
 {{--                    <div class="page-header-breadcrumb">--}}
@@ -34,7 +35,7 @@
         <!-- Page-body start -->
         <div class="page-body">
             <!--profile cover start-->
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12">
                     <div class="cover-profile">
                         <div class="profile-bg-img">
@@ -57,7 +58,7 @@
 {{--                                            <div class="pull-right cover-btn">--}}
 {{--                                                <button type="button" class="btn btn-primary m-r-10 m-b-5"><i class="icofont icofont-edit"></i> Edit</button>--}}
 {{--                                                <button type="button" class="btn btn-primary"  data-toggle="tab" href="#binfo" role="tab"><i class="icofont icofont-lock"></i> Reset Password</button>--}}
-{{--                                            </div>--}}
+{{--                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!--profile cover end-->
             <div class="row">
                 <div class="col-lg-12">
@@ -73,7 +74,7 @@
                     <div class="tab-header card">
                         <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist" id="mytab">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#personal" role="tab">Personal Info</a>
+                                <a class="nav-link active" data-toggle="tab" href="#contacts" role="tab">Update Profile</a>
                                 <div class="slide"></div>
                             </li>
                             <li class="nav-item">
@@ -81,27 +82,27 @@
                                 <div class="slide"></div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#contacts" role="tab">Edit my Info</a>
+                                <a class="nav-link" data-toggle="tab" href="#personal" role="tab">My Personal Info</a>
                                 <div class="slide"></div>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#review" role="tab">Security</a>
                                 <div class="slide"></div>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     <!-- tab header end -->
                     <!-- tab content start -->
                     <div class="tab-content">
                         <!-- tab panel personal start -->
-                        <div class="tab-pane active" id="personal" role="tabpanel">
+                        <div class="tab-pane" id="personal" role="tabpanel">
                             <!-- personal card start -->
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="card-header-text">About Me</h5>
-                                    <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right">
+                                    {{-- <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right">
                                         <i class="icofont icofont-edit"></i>
-                                    </button>
+                                    </button> --}}
                                 </div>
                                 <div class="card-block">
                                     <div class="view-info">
@@ -111,18 +112,18 @@
                                                     <div class="row">
                                                         <div class="col-lg-12 col-xl-6">
                                                             <div class="table-responsive">
-                                                                <table class="table m-0">
+                                                                <table class="table m-0" style="font-family:Spinnaker, sans-serif;font-size:14px;">
                                                                     <tbody>
                                                                     <tr>
-                                                                        <th scope="row">Full Name</th>
+                                                                        <th scope="row"><i class="fa fa-user text-primary"></i> Full Name</th>
                                                                         <td>{{auth()->user()->name}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Email</th>
+                                                                        <th scope="row"><i class="fa fa-envelope text-primary"></i> Email</th>
                                                                         <td>{{auth()->user()->email}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Phone Number</th>
+                                                                        <th scope="row"><i class="fa fa-phone text-primary"></i> Phone Number</th>
                                                                         <td>{{auth()->user()->phone1}}</td>
                                                                     </tr>
 
@@ -134,18 +135,18 @@
                                                         <!-- end of table col-lg-6 -->
                                                         <div class="col-lg-12 col-xl-6">
                                                             <div class="table-responsive">
-                                                                <table class="table">
+                                                                <table class="table" style="font-family:Spinnaker, sans-serif;font-size:14px;">
                                                                     <tbody>
                                                                     <tr>
-                                                                        <th scope="row">Phone Number 2</th>
-                                                                        <td>{{auth()->user()->phone2}}</td>
+                                                                        <th scope="row"><i class="fa fa-mobile text-primary"> </i> Phone Number 2</th>
+                                                                        <td>{{auth()->user()->userProfile->phone2}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Job Title</th>
+                                                                        <th scope="row"><i class="fa fa-user-plus  text-primary"> </i> Job Title</th>
                                                                         <td>{{auth()->user()->title}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Role</th>
+                                                                        <th scope="row"><i class="fa fa-phone-square text-primary"> </i> Role</th>
                                                                         <td>{{auth()->user()->role}}</td>
                                                                     </tr>
 
@@ -195,17 +196,17 @@
                                                                     <tbody>
 
                                                                     <tr>
-                                                                        <th scope="row">Company name</th>
-                                                                        <td>{{auth()->user()->company_name}}</td>
+                                                                        <th scope="row"><i class="fa fa-user text-primary"> </i> Company name</th>
+                                                                        <td>{{auth()->user()->userProfile->company_name}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">website</th>
-                                                                        <td>{{auth()->user()->website}}</td>
+                                                                        <th scope="row"><i class="fa fa-envelope-o text-primary"> </i> website</th>
+                                                                        <td>{{auth()->user()->userProfile->website}}</td>
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <th scope="row">Location</th>
-                                                                        <td>{{auth()->user()->address}}</td>
+                                                                        <th scope="row"><i class="fa fa-address-book text-primary"> </i> Location</th>
+                                                                        <td>{{auth()->user()->userProfile->address}}</td>
                                                                     </tr>
 
                                                                     </tbody>
@@ -219,16 +220,16 @@
                                                                     <tbody>
 
                                                                     <tr>
-                                                                        <th scope="row">Policy</th>
-                                                                        <td>{{auth()->user()->policies}}</td>
+                                                                        <th scope="row"><i class="fa fa- text-primary"> </i> Policy</th>
+                                                                        <td>{{auth()->user()->userProfile->policies}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Company profile</th>
-                                                                        <td>{{auth()->user()->company_profile}}</td>
+                                                                        <th scope="row"><i class="fa fa-user-plus text-primary"> </i> Company profile</th>
+                                                                        <td>{{auth()->user()->userProfile->company_profile}}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Industrial type</th>
-                                                                        <td>{{auth()->user()->industry_type}}</td>
+                                                                        <th scope="row"><i class="fa fa-mic text-primary"> </i> Industrial type</th>
+                                                                        <td>{{auth()->user()->userProfile->industry_type}}</td>
                                                                     </tr>
                                                                     </tbody>
                                                                 </table>
@@ -301,7 +302,7 @@
                         </div>
                         <!-- tab pane info end -->
                         <!-- tab pane contact start -->
-                        <div class="tab-pane" id="contacts" role="tabpanel">
+                        <div class="tab-pane active" id="contacts" role="tabpanel">
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="row">
@@ -344,7 +345,7 @@
                                                                                         <td>
                                                                                             <div class="input-group">
                                                                                                 <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                                                                                                <input type="text" name="address" class="form-control" placeholder="address" value="{{auth()->user()->address}}">
+                                                                                                <input type="text" name="address" class="form-control" placeholder="address" value="{{auth()->user()->userProfile->address}}">
                                                                                             </div>
                                                                                         </td>
                                                                                     </tr>
@@ -369,14 +370,14 @@
                                                                                         <td>
                                                                                             <div class="input-group">
                                                                                                 <span class="input-group-addon"><i class="fa fa-phone-square"></i></span>
-                                                                                                <input type="text" class="form-control" name="phone2" placeholder="phone number 2" value="{{auth()->user()->phone2}}">
+                                                                                                <input type="text" class="form-control" name="phone2" placeholder="phone number 2" value="{{auth()->user()->userProfile->phone2}}">
                                                                                             </div>
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td>
                                                                                             <div class="input-group">
-                                                                                                <span class="input-group-addon"><i class="fa fa-times"></i></span>
+                                                                                                <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
                                                                                                 <input type="text" class="form-control" name="title" placeholder="Job title" value="{{auth()->user()->title}}">
                                                                                             </div>
                                                                                         </td>
@@ -411,14 +412,14 @@
                                 </div>
                             </div>
                         </div>
-
+{{-- 
                         <div class="tab-pane" id="review" role="tabpanel">
 
                             <div class="row">
                                 <div class="col-sm-12">
                                     <!-- Authentication card start -->
 
-                                    <form class="md-float-material form-material" method="post" action="">
+                                    <form class="md-float-material form-material" method="post" action="{{route('change.password')}}">
                                         @csrf
 
                                         <input type="hidden" name="admin-type" value="">
@@ -431,15 +432,15 @@
                                                 </div>
 
                                                 <div class="form-group form-primary">
-                                                    <input type="text" name="old-pass" class="form-control" required="" placeholder="Old password">
+                                                    <input type="password" name="old_pass" class="form-control" required="" placeholder="Old password">
                                                     <span class="form-bar"></span>
                                                 </div>
                                                 <div class="form-group form-primary">
-                                                    <input type="text" name="password" class="form-control" required="" placeholder="New password">
+                                                    <input type="password" name="new_pass" class="form-control" required="" placeholder="New password">
                                                     <span class="form-bar"></span>
                                                 </div>
                                                 <div class="form-group form-primary">
-                                                    <input type="text" name="password_confirmation" class="form-control" required="" placeholder="Confirm password">
+                                                    <input type="password" name="confirm_new_pass" class="form-control" required="" placeholder="Confirm password">
                                                     <span class="form-bar"></span>
                                                 </div>
                                                 <div class="row">
@@ -455,7 +456,7 @@
                                 </div>
                                 <!-- end of col-sm-12 -->
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
 
@@ -470,9 +471,9 @@
         <!-- Page-body end -->
     </div>
     <!-- Main body end -->
-    <div id="styleSelector">
+    {{-- <div id="styleSelector">
 
-    </div>
+    </div> --}}
 
 
 

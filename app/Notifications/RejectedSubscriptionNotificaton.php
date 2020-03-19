@@ -10,15 +10,17 @@ use Illuminate\Notifications\Messages\MailMessage;
 class RejectedSubscriptionNotificaton extends Notification implements ShouldQueue
 {
     use Queueable;
-
+    public $messages;
+    public $user;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user,$messages)
     {
-        //
+        $this->messages = $messages;
+        $this->user = $user;
     }
 
     /**
@@ -40,7 +42,8 @@ class RejectedSubscriptionNotificaton extends Notification implements ShouldQueu
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('Mail.subscriptions.rejectedSub');
+
+        return (new MailMessage)->markdown('Mail.subscriptions.rejectedSub', ['user'=> $this->user,'messages' => $this->messages]);
     }
 
     /**

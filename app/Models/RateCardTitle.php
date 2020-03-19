@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 09 Feb 2019 14:34:46 +0000.
+ * Date: Tue, 03 Mar 2020 09:15:56 +0000.
  */
 
 namespace App\Models;
@@ -10,24 +10,22 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class MyEvent
+ * Class RateCardTitle
  * 
  * @property int $id
- * @property string $title
- * @property string $start
- * @property string $end
- * @property string $description
+ * @property string $rate_card_title_id
+ * @property string $media_house_id
+ * @property string $rate_card_title
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
  * @package App\Models
  */
-class MyEvent extends Eloquent
+class RateCardTitle extends Eloquent
 {
 	protected $fillable = [
-		'title',
-		'start',
-		'end',
-		'description'
+		'rate_card_title_id',
+		'media_house_id',
+		'rate_card_title'
 	];
 }

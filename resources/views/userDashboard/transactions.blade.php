@@ -31,9 +31,9 @@
             <div  class="dt-responsive table-responsive">
                     <table id="laravel_datatable" class="table table-striped table-bordered nowrap">
                         <thead>
-                        <tr>
-                            <th>ID</th>
+                        <tr class="table-primary">
                             <th>#</th>
+                            <th>ID</th>
                             <th>Transaction ID</th>
                             <th>Invoice number</th>
                             <th>Service</th>
@@ -41,13 +41,13 @@
                             <th>Status</th>
                             <th>Channel</th>
                             <th>Transaction date</th>
-{{--                            <th>Updated at</th>--}}
                             <th>Action</th>
                         </tr>
                         </thead>
                     </table>
                 </div>
             </div>
+            <trans-subs></trans-subs>
         </div>
         </div>
     </div>

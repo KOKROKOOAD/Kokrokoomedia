@@ -77,27 +77,62 @@
                                           <input type="hidden" value="{{$subs->subscription_id}}" name="sub_id">
                                           <input type="hidden" value="{{$subs->client_id}}" name="user_id">
 
-                                          <button type="submit" role="button" class="btn btn-secondary" style="margin-left: 15px;">Approve</button>
+                                          <button type="submit" role="button" class="btn btn-info" style="margin-left: 15px;">Approve</button>
                                     </form>
-                                          <form method="post" action="{{route('admin.reject.subs')}}">
-                                                @csrf
-                                                <input type="hidden" value="{{$subs->subscription_id}}" name="sub_id">
-                                                <input type="hidden" value="{{$subs->client_id}}" name="user_id">
-                                                <button type="submit" class="btn btn-danger">Reject</button>
-                                          </form>
+                                         
+                                                <button type="submit" class="btn btn-danger"  data-toggle="modal" data-target="#showSubDetails">Reject</button>
 
                               @endif
 
                         <div class="btn-group float-right">
-                              <a href="download-sub/{{$subs->subscription_id}}"  role="button" class="btn btn-secondary"> Download <i class="fa fa-download" ></i> </a>
-                              <a href="{{route('sub.all')}}" class="btn btn-secondary">Back</a>
+                              <a href="download-sub/{{$subs->subscription_id}}"  role="button" class="btn btn-primary"> Download <i class="fa fa-download" ></i> </a>
+                              {{-- <a href="{{route('sub.all')}}" class="btn btn-secondary">Back</a> --}}
                         </div>
 
 
                         </div>
                   </div>
                         @endforeach
-            </div>
+
+
+                  <!-- Modal -->
+<div class="modal fade" id="showSubDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalCenterTitle" style="font-weight:800">Why are you rejecting this ad?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background:#F5F5F5">
+         <form method="post" action="{{route('admin.reject.subs')}}">
+              @csrf
+          <input type="hidden" value="{{$subs->subscription_id}}" name="sub_id">
+          <input type="hidden" value="{{$subs->client_id}}" name="user_id">
+          @foreach($messages as $msg)
+          <div class="card">
+            <div class="card-block">
+                  <input type="checkbox" name="message" value="{{$msg->messages}}">
+                  <label style="font-size:14px;">{{$msg->messages}}</label>
+          </div>
+          </div>
+          @endforeach
+
+                 <button type="submit" class="btn btn-danger" id="reject">Reject</button>
+                 <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+
+
+           </form>
+      </div>
+      {{-- <div class="modal-footer" style="background:#F5F5F5">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div> --}}
+    </div>
+  </div>
+</div>
+
+</div>
 
 
 

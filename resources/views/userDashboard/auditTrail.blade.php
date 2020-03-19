@@ -35,15 +35,17 @@
                        <div class="table-responsive">
                                 <table  class="table  table-striped table-bordered nowrap">
                                     <thead>
-                                    <tr>
+                                    <tr class="table-primary">
                                         <th>#</th>
                                         <th>Date</th>
                                         <th>Username</th>
+                                        <th>Action</th>
+                                        <th>Destination of request</th>
                                         <th>Activities</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($auditTrail as $key=>$audit)
+                                        @foreach($auditTrail as $key =>$audit)
                                         <tr>
                                             <td>
                                                 {{$key + 1}}
@@ -51,6 +53,8 @@
 
                                             <td>{{$audit->created_at}}</td>
                                             <td>{{$audit->action_by}}</td>
+                                            <td>{{$audit->action}}</td>
+                                            <td>{{$audit->request_ip}}</td>
                                             <td>{{$audit->activities}}</td>
 
 
@@ -60,11 +64,17 @@
                                 </table>
 
                             </div>
+                              <div class="pull-right">
+                                 {{$auditTrail->links()}}
+                                  </div>
+
                     </div>
+
                 </div>
               
             </div>
             <form-validation-message :message="'{!! \Illuminate\Support\Facades\Session::get('admin-created') !!}'"></form-validation-message>
+           
         </div>
     </div>
     <!-- Page body end -->

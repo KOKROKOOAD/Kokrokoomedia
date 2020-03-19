@@ -43,7 +43,7 @@ class AdminCreationNotificaton extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('Mail.admin.registerSuccess', ['user' => $this->user, 'password' => $this->password]);
+        return (new MailMessage)->markdown('Mail.admin.registerSuccess', ['user' => $this->user, 'password' => $this->password])->greeting('Hello');
     }
 
     /**

@@ -1,5 +1,5 @@
 @component('mail::message')
-  <h2>Account creation</h2>
+  {{-- <strong>Account creation</strong> --}}
 
   <section>
     <article>
@@ -9,7 +9,7 @@
     </article>
     <article>
       <p>
-        Your account with  media.krokrokoo.com has been created.kindly login with the credentials below.
+        Your account with  media.krokrokoo.com has been created.kindly click on the link below to login.
       </p>
     </article>
     <article>
@@ -19,6 +19,7 @@
       </p>
       <article>
         <p>
+          <a href="http://media.kokrokooad.com">http://media.kokrokooad.com</a>
         </p>
       </article>
     </article>

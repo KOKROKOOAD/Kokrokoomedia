@@ -18,7 +18,7 @@ class CreateAdminRequest extends FormRequest
     {
 
         //        $this->middleware('auth');
-        if (Auth::guard()->check() || Auth::guard('admin')->check() && Auth::guard('admin')->user()->admin_type == 'super_admin') {
+        if (auth()->check()) {
             return true;
         }
 
@@ -33,11 +33,11 @@ class CreateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|string|min:3|max:255',
-            'email' => 'required|string|email|max:50|unique:admins',
-            'title' =>  'required|string|string|max:255',
-            'phone' => 'required|digits:10|max:10|unique:admins',
-            'role'  => 'required|string|max:14',
+            'name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'title' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'phone1' => 'required|unique:users|numeric|min:10',
+            'email' => 'required|email|unique:users',
+            'role' => 'required|alpha|max:12'
         ];
     }
 
@@ -66,19 +66,15 @@ class CreateAdminRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Name is required',
-            'name.alpha'   => 'Name field accepts only characters',
-            'name.min'      => 'Name  too short. Must be more than (3) characters',
-            'name.max'      => 'Name  too long.more than (50) characters',
-
-
-            'email.required' => 'Email is required',
+            'name.required' => 'Admin name is required',
+            'name.regex'   => 'Name field accepts only characters and space',
+            'email.required' => 'Email address is required',
+            'email.unique' => 'Email already taken',
             'title.required' => 'Job title is required',
-            'title.alpha'  => 'Job title field accepts only characters',
-
-            'phone.required' => 'Phone number is required',
-            'phone.numeric' => 'Enter valid phone number',
-            //   'phone.max' =>  'Enter valid phone number',
+            'title.regex'  => 'Job title field accepts only characters and space',
+            'phone1.required' => 'Phone number is required',
+            'phone1.numeric' => 'Enter valid phone number',
+            'phone1.unique' =>  'Phone number already taken',
 
         ];
     }

@@ -119,7 +119,26 @@
                         <div class="card-block">
                             <div class="row align-items-end">
                                 <div class="col-8">
-                                    <h4 class="text-white"><i class="fa fa-file-archive-o"> </i> {{totalRevSubs}}</h4>
+                                    <h4 class="text-white"><i class="fa fa-file-archive-o"> </i> {{totalLiveSubs}}</h4>
+                                    <h6 class="text-white m-b-0">Live subscriptions</h6>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <canvas id="update-chart-2" height="50"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+<!--                            <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>-->
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-xl-3 col-md-6">
+                    <div class="card bg-simple-c-green update-card">
+                        <div class="card-block">
+                            <div class="row align-items-end">
+                                <div class="col-8">
+                                    <h4 class="text-white"><i class="fa fa-file-archive-o"> </i> {{totalTrans}}</h4>
                                     <h6 class="text-white m-b-0">Transactions</h6>
                                 </div>
                                 <div class="col-4 text-right">
@@ -197,6 +216,8 @@
                 totalExpSubs : null,
                 totalPenSubs : null,
                 totalRevSubs : null,
+                totalLiveSubs : null,
+                totalTrans : null,
                 test : '',
                 days : [],
                 datas :[],
@@ -210,19 +231,24 @@
                 let self = this;
                 axios.get("fetch-total-ads/api").then(function(res){
                     if(res){
-                        console.log(res.data.days);
+                       // console.log(res.data.days);
                         self.totalSubs  = res.data.totalSubs;
                         self.totalAcceptSubs  = res.data.totalAcceptSub;
                         self.totalRejSubs = res.data.totalRejSub;
                         self.totalExpSubs = res.data.totalExpSub;
                         self.totalPenSubs = res.data.totalPenSub;
                         self.totalRevSubs = res.data.totalRevSub;
-                        console.log(res.data.days);
-                        self.days = [res.data.days[0].date,res.data.days[1].date,res.data.days[2].date,res.data.days[3].date,res.data.days[4].date,res.data.days[5].date,res.data.days[6].date];
+                        self.totalLiveSubs = res.data.totalLiveSubs;
+                        self.totalTrans = res.data.totalTrans;
+                        console.log(res.data.dates);
+                      // self.days = [res.data.days[0].date,res.data.days[1].date,res.data.days[2].date,res.data.days[3].date,res.data.days[4].date,res.data.days[5].date,res.data.days[6].date];
+                         self.days  =  res.data.dates;
+                      self.charts(res.data.counts);
+                      self.statusChart(res.data.counts);
 
-                       self.charts(res.data.days[0].count,res.data.days[1].count,res.data.days[2].count,res.data.days[3].count,res.data.days[4].count,res.data.days[5].count,res.data.days[6].count);
+                     //  self.charts(res.data.days[0].count,res.data.days[1].count,res.data.days[2].count,res.data.days[3].count,res.data.days[4].count,res.data.days[5].count,res.data.days[6].count);
 /*                         self.donutsChart();
- */                        self.statusChart(res.data.days[0].count,res.data.days[1].count,res.data.days[2].count,res.data.days[3].count,res.data.days[4].count,res.data.days[5].count,res.data.days[6].count);
+ */                     //   self.statusChart(res.data.days[0].count,res.data.days[1].count,res.data.days[2].count,res.data.days[3].count,res.data.days[4].count,res.data.days[5].count,res.data.days[6].count);
 
                     }
                     else{
@@ -235,52 +261,67 @@
                  alert(res.data);
              });
             },
-            charts(s,m,t,w,th,fr,sa){
+            charts(counts){
                 let self  = this;
                 let myChart = document.getElementById('myChart').getContext('2d');
                 Chart.defaults.global.defaultFontFamily = 'Verdana';
-              //  Chart.defaults.global.defaultFontSize = '11px';
+               // Chart.defaults.global.defaultFontSize = '18px';
                 Chart.defaults.global.defaultFontWeight =  400;
                 Chart.defaults.global.defaultFontColor = 'rgb(53, 60, 78)';
                 Chart.defaults.global.legend.display = false;
+                let start = new Date();
+                let end = new Date();
+                start.setDate(start.getDate() - 7);
+                start.setHours(0,0,0,0);
 
                 let chart = new Chart(myChart,{
                     type: 'bar',
                     data : {
-                        labels : this.days,
+                        labels : self.days,
                         datasets : [{
                             label : 'Total sub',
-                            data : [s,m,t,w,th,fr,sa],
+                            data : [10,25,45,60,70,75,85],
                              backgroundColor : '#FE9156',
-                            hoverBorderWidth : 4,
+                             barThickness : 200,
+                             hoverBorderWidth : 4,
+                             barThickness : 20,
+
 
                         },
                             {
                             label : 'pending',
                             data : [23,45,34,12,45,67,98],
                             backgroundColor : '#00ACAE',
+                            barThickness : 20,
+
 
                         },
                           {
                             label : 'Accepted',
                             data : [67,98,32,15,65,37,78],
                             backgroundColor : '#00E18E',
+                            barThickness : 20,
+
                         },
                         {
                             label : 'Active',
                             data : [20,19,22,55,35,17,75],
                             backgroundColor : '#6fdbd9',
+                            barThickness : 20,
+
                         },
                         {
                             label : 'Rejected',
                             data : [45,18,36,45,55,31,90],
                             backgroundColor : '#FF3C64',
+                            barThickness : 20,
+
                         },
                          {
                             label : 'Expired',
                             data : [48,19,16,41,85,41,10],
                             backgroundColor : '#727272',
-                            barThickness : 3,
+                            barThickness : 20,
                         }
                         ],
                     },
@@ -289,7 +330,27 @@
                             display :  true,
                             text : 'Total Subscriptions for the week',
                             fontSize : 16,
-
+                        },
+                        scales:{
+                          xAxes: [{
+                          type: "time",
+                          time: {
+                          min: start,
+                          max: end,
+                          unit: "day"
+                         },
+                         
+                         display : true,
+                             scaleLabel:{
+                              display : true,
+                              labelString : 'Date',
+                             },
+                             gridLines :{
+                                display : false,
+                            },
+                               categoryPercentage: 0.7,
+                               barPercentage: 0.8
+                        }]
                         },
                         tooltips:{
                           //  backgroundColor : 'transparent',
@@ -319,48 +380,48 @@
                          }
                         },
                         responsive : true,
-                        scales: {
-                         xAxes: [{
-                         display : true,
-                             scaleLabel:{
-                              display : true,
-                              labelString : 'Date',
-                             },
-                            // stacked : true,
+                    //     scales: {
+                    //      xAxes: [{
+                    //      display : true,
+                    //          scaleLabel:{
+                    //           display : true,
+                    //           labelString : 'Date',
+                    //          },
+                    //         // stacked : true,
 
-                           // barPercentage: 0.4,
-                           // barThickness : 45,
-                            gridLines :{
-                                display : false,
-                            },
-                               categoryPercentage: 0.7,
-                               barPercentage: 0.8
+                    //        // barPercentage: 0.4,
+                    //        // barThickness : 45,
+                    //         gridLines :{
+                    //             display : false,
+                    //         },
+                    //            categoryPercentage: 0.7,
+                    //            barPercentage: 0.8
 
-                              }],
+                    //           }],
 
-                         yAxes:[{
-                             display : true,
-                             scaleLabel:{
-                              display : true,
-                              labelString : 'Values',
-                             },
-                            // stacked : true,
-                             /* gridLines: {
-                                 display : false
-                             }, */
-                         ticks: {
-                       //  max: 500,
-                       //  min: 0,
-                       //  stepSize: 100,
-                         beginAtZero: true,
-                         padding: 10,
-                     },
-                        }]
-                          },
+                    // //      yAxes:[{
+                    // //          display : true,
+                    // //          scaleLabel:{
+                    // //           display : true,
+                    // //           labelString : 'Values',
+                    // //          },
+                    // //         // stacked : true,
+                    // //          /* gridLines: {
+                    // //              display : false
+                    // //          }, */
+                    // //      ticks: {
+                    // //    //  max: 500,
+                    // //    //  min: 0,
+                    // //    //  stepSize: 100,
+                    // //      beginAtZero: true,
+                    // //      padding: 10,
+                    // //  },
+                    // //     }]
+                    //       },
                     }
                 });
             },
-              statusChart(s,m,t,w,th,fr,sa){
+              statusChart(counts){
                 let self  = this;
                 let myPie = document.getElementById('piechart').getContext('2d');
                 Chart.defaults.global.defaultFontFamily = 'Verdana';
@@ -373,10 +434,10 @@
 
                       type: 'bar',
                     data : {
-                        labels : this.days,
+                      //  labels : this.days,
                         datasets : [{
                             label : 'Amount(GHC)',
-                            data : [300,800,3000,500,4000,8000,400],
+                            data : counts,
                              backgroundColor : '#00ACAE',
                             hoverBorderWidth : 4,
 
@@ -418,44 +479,65 @@
                          }
                         },
                         responsive : true,
-                        scales: {
-                         xAxes: [{
+                          scales:{
+                          xAxes: [{
+                          type: "time",
+                          time: {
+                          min: start,
+                          max: end,
+                          unit: "day"
+                         },
+                         
                          display : true,
                              scaleLabel:{
                               display : true,
                               labelString : 'Date',
                              },
-                            // stacked : true,
-
-                           // barPercentage: 0.4,
-                           // barThickness : 45,
-                            gridLines :{
+                             gridLines :{
                                 display : false,
                             },
                                categoryPercentage: 0.7,
                                barPercentage: 0.8
-
-                              }],
-
-                         yAxes:[{
-                             display : true,
-                             scaleLabel:{
-                              display : true,
-                              labelString : 'Values',
-                             },
-                            // stacked : true,
-                             /* gridLines: {
-                                 display : false
-                             }, */
-                         ticks: {
-                       //  max: 500,
-                       //  min: 0,
-                       //  stepSize: 100,
-                         beginAtZero: true,
-                         padding: 10,
-                     },
                         }]
-                          },
+                        },
+                    //     scales: {
+                    //      xAxes: [{
+                    //      display : true,
+                    //          scaleLabel:{
+                    //           display : true,
+                    //           labelString : 'Date',
+                    //          },
+                    //         // stacked : true,
+
+                    //        // barPercentage: 0.4,
+                    //        // barThickness : 45,
+                    //         gridLines :{
+                    //             display : false,
+                    //         },
+                    //            categoryPercentage: 0.7,
+                    //            barPercentage: 0.8
+
+                    //           }],
+
+                    //      yAxes:[{
+                    //          display : true,
+                    //          scaleLabel:{
+                    //           display : true,
+                    //           labelString : 'Values',
+                    //          },
+                    //         // stacked : true,
+                    //          /* gridLines: {
+                    //              display : false
+                    //          }, */
+                    //      ticks: {
+                    //    //  max: 500,
+                    //    //  min: 0,
+                    //    //  stepSize: 100,
+                    //      beginAtZero: true,
+                    //      padding: 10,
+                    //  },
+                    //     }]
+                    //       },
                     }
                 });
 
