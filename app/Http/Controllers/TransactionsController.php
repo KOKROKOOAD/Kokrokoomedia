@@ -16,9 +16,7 @@ class TransactionsController extends Controller
     {
 
         if (request()->ajax()) {
-            $trans  = Transaction::all()
-                ->whereMediaHouseId(auth()->user()->created_by)
-                ->whereTransactionStatus('paid');
+            $trans  = Transaction::whereMediaHouseId(auth()->user()->created_by)->whereTransactionStatus('paid')->get();
             return datatables()->of($trans)
 
                 ->addColumn('action', function ($row) {
