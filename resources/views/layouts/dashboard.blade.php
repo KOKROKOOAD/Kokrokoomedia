@@ -113,9 +113,9 @@
                           
 
                             @if(auth()->user()->role == 'super_admin')
-                            <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
+                            <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
                             @else
-                             <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" />
+                             <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" />
                             @endif
 {{--                             <a class="navbar-brand" href="#"><img src="/images/kokro-yellow.png"  alt="kokrokoo"></a>
  --}}
