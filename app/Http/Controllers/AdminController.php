@@ -47,8 +47,8 @@ class AdminController extends Controller
 
         //generate password
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
-        $password = substr( str_shuffle( $chars ), 0, 8 );
-       // $password =  '123456';
+        $password = substr(str_shuffle($chars), 0, 8);
+        // $password =  '123456';
 
         $admin =   User::create([
             'name' => $request->input('name'),
@@ -71,12 +71,14 @@ class AdminController extends Controller
         $this->dispatch(new SendAdminCredentialsJob($admin, $password));
         $sendSMS = new SendTextMessage();
 
-        $sendSMS->essage(
-            $request->input('name'), 
-            $request->input('email'), 
-            $password, env('SMS_USERNAME'),
+        $sendSMS->message(
+            $request->input('name'),
+            $request->input('email'),
+            $password,
+            env('SMS_USERNAME'),
             env('SMS_PASSWORD'),
-            $request->input('phone1'));
+            $request->input('phone1')
+        );
 
         Session::flash('admin-created', 'Admin  successfully created');
         return redirect()->back();
