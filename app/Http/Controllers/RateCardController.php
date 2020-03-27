@@ -77,6 +77,9 @@ class RateCardController extends Controller
             $query->where('rate_card_title', Input::get('rateCardTitle'));
         })->get();
 
+
+
+
         AdminAuditTrail::create([
             'action_by' => auth()->user()->name, 'action' => 'Create rate title',
             'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Created rate card title :" . $request->rateCardTitle, 'created_by' => auth()->user()->client_id
@@ -122,9 +125,11 @@ class RateCardController extends Controller
                 'weekend_segments' => json_decode($request->input('weekends'))
             ]);
         }
+        // AdminAuditTrail::create([
+        //     'action_by' => auth()->user()->name, 'action' => 'Create ratecard ',
+        //     'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Admin " . $request->name . "created rate :" .$request->input('rate_card_title_id'), 'created_by' => auth()->user()->client_id
+        // ]);
 
-        AdminAuditTrail::create(['action_by' => auth()->user()->name, 'activities' => "Created rate card with id: " . $request->input('rate_card_title_id')]);
-        return response()->json('success');
     }
 
 
@@ -189,7 +194,11 @@ class RateCardController extends Controller
             RateCardTitles::whereRate_card_title_id($request->input('rateCardTitleId'))->delete();
             PrintRateCard::whereMedia_house_id(auth()->user()->created_by)->whereRate_card_title_id($request->input('rateCardTitleId'))->delete();
         }
-        AdminAuditTrail::create(['action_by' => auth()->user()->name, 'activities' => "Deleted rate card with id  " . $request->input('rateCardTitleId')]);
+        // AdminAuditTrail::create([
+        //     'action_by' => auth()->user()->name, 'action' => 'Deleted ratecard',
+        //     'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Admin " . $request->name . " deleted rate card with id :'.$request->input('rateCardTIleId'", 'created_by' => auth()->user()->client_id
+        // ]);
+        // AdminAuditTrail::create(['action_by' => auth()->user()->name, 'activities' => "Deleted rate card with id  " . $request->input('rateCardTitleId')]);
         $request->session()->flash('delete-ratecard', 'Rate card successfully deleted');
         return response()->json('success');
     }
