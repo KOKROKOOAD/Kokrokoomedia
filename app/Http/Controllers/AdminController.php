@@ -73,12 +73,7 @@ class AdminController extends Controller
             env('SMS_USERNAME'),
             env('SMS_PASSWORD')
         );
-        $sendSMS->AdminAccountCreationMessage(
-            $request->input('name'),
-            $request->input('email'),
-            $password,
-            $request->input('phone1')
-        );
+
         Session::flash('admin-created', 'Admin  successfully created');
         return redirect()->back();
     }
