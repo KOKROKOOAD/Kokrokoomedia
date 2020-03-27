@@ -16,10 +16,11 @@ class TransactionsController extends Controller
     {
 
         if (request()->ajax()) {
-            $trans  = Transaction::all();
-            return datatables()->of($trans)
+            $trans  = Transaction::all()
                 ->whereMediaHouseId(auth()->user()->created_by)
-                ->whereTransactionStatus('paid')
+                ->whereTransactionStatus('paid');
+            return datatables()->of($trans)
+
                 ->addColumn('action', function ($row) {
                     //  $btn = '<div class="btn-group btn-group-sm"> ';
                     $btn = '<button data-toggle="tooltip"     data-id="' . $row->subscription_id . '" data-original-title="view" class="btn btn-primary btn-sm view-sub"><i class="fa fa-eye"></i></button>';
