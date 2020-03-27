@@ -36,7 +36,10 @@ class ReportsController extends Controller
         $user = User::find(auth()->user()->client_id);
         $data  = json_decode($request->data[0]);
         $trans = Transaction::select('transaction_id', 'amount', 'payment_source', 'transaction_status', 'updated_at')
-            ->whereTransactionStatus('paid')->whereDate('updated_at', '>=', $data->fromDate)->whereDate('updated_at', '<=', $data->toDate)->get();
+            ->whereMediaHouseId(auth()->user()->created_by)
+            ->whereTransactionStatus('paid')
+            ->whereDate('updated_at', '>=', $data->fromDate)
+            ->whereDate('updated_at', '<=', $data->toDate)->get();
 
         return response()->json($trans);
     }
@@ -45,14 +48,14 @@ class ReportsController extends Controller
     {
         $data  = json_decode($request->data[0]);
 
-        $subs  = ScheduledAd::select('*')->whereIn('status', ['in cart'])->whereDate('created_at', '>=', $data->fromDate)->whereDate('created_at', '<=', $data->toDate)->get();
+        $subs  = ScheduledAd::where('media_house_id', auth()->user()->created_by)->whereNotIn('status', ['in cart'])->whereDate('updated_at', '>=', $data->fromDate)->whereDate('updated_at', '<=', $data->toDate)->get();
         return response()->json($subs);
     }
 
     public function fetchDailySubscriptionReport()
     {
         $user = User::find(auth()->user()->created_by);
-        $subs  = $user->ScheduledAds->whereIn('status', ['in cart']);
+        $subs  = ScheduledAd::select('*')->where('status', '!=', 'in cart')->whereDate('updated_at', Carbon::today())->get();
         return response()->json($subs);
     }
 }

@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function scheduledAds()
     {
-        return  $this->hasMany(ScheduledAd::class, 'client_id', 'client_id');
+        return  $this->hasMany(ScheduledAd::class, 'media_house_id', 'client_id');
     }
 
 

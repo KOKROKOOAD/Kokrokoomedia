@@ -46,7 +46,7 @@
                       class="btn btn-primary"
                       @click="fetchReport()"
                       :disabled="disabled"
-                    >Fetch Report</button>
+                    >Fetch</button>
                     <span v-show="show" class="text-dark">
                       <img src="/images/loading.gif" width="20" height="20" />
                       Fetching please wait.....
@@ -62,18 +62,34 @@
             <div class="card-block">
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xl-12 m-b-30">
-                  <div class="col-md-12">
-                    <!-- <exportToCSV :columns="data.columns" :data="data.rows">CSV</ExportToCSV> -->
+                  <div class="col-md-12" v-show="checkSelected == 'Transactions'">
+                    <button
+                      v-show="data.rows.length > 0"
+                      @click="csvExport(csvDataTrans)"
+                      class="btn btn-info"
+                    >
+                      <i class="fa fa-download"></i> CSV
+                    </button>
+                    <hr />
                     <mdb-datatable
                       class="animated fadeIn"
-                      v-show="checkSelected == 'Transactions'"
                       :data="data"
                       striped
                       bordered
                       ExportToCSV
                     />
+                  </div>
+                  <div class="col-md-12" v-show="checkSelected == 'Subscriptions'">
+                    <button
+                      v-show="data2.rows.length > 0"
+                      @click="csvExport(csvDataSubs)"
+                      class="btn btn-info"
+                    >
+                      <i class="fa fa-download"></i> CSV
+                    </button>
+                    <hr />
                     <mdb-datatable
-                      v-show="checkSelected == 'Subscriptions'"
+                      class="animated fadeIn"
                       :data="data2"
                       striped
                       bordered
@@ -150,6 +166,10 @@ export default {
             field: "subscription_id"
           },
           {
+            label: "Subscription title",
+            field: "title"
+          },
+          {
             label: "Start Date",
             field: "start"
           },
@@ -158,21 +178,23 @@ export default {
             field: "end"
           },
           {
+            label: "Rate card",
+            field: "rate_card_title"
+          },
+          {
             label: "Spots",
             field: "spots"
           },
           {
-            label: "Subscription title",
-            field: "title"
+            label: "Rate",
+            field: "rate"
           },
+
           {
             label: "Duration",
             field: "durations"
           },
-          //   {
-          //     label: "Rate card",
-          //     field: "rate_card_title"
-          //   },
+
           {
             label: "Status",
             field: "status"
@@ -223,6 +245,31 @@ export default {
           self.table = true;
         });
       }
+    },
+    csvExport(arrData) {
+      let today = new Date();
+      let date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+      let time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      let dateTime = date + " " + time;
+      let csvContent = "data:text/csv;charset=utf-8,";
+      csvContent += [
+        Object.keys(arrData[0]).join(";"),
+        ...arrData.map(item => Object.values(item).join(";"))
+      ]
+        .join("\n")
+        .replace(/(^\[)|(\]$)/gm, "");
+
+      const data = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", data);
+      link.setAttribute("download", "daily_transactions_" + dateTime + " .csv");
+      link.click();
     }
   },
   computed: {
@@ -236,6 +283,29 @@ export default {
           updated_at: "2020-03-19"
         }
       ];
+    },
+    csvDataTrans() {
+      return this.data.rows.map(item => ({
+        "Transaction ID ": item.transaction_id,
+        Amount: item.amount,
+        Status: item.transaction_status,
+        Channel: item.payment_source,
+        "Transaction date": item.updated_at
+      }));
+    },
+    csvDataSubs() {
+      return this.data2.rows.map(item => ({
+        "Subscription ID ": item.subscription_id,
+        "Subscription title": item.title,
+        "Start Date": item.start,
+        "End Date": item.end,
+        "Rate card": item.rate_card_title,
+        Spots: item.spots,
+        Rate: item.rate,
+        Duration: item.durations,
+        Status: item.status,
+        "Created date": item.created_at
+      }));
     }
   }
 };

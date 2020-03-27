@@ -141,9 +141,9 @@
                                     <h4 class="text-white"><i class="fa fa-file-archive-o"> </i> {{totalTrans}}</h4>
                                     <h6 class="text-white m-b-0">Transactions</h6>
                                 </div>
-                                <div class="col-4 text-right">
+                                <!-- <div class="col-4 text-right">
                                     <canvas id="update-chart-2" height="50"></canvas>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="card-footer">
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                         <div class="card-block">
-                            <canvas id="myChart" style="height: 165px;"></canvas>
+                            <canvas id="myChart" style="height: 100px;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                             </div>
                         </div>
                         <div class="card-block">
-                            <canvas id="piechart" style="height: 165px;"></canvas>
+                            <canvas id="trans" style="height: 165px;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -219,8 +219,10 @@
                 totalLiveSubs : null,
                 totalTrans : null,
                 test : '',
-                days : [],
-                datas :[],
+                xlabels : [],
+                ylabels :[],
+                txlabels : [],
+                tylables : [],
             }
         },
         mounted(){
@@ -231,7 +233,7 @@
                 let self = this;
                 axios.get("fetch-total-ads/api").then(function(res){
                     if(res){
-                       // console.log(res.data.days);
+                        console.log(res.data);
                         self.totalSubs  = res.data.totalSubs;
                         self.totalAcceptSubs  = res.data.totalAcceptSub;
                         self.totalRejSubs = res.data.totalRejSub;
@@ -240,11 +242,15 @@
                         self.totalRevSubs = res.data.totalRevSub;
                         self.totalLiveSubs = res.data.totalLiveSubs;
                         self.totalTrans = res.data.totalTrans;
-                        console.log(res.data.dates);
                       // self.days = [res.data.days[0].date,res.data.days[1].date,res.data.days[2].date,res.data.days[3].date,res.data.days[4].date,res.data.days[5].date,res.data.days[6].date];
-                         self.days  =  res.data.dates;
-                      self.charts(res.data.counts);
-                      self.statusChart(res.data.counts);
+                         self.xlabels  =  res.data.dates;
+                         self.txlabels = res.data.transDates;
+                         self.tylables = res.data.transCounts;
+                         self.ylabels = res.data.counts;
+                        console.log(res.data.dates);
+
+                      self.charts();
+                      self.transCharts();
 
                      //  self.charts(res.data.days[0].count,res.data.days[1].count,res.data.days[2].count,res.data.days[3].count,res.data.days[4].count,res.data.days[5].count,res.data.days[6].count);
 /*                         self.donutsChart();
@@ -265,10 +271,10 @@
                 let self  = this;
                 let myChart = document.getElementById('myChart').getContext('2d');
                 Chart.defaults.global.defaultFontFamily = 'Verdana';
-               // Chart.defaults.global.defaultFontSize = '18px';
+              //  Chart.defaults.global.defaultFontSize = '16px';
                 Chart.defaults.global.defaultFontWeight =  400;
                 Chart.defaults.global.defaultFontColor = 'rgb(53, 60, 78)';
-                Chart.defaults.global.legend.display = false;
+               // Chart.defaults.global.legend.display = true;
                 let start = new Date();
                 let end = new Date();
                 start.setDate(start.getDate() - 7);
@@ -277,52 +283,20 @@
                 let chart = new Chart(myChart,{
                     type: 'bar',
                     data : {
-                        labels : self.days,
+                        labels : self.xlabels,
                         datasets : [{
-                            label : 'Total sub',
-                            data : [10,25,45,60,70,75,85],
-                             backgroundColor : '#FE9156',
-                             barThickness : 200,
-                             hoverBorderWidth : 4,
-                             barThickness : 20,
-
-
-                        },
-                            {
-                            label : 'pending',
-                            data : [23,45,34,12,45,67,98],
-                            backgroundColor : '#00ACAE',
-                            barThickness : 20,
-
-
-                        },
-                          {
-                            label : 'Accepted',
-                            data : [67,98,32,15,65,37,78],
-                            backgroundColor : '#00E18E',
-                            barThickness : 20,
-
-                        },
-                        {
-                            label : 'Active',
-                            data : [20,19,22,55,35,17,75],
-                            backgroundColor : '#6fdbd9',
-                            barThickness : 20,
-
-                        },
-                        {
-                            label : 'Rejected',
-                            data : [45,18,36,45,55,31,90],
-                            backgroundColor : '#FF3C64',
-                            barThickness : 20,
-
-                        },
-                         {
-                            label : 'Expired',
-                            data : [48,19,16,41,85,41,10],
-                            backgroundColor : '#727272',
-                            barThickness : 20,
-                        }
+                            label : 'Subscriptions',
+                            data : self.ylabels,
+                             backgroundColor :[
+                              '#FE9156',
+                              '#FC7888',
+                              '#22CCD0',
+                              '#44D08B',
+                              '#FEAE8A'
+                             ] ,
+                             hoverBorderWidth : 2,
+                             barThickness : 5,
+                        }, 
                         ],
                     },
                     options: {
@@ -349,7 +323,20 @@
                                 display : false,
                             },
                                categoryPercentage: 0.7,
-                               barPercentage: 0.8
+                               barPercentage: 0.4
+                        }],
+                        yAxes : [{
+                            scaleLabel : {
+                                display : true,
+                                labelString : 'Subscriptions', 
+                            },
+                             ticks: {
+                                 max: 100,
+                                 min: 0,
+                                stepSize: 10,
+                         beginAtZero: true,
+                         padding: 10,
+                     },
                         }]
                         },
                         tooltips:{
@@ -357,129 +344,73 @@
                           //  borderWidth  : 2,
                            // borderColor : '#00ACAE',
                             //titleFontColor : '#000',
-                            titleFontSize : 19,
+                            titleFontSize : 12,
                             mode : 'index',
                             displayColors : false,
                             labelTextColor : 'red',
                             lineHeight : '10px',
                            // bodyFontColor : 'black',
-                            bodyFontSize : 16,
+                            bodyFontSize : 12,
                             bodySpacing : 3,
                             displayColors : true,
                             multiKeyBackground : 'black',
                             caretSize : 6,
-                            caretPadding : 10,
-                            titleMarginBottom : 8
+                            caretPadding : 3,
+                            titleMarginBottom : 4
 
 
                         },
                         lengend:{
-                            display : true,
+                            display : false,
                          labels:{
                              fontColor : '#001'
                          }
                         },
                         responsive : true,
-                    //     scales: {
-                    //      xAxes: [{
-                    //      display : true,
-                    //          scaleLabel:{
-                    //           display : true,
-                    //           labelString : 'Date',
-                    //          },
-                    //         // stacked : true,
-
-                    //        // barPercentage: 0.4,
-                    //        // barThickness : 45,
-                    //         gridLines :{
-                    //             display : false,
-                    //         },
-                    //            categoryPercentage: 0.7,
-                    //            barPercentage: 0.8
-
-                    //           }],
-
-                    // //      yAxes:[{
-                    // //          display : true,
-                    // //          scaleLabel:{
-                    // //           display : true,
-                    // //           labelString : 'Values',
-                    // //          },
-                    // //         // stacked : true,
-                    // //          /* gridLines: {
-                    // //              display : false
-                    // //          }, */
-                    // //      ticks: {
-                    // //    //  max: 500,
-                    // //    //  min: 0,
-                    // //    //  stepSize: 100,
-                    // //      beginAtZero: true,
-                    // //      padding: 10,
-                    // //  },
-                    // //     }]
-                    //       },
                     }
                 });
             },
-              statusChart(counts){
+            
+                transCharts(){
                 let self  = this;
-                let myPie = document.getElementById('piechart').getContext('2d');
+                let myChart = document.getElementById('trans').getContext('2d');
                 Chart.defaults.global.defaultFontFamily = 'Verdana';
-              //  Chart.defaults.global.defaultFontSize = '11px';
+              //  Chart.defaults.global.defaultFontSize = '16px';
                 Chart.defaults.global.defaultFontWeight =  400;
                 Chart.defaults.global.defaultFontColor = 'rgb(53, 60, 78)';
-                Chart.defaults.global.legend.display = false;
+               // Chart.defaults.global.legend.display = true;
+                let start = new Date();
+                let end = new Date();
+                start.setDate(start.getDate() - 7);
+                start.setHours(0,0,0,0);
 
-                let chartPie = new Chart(myPie,{
-
-                      type: 'bar',
+                let chart = new Chart(myChart,{
+                    type: 'bar',
                     data : {
-                      //  labels : this.days,
+                        labels : self.txlabels,
                         datasets : [{
-                            label : 'Amount(GHC)',
-                            data : counts,
-                             backgroundColor : '#00ACAE',
-                            hoverBorderWidth : 4,
+                            label : 'Trasactions',
+                            data : self.tylabels,
+                             backgroundColor :[
+                                '#FC7888',
 
-                        },
+                              '#FE9156',
+                              '#22CCD0',
+                              '#44D08B',
+                              '#FEAE8A'
+                             ] ,
+                             hoverBorderWidth : 2,
+                             barThickness : 5,
+                        }, 
                         ],
                     },
                     options: {
                         title : {
                             display :  true,
-                            text : 'Transactions for the week',
+                            text : 'Total Transactions for the week',
                             fontSize : 16,
-
                         },
-                        tooltips:{
-                          //  backgroundColor : 'transparent',
-                          //  borderWidth  : 2,
-                           // borderColor : '#00ACAE',
-                            //titleFontColor : '#000',
-                            titleFontSize : 19,
-                            //mode : 'index',
-                            displayColors : false,
-                            labelTextColor : 'red',
-                            lineHeight : '10px',
-                           // bodyFontColor : 'black',
-                            bodyFontSize : 16,
-                            bodySpacing : 3,
-                            displayColors : true,
-                            multiKeyBackground : 'black',
-                            caretSize : 6,
-                            caretPadding : 10,
-                            titleMarginBottom : 8
-
-
-                        },
-                        lengend:{
-                            display : true,
-                         labels:{
-                             fontColor : '#001'
-                         }
-                        },
-                        responsive : true,
-                          scales:{
+                        scales:{
                           xAxes: [{
                           type: "time",
                           time: {
@@ -497,50 +428,52 @@
                                 display : false,
                             },
                                categoryPercentage: 0.7,
-                               barPercentage: 0.8
+                               barPercentage: 0.4
+                        }],
+                        yAxes : [{
+                            scaleLabel : {
+                                display : true,
+                                labelString : 'Transactions (GHC)', 
+                            },
+                             ticks: {
+                                 max: 100,
+                                 min: 0,
+                                stepSize: 10,
+                         beginAtZero: true,
+                         padding: 10,
+                     },
                         }]
                         },
-                    //     scales: {
-                    //      xAxes: [{
-                    //      display : true,
-                    //          scaleLabel:{
-                    //           display : true,
-                    //           labelString : 'Date',
-                    //          },
-                    //         // stacked : true,
+                        tooltips:{
+                          //  backgroundColor : 'transparent',
+                          //  borderWidth  : 2,
+                           // borderColor : '#00ACAE',
+                            //titleFontColor : '#000',
+                            titleFontSize : 12,
+                            mode : 'index',
+                            displayColors : false,
+                            labelTextColor : 'red',
+                            lineHeight : '10px',
+                           // bodyFontColor : 'black',
+                            bodyFontSize : 12,
+                            bodySpacing : 3,
+                            displayColors : true,
+                            multiKeyBackground : 'black',
+                            caretSize : 6,
+                            caretPadding : 3,
+                            titleMarginBottom : 4
 
-                    //        // barPercentage: 0.4,
-                    //        // barThickness : 45,
-                    //         gridLines :{
-                    //             display : false,
-                    //         },
-                    //            categoryPercentage: 0.7,
-                    //            barPercentage: 0.8
 
-                    //           }],
-
-                    //      yAxes:[{
-                    //          display : true,
-                    //          scaleLabel:{
-                    //           display : true,
-                    //           labelString : 'Values',
-                    //          },
-                    //         // stacked : true,
-                    //          /* gridLines: {
-                    //              display : false
-                    //          }, */
-                    //      ticks: {
-                    //    //  max: 500,
-                    //    //  min: 0,
-                    //    //  stepSize: 100,
-                    //      beginAtZero: true,
-                    //      padding: 10,
-                    //  },
-                    //     }]
-                    //       },
+                        },
+                        lengend:{
+                            display : false,
+                         labels:{
+                             fontColor : '#001'
+                         }
+                        },
+                        responsive : true,
                     }
                 });
-
             },
 
         },

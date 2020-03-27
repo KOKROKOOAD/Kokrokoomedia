@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ScheduledAd;
+use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -52,21 +53,45 @@ class DashboardController extends Controller
         $user = User::find($id);
         $totalTrans = count($user->transaction->toArray());
 
-        $days = ScheduledAd::select([
-            DB::raw('DATE(created_at) AS date'),
+        $daysCounts = ScheduledAd::select([
+            DB::raw('DATE(updated_at) AS date'),
             DB::raw('COUNT(id) AS count'),
         ])
-            ->whereMediaHouseId(auth()->user()->client_id)
-            ->whereBetween('created_at', [Carbon::now()->subDays(7)->toDateString(), Carbon::now()->toDateString()])
+            ->whereMediaHouseId(auth()->user()->created_by)
+            //->whereNotIn('status', ['in cart'])
+            ->whereBetween('updated_at', [Carbon::now()->subDays(7)->toDateString(), Carbon::now()->toDateString()])
             ->groupBy('date')
             ->orderBy('date', 'ASC')
             ->get()
             ->toArray();
+
+        $transCounts = Transaction::select([
+            DB::raw('DATE(updated_at) AS date'),
+            DB::raw('COUNT(id) AS count'),
+        ])
+            ->whereMediaHouseId(auth()->user()->created_by)
+            //  ->whereTransactionStatus('paid')
+            ->whereBetween('updated_at', [Carbon::now()->subDays(7)->toDateString(), Carbon::now()->toDateString()])
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get()
+            ->toArray();
+
+        //print_r($transCounts);
+
         $dates = array();
         $counts = array();
-        foreach ($days as $date) {
+        $transCounts = array();
+        $transDates = array();
+        foreach ($daysCounts as $date) {
             array_push($dates, $date['date']);
             array_push($counts, $date['count']);
+        }
+
+        foreach ($transCounts as $dates) {
+            print_r($dates);
+            array_push($transDates, $dates['date']);
+            array_push($transCounts, $dates['count']);
         }
 
 
@@ -80,7 +105,9 @@ class DashboardController extends Controller
             'dates' => $dates,
             'counts' => $counts,
             'totalLiveSubs' => $totalLiveSubs,
-            'totalTrans' => $totalTrans
+            'totalTrans' => $totalTrans,
+            'transDates' => $transDates,
+            'transCounts' => $transCounts
         ]);
     }
 

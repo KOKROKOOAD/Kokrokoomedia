@@ -128,7 +128,7 @@ class AdminController extends Controller
         User::whereClientId($request->input('adminId'))->update([
             'isActive' => 'inactive'
         ]);
-        session()->flash('block-admin', "One Admin account successfully  unblocked");
+        session()->flash('block-admin', "One Admin account successfully blocked");
 
         AdminAuditTrail::create([
             'action_by' => auth()->user()->name, 'action' => 'block admin ',
