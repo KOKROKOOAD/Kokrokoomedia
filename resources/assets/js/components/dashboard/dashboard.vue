@@ -155,7 +155,7 @@
 
 
                 <!--  sale analytics start -->
-                <div class="col-xl-6 col-md-9">
+                <div class="col-xl-12 col-md-12">
                     <div class="card">
                         <div class="card-header">
 <!--                             <h5>Subscriptions Analytics</h5>
@@ -174,16 +174,13 @@
                     </div>
                 </div>
 
-                <div class="col-xl-6 col-md-3">
+                <!-- <div class="col-xl-6 col-md-3">
                     <div class="card">
                         <div class="card-header">
-<!--                             <h5>Subscriptions Analytics</h5>
- --><!--                            <span class="text-muted">For more details about usage, please refer <a href="https://www.amcharts.com/online-store/" target="_blank">amCharts</a> licences.</span>-->
+
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
-<!--                                    <li><i class="feather icon-maximize full-card"></i></li>-->
-<!--                                    <li><i class="feather icon-minus minimize-card"></i></li>-->
-<!--                                    <li><i class="feather icon-trash-2 close-card"></i></li>-->
+                                  
                                 </ul>
                             </div>
                         </div>
@@ -191,13 +188,13 @@
                             <canvas id="trans" style="height: 165px;"></canvas>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
-                <div class="col-xl-12 col-md-12">
+                <!-- <div class="col-xl-12 col-md-12">
 
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
@@ -233,7 +230,6 @@
                 let self = this;
                 axios.get("fetch-total-ads/api").then(function(res){
                     if(res){
-                        console.log(res.data);
                         self.totalSubs  = res.data.totalSubs;
                         self.totalAcceptSubs  = res.data.totalAcceptSub;
                         self.totalRejSubs = res.data.totalRejSub;
@@ -247,7 +243,6 @@
                          self.txlabels = res.data.transDates;
                          self.tylables = res.data.transCounts;
                          self.ylabels = res.data.counts;
-                        console.log(res.data.dates);
 
                       self.charts();
                       self.transCharts();
@@ -258,13 +253,11 @@
 
                     }
                     else{
-                        console.log('no res')
                     }
                 });
             },
             fetchWeekData(){
              axios.get('week-data').then(function(){
-                 alert(res.data);
              });
             },
             charts(counts){
