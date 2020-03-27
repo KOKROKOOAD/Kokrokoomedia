@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ScheduledAd;
-use App\Models\Transaction;
 use App\User;
 use Carbon\Carbon;
+use App\Models\ScheduledAd;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
