@@ -129,7 +129,7 @@ class RateCardController extends Controller
         //     'action_by' => auth()->user()->name, 'action' => 'Create ratecard ',
         //     'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Admin " . $request->name . "created rate :" .$request->input('rate_card_title_id'), 'created_by' => auth()->user()->client_id
         // ]);
-
+        return response()->json('success');
     }
 
 
