@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public  function fetchTotalSubs()
     {
 
-        $id = Auth()->user()->client_id;
+        $id = auth()->user()->created_by;
         $totalSubs  =  ScheduledAd::select('id')->whereMediaHouseId($id)->whereNotIn('status', ['in cart'])->count();
 
         //  fetch active subscription associated with login in media admin
@@ -57,7 +57,7 @@ class DashboardController extends Controller
             DB::raw('DATE(updated_at) AS date'),
             DB::raw('COUNT(id) AS count'),
         ])
-            ->whereMediaHouseId(auth()->user()->created_by)
+            ->whereMediaHouseId($id)
             //->whereNotIn('status', ['in cart'])
             ->whereBetween('updated_at', [Carbon::now()->subDays(7)->toDateString(), Carbon::now()->toDateString()])
             ->groupBy('date')
@@ -69,7 +69,7 @@ class DashboardController extends Controller
             DB::raw('DATE(updated_at) AS date'),
             DB::raw('COUNT(id) AS count'),
         ])
-            ->whereMediaHouseId(auth()->user()->created_by)
+            ->whereMediaHouseId($id)
             //  ->whereTransactionStatus('paid')
             ->whereBetween('updated_at', [Carbon::now()->subDays(7)->toDateString(), Carbon::now()->toDateString()])
             ->groupBy('date')
