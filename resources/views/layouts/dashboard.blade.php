@@ -114,9 +114,9 @@
                           
 
                             {{--  @if(auth()->user()->role == 'super_admin')  --}}
-                            {{-- <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
+                            {{-- <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="{{auth()->user()->media_house}}" />
                             @else
-                             <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" />
+                             <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="{{auth()->user()->media_house}}" />
                             @endif --}}
                             <img class="img-fluid" src="/images/kokro-yellow.png" alt="Kokrokoo"/>
 
@@ -154,11 +154,14 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                                                @if(auth()->user()->role == 'super_admin')
+                           @if(auth()->user()->role == 'super_admin')
+                             <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="{{auth()->user()->media_house}}" />
 
-                                     <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
+                                     <!-- <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" /> -->
                             @else
-                             <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" />
+                          <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="{{auth()->user()->media_house}}" />
+
+                             <!-- <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" /> -->
                              @endif
                                         <span>
                                             @auth()
