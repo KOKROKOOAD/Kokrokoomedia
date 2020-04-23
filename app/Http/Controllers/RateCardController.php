@@ -25,12 +25,25 @@ class RateCardController extends Controller
     {
 
         if (request()->ajax()) {
-            $rate_cards  =  DB::table('rate_cards')
+            if(auth()->user()->media != 'Print'){
+               $rate_cards  =  DB::table('rate_cards')
                 ->join('rate_card_titles', 'rate_cards.rate_card_title_id', '=', 'rate_card_titles.rate_card_title_id')
                 ->join('users', 'rate_cards.media_house_id', '=', 'users.client_id')
                 ->select('rate_cards.*', 'rate_card_titles.rate_card_title', 'users.media_house')
                 ->where('rate_card_titles.media_house_id', '=', auth()->user()->created_by)
                 ->get();
+            }
+            else{
+                $rate_cards  =  DB::table('print_rate_cards')
+                ->join('rate_card_titles', 'print_rate_cards.rate_card_title_id', '=', 'rate_card_titles.rate_card_title_id')
+                ->join('users', 'print_rate_cards.media_house_id', '=', 'users.client_id')
+                ->select('print_rate_cards.*', 'rate_card_titles.rate_card_title', 'users.media_house')
+                ->where('rate_card_titles.media_house_id', '=', auth()->user()->created_by)
+                ->get();
+            }
+            
+
+
             return datatables()->of($rate_cards)
                 ->addColumn('action', function ($row) {
 
@@ -137,8 +150,8 @@ class RateCardController extends Controller
 
     public function fetchRateCards()
     {
-
-        $rateCards  = DB::table('rate_card_titles')
+         if(auth()->user()->media != 'Print'){
+$rateCards  = DB::table('rate_card_titles')
             ->join('rate_cards', 'rate_card_titles.rate_card_title_id', '=', 'rate_cards.rate_card_title_id')
             ->select('rate_card_titles.*')
             ->where('rate_card_titles.media_house_id', '=', auth()->user()
@@ -146,6 +159,19 @@ class RateCardController extends Controller
             ->latest()->paginate(10);     //whereRate_card_title_id(Input::get('rateCardTitleId'))->g;
 
         return response()->json($rateCards);
+         }
+         else{
+             $rateCards  = DB::table('rate_card_titles')
+            ->join('rate_cards', 'rate_card_titles.rate_card_title_id', '=', 'print_rate_cards.rate_card_title_id')
+            ->select('rate_card_titles.*')
+            ->where('rate_card_titles.media_house_id', '=', auth()->user()
+                ->client_id)->where('print_rate_cards.media_house_id', '=', auth()->user()->created_by)
+            ->latest()->paginate(10);     //whereRate_card_title_id(Input::get('rateCardTitleId'))->g;
+          print_r($rateCard);
+        return response()->json($rateCards);
+
+         }
+        
     }
 
     // get media house name and display in rate cards table
@@ -172,8 +198,8 @@ class RateCardController extends Controller
                 $days_of_weekends = $rate_cards[0]->days_of_weekend;
                 return response()->json(['rate_card' => $rate_cards, 'rate_card_title' => $rate_cards[0]->rate_card_title, 'segments' => $segments, 'days_of_week' => $days_of_week, 'days_of_weekends' => $days_of_weekends, 'w_segments' => $w_segments]);
             }
-        } elseif (auth()->user()->media == 'Print') {
-            $rate_cards = PrintRateCard::whereMedia_house_id(auth()->user()->created_by)->whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
+        } else{
+            $rate_cards = PrintRateCard::whereMediaHouseId(auth()->user()->created_by)->whereRateCardTitleId(Input::get('rateCardTitleId'))->get();
             $print_segments = json_decode($rate_cards[0]->rate_card_data);
             $rate_cards_title = RateCardTitles::select('rate_card_title')->whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
             return response()->json(['rate_card' => $print_segments, 'rate_card_title' => $rate_cards_title]);

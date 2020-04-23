@@ -19,6 +19,7 @@
                   <div class="d-inline">
                     <h4 class="animated fadeIn">
                       <strong class="text-danger">{{rate_card_title}}</strong> Rate Card
+
                       <span v-show="media != 'Print'">for {{day}}</span>
                     </h4>
                   </div>
@@ -44,7 +45,7 @@
             </div>
             <div class="card">
               <div class="card-block table-border-style">
-                <!--                                <view-print-rate-card v-show="media == 'Print'" :print_segments="print_segments" v-if="processing"></view-print-rate-card>-->
+                                               <view-print-rate-card v-show="media == 'Print'" :print_segments="print_segments" v-if="processing"></view-print-rate-card>
                 <div class="table-responsive" v-show="media != 'Print'">
                   <table class="table table-striped table-bordered nowrap">
                     <thead>
@@ -220,7 +221,6 @@ export default {
       let ratecard_id = null;
       $(document).on("click", ".viewRateCard", function() {
         ratecard_id = $(this).attr("data-id");
-
         $("#showRateCardDetails").modal("show");
         self.getSelectedRatedCard(ratecard_id);
       });
@@ -233,13 +233,13 @@ export default {
       if (self.medi == "Print") {
         axios
           .get("view-ratecard/api", {
-            params: { rateCardTitleId: self.id, media: self.media }
+            params: { rateCardTitleId: id, media: self.media }
           })
           .then(function(res) {
             if (res.data) {
               self.print_segments = res.data.rate_card;
 
-              self.rate_card_title = res.data.rate_card_title;
+              self.rate_card_title = res.data.rate_card_title[0].rate_card_title;
               // $('.bd-example-modal-lg1').modal('show');
               self.loader = false;
               self.processing = true;

@@ -62,7 +62,7 @@
 
 
 
-                                                @if($subs->file_type == 'csv' || $subs->file_type == 'odt' || $subs->file_type == 'xlsx' || $subs->file_type == 'xls' || $subs->file_type == 'docx' || $subs->file_type == 'doc')
+                                                @if($subs->file_type == 'csv' || $subs->file_type == 'odt' || $subs->file_type == 'xlsx' || $subs->file_type == 'xls' || $subs->file_type == 'docx' || $subs->file_type == 'doc' ||  $subs->file_type == 'txt')
                                                 <p>Please download file to view</p>
                                                 <a href="download-sub/{{$subs->subscription_id}}"  role="button" class="btn btn-primary"> Download file <i class="fa fa-download"></i> </a>
                                                 @endif

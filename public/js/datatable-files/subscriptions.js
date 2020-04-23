@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     let table = $('#laravel_datatable');
     table.DataTable({
         processing: true,
@@ -27,14 +27,16 @@ $(document).ready(function () {
             // {data: 'updated_at',adjust:true, name: 'updated_at'},
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ],
-        order: [[0, 'desc']],
+        order: [
+            [0, 'desc']
+        ],
         "pageLength": 10,
         columnDefs: [{
             targets: [1, 2, 3],
             searchable: true,
             visible: false
         }],
-    
+
     });
 
 

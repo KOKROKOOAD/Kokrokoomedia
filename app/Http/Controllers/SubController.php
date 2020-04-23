@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\AcceptSubscriptionNotificaton;
 use App\Notifications\RejectedSubscriptionNotificaton;
 use App\AdminAuditTrail;
+use App\RejectedMessages;
 use App\Services\SendTextMessage;
 use App\SubRejectionMessages;
 
@@ -242,9 +243,13 @@ class SubController extends Controller
     //  pending subs are updated to accept when pass review
     public function rejectSubs(Request $request)
     {
+
         $accSub =    ScheduledAd::whereMedia_house_id(auth()->user()->created_by)->whereSubscription_id($request->input('sub_id'))->update([
             'status' => 'rejected'
         ]);
+
+        RejectedMessages::create(['subscription_id' => $request->input('sub_id'), 'message' => $request->message, 'created_by' => auth()->user()->created_by]);
+
         AdminAuditTrail::create([
             'action_by' => auth()->user()->name, 'action' => 'Reject subscription',
             'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Rejected a subscription with id  " . $request->input('sub_id'), 'created_by' => auth()->user()->created_by
@@ -255,9 +260,9 @@ class SubController extends Controller
             ' Your subscription with id ' . $request->sub_id . ' has been rejected.Kindly check your email  for reasons.' .
             '\n' . 'Thanks,' .  '\n'  . config('app.name');
         $messages = $request->message;
-        $sendSMS  = new SendTextMessage();
-        $sendSMS->sendSubConfirmationText($users->name, $users->phone1, env("SMS_USERNAME"), env("SMS_PASSWORD"), $message);
-        Notification::send($users, new RejectedSubscriptionNotificaton($users, $messages));
+        // $sendSMS  = new SendTextMessage();
+        // $sendSMS->sendSubConfirmationText($users->name, $users->phone1, env("SMS_USERNAME"), env("SMS_PASSWORD"), $message);
+        // Notification::send($users, new RejectedSubscriptionNotificaton($users, $messages));
         session()->flash('sub-rejected', "1  subscription rejected");
         return redirect()->back()->with('sub-rejected');
     }

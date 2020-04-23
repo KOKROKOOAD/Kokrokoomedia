@@ -7,10 +7,11 @@
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     {{--<!-- jquery file upload Frame work -->--}}
+    <link rel="stylesheet" type="text/css" href="https://colorlib.com//polygon/adminty/files/bower_components/bootstrap/css/bootstrap.min.css">
     {{--<link href="https://colorlib.com//polygon/adminty/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />--}}
     {{--<link href="https://colorlib.com//polygon/adminty/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />--}}
     <!-- Required Fremwork -->
-    {{--<link rel="stylesheet" type="text/css" href="https://colorlib.com//polygon/adminty/files/bower_components/bootstrap/css/bootstrap.min.css">--}}
+
     <link rel="stylesheet" type="text/css" href="https://colorlib.com//polygon/adminty/files/bower_components/sweetalert/css/sweetalert.css">
 
     <!-- feather Awesome -->
@@ -112,11 +113,17 @@
                         <a href="{{route('dashboard')}}">
                           
 
-                            @if(auth()->user()->role == 'super_admin')
-                            <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
+                            {{--  @if(auth()->user()->role == 'super_admin')  --}}
+                            {{-- <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
                             @else
                              <img class="img-fluid" src="{{ 'http://uploads.kokrokooad.com/avatars/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" />
-                            @endif
+                            @endif --}}
+                            <img class="img-fluid" src="/images/kokro-yellow.png" alt="Kokrokoo"/>
+
+                            {{--  <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
+                            @else
+                             <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" />  --}}
+                            {{--  @endif  --}}
 {{--                             <a class="navbar-brand" href="#"><img src="/images/kokro-yellow.png"  alt="kokrokoo"></a>
  --}}
                         </a>
@@ -147,7 +154,12 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="https://colorlib.com//polygon/adminty/files/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                                                @if(auth()->user()->role == 'super_admin')
+
+                                     <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar->logo}}" width="50px" height="10px" alt="" />
+                            @else
+                             <img class="img-fluid" src="{{ '/images/'.auth()->user()->avatar2->logo}}" width="50px" height="10px" alt="" />
+                             @endif
                                         <span>
                                             @auth()
                                             {{--<i class="nc-icon fa fa-user"></i>--}}

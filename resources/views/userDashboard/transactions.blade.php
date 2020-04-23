@@ -33,7 +33,6 @@
                         <thead>
                         <tr class="table-primary">
                             <th>#</th>
-                            <th>ID</th>
                             <th>Transaction ID</th>
                             <th>Invoice number</th>
                             <th>Service</th>

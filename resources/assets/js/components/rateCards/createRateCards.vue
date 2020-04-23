@@ -103,10 +103,10 @@
               <tr
                 :class="r_animate"
                 style="border: none;background: transparent"
-                v-for="(dtl, index) in data_list"
-                :key="index"
+                v-for="(dtl, index2) in data_list"
+                :key="index2"
               >
-                <td>{{index + 1}}</td>
+                <td>{{index2 + 1}}</td>
                 <td>
                   <select class required type="text" v-model="dtl.mon_duration">
                     <option value disabled selected>HR</option>
@@ -376,7 +376,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(wdtl, index) in wdata_list" style="border: none;background: transparent">
+              <tr v-for="(wdtl, index) in wdata_list" style="border: none;background: transparent" :key="index">
                 <td>
                   <select class type="text" v-model="wdtl.sat_duration">
                     <option value disabled selected>MM</option>
