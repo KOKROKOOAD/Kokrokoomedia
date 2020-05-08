@@ -101,6 +101,9 @@
                         <!--                                            <td>{{card.rate_card_id}}</td>-->
                         <td>
                           {{card.mon_duration.substr(0,2) + ':' + card.mon_b_duration}} - {{ card.mon_c_duration.substr(0,2) + ':'+ card.mon_d_duration + '' + card.mon_c_duration.substr(2,3)}}
+                          <span v-show="card.mon_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
+                          <span v-show="card.mon_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
+
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
@@ -108,6 +111,9 @@
                         </td>
                         <td>
                           {{card.tue_duration.substr(0,2) + ':' + card.tue_b_duration}} - {{ card.tue_c_duration.substr(0,2) + ':'+ card.tue_d_duration + '' + card.tue_c_duration.substr(2,3)}}
+                          <span v-show="card.tue_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
+                          <span v-show="card.tue_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
+
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
@@ -115,6 +121,9 @@
                         </td>
                         <td>
                           {{card.wed_duration.substr(0,2) + ':' + card.wed_b_duration}} - {{ card.wed_c_duration.substr(0,2) + ':'+ card.wed_d_duration + '' + card.wed_c_duration.substr(2,3)}}
+                          <span v-show="card.wed_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
+                          <span v-show="card.wed_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
+
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
@@ -122,6 +131,9 @@
                         </td>
                         <td>
                           {{card.thu_duration.substr(0,2) + ':' + card.thu_b_duration}} - {{ card.thu_c_duration.substr(0,2) + ':'+ card.thu_d_duration + '' + card.thu_c_duration.substr(2,3)}}
+                          <span v-show="card.thu_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
+                          <span v-show="card.thu_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
+
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
@@ -129,6 +141,9 @@
                         </td>
                         <td>
                           {{card.fri_duration.substr(0,2) + ':' + card.fri_b_duration}} - {{ card.fri_c_duration.substr(0,2) + ':'+ card.fri_d_duration + '' + card.fri_c_duration.substr(2,3)}}
+                          <span v-show="card.fri_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
+                          <span v-show="card.fri_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
+
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
