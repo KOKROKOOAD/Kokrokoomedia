@@ -160,7 +160,7 @@
                           >{{'SPOTS :' + card.sat_spots}}</span>
                         </td>
                         <td>
-                          {{card.sun_duration + checkTime(card.sun_duration) + ':' + card.sun_b_duration}} - {{ card.sun_c_duration + ':'+ card.sun_d_duration + '' + card.sun_c_duration + checkTime(card.sun_c_duration)}}
+                          {{card.sun_duration + checkTime(card.sun_duration) + ':' + card.sun_b_duration}} - {{ card.sun_c_duration + ':'+ card.sun_d_duration + checkTime(card.sun_c_duration)}}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
