@@ -153,14 +153,14 @@
                         <th scope="row">{{index + 1}}</th>
                         <!--                                            <td>{{card.rate_card_id}}</td>-->
                         <td>
-                          {{card.sat_duration.substr(0,2) + ':' + card.sat_b_duration}} - {{ card.sat_c_duration.substr(0,2) + ':'+ card.sat_d_duration + '' + card.sat_c_duration.substr(2,3)}}
+                          {{card.sat_duration + checkTime(card.sat_duration) + ':' + card.sat_b_duration}} - {{ card.sat_c_duration + ':'+ card.sat_d_duration + checkTime(card.sat_c_duration)}}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
                           >{{'SPOTS :' + card.sat_spots}}</span>
                         </td>
                         <td>
-                          {{card.sun_duration.substr(0,2) + ':' + card.sun_b_duration}} - {{ card.sun_c_duration.substr(0,2) + ':'+ card.sun_d_duration + '' + card.sun_c_duration.substr(2,3)}}
+                          {{card.sun_duration + checkTime(card.sun_duration) + ':' + card.sun_b_duration}} - {{ card.sun_c_duration + ':'+ card.sun_d_duration + '' + card.sun_c_duration + checkTime(card.sun_c_duration)}}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
