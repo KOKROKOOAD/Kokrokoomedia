@@ -100,50 +100,37 @@
                         <th scope="row">{{index + 1}}</th>
                         <!--                                            <td>{{card.rate_card_id}}</td>-->
                         <td>
-                          {{card.mon_duration.substr(0,2) + ':' + card.mon_b_duration}} - {{ card.mon_c_duration.substr(0,2) + ':'+ card.mon_d_duration + '' + card.mon_c_duration.substr(2,3)}}
-                          <span v-show="card.mon_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
-                          <span v-show="card.mon_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
-
+                          {{card.mon_duration + checkTime(card.mon_duration) + ':' + card.mon_b_duration}} - {{ card.mon_c_duration + ':'+ card.mon_d_duration + checkTime(card.mon_c_duration)}}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
                           >{{'SPOTS :' + card.mon_spots}}</span>
                         </td>
                         <td>
-                          {{card.tue_duration.substr(0,2) + ':' + card.tue_b_duration}} - {{ card.tue_c_duration.substr(0,2) + ':'+ card.tue_d_duration + '' + card.tue_c_duration.substr(2,3)}}
-                          <span v-show="card.tue_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
-                          <span v-show="card.tue_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
-
+                          {{card.tue_duration + checkTime(card.tue_duration) + ':' + card.tue_b_duration}} - {{ card.tue_c_duration + ':'+ card.tue_d_duration + checkTime(card.tue_duration)}}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
                           >{{'SPOTS :' + card.tue_spots}}</span>
                         </td>
                         <td>
-                          {{card.wed_duration.substr(0,2) + ':' + card.wed_b_duration}} - {{ card.wed_c_duration.substr(0,2) + ':'+ card.wed_d_duration + '' + card.wed_c_duration.substr(2,3)}}
-                          <span v-show="card.wed_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
-                          <span v-show="card.wed_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
-
+                          {{card.wed_duration + checkTime(card.wed_duration) + ':' + card.wed_b_duration}} - {{ card.wed_c_duration + ':'+ card.wed_d_duration + checkTime(card.wed_c_duration)}}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
                           >{{'SPOTS :' + card.wed_spots}}</span>
                         </td>
                         <td>
-                          {{card.thu_duration.substr(0,2) + ':' + card.thu_b_duration}} - {{ card.thu_c_duration.substr(0,2) + ':'+ card.thu_d_duration + '' + card.thu_c_duration.substr(2,3)}}
-                          <span v-show="card.thu_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
-                          <span v-show="card.thu_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
+                          {{card.thu_duration + checkTime(card.thu_duration) + ':' + card.thu_b_duration}} - {{ card.thu_c_duration + ':'+ card.thu_d_duration + checkTime(card.thu_c_duration)}}
+
 
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
-                          >{{'SPOTS :' + card.tue_spots}}</span>
+                          >{{'SPOTS :' + card.thu_spots}}</span>
                         </td>
                         <td>
-                          {{card.fri_duration.substr(0,2) + ':' + card.fri_b_duration}} - {{ card.fri_c_duration.substr(0,2) + ':'+ card.fri_d_duration + '' + card.fri_c_duration.substr(2,3)}}
-                          <span v-show="card.fri_c_duration.substr(0,2) >= 12 ? true : false">PM</span>
-                          <span v-show="card.fri_c_duration.substr(0,2) < 12 ?  true : false">AM</span>
-
+                          {{card.fri_duration + checkTime(card.fri_duration) + ':' + card.fri_b_duration}} - {{ card.fri_c_duration + ':'+ card.fri_d_duration + checkTime(card.fri_c_duration)}}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
@@ -239,6 +226,14 @@ export default {
         $("#showRateCardDetails").modal("show");
         self.getSelectedRatedCard(ratecard_id);
       });
+    },
+    checkTime(time){
+      if(time >= 12){
+        return 'PM';
+      }
+      else{
+        return 'AM';
+      }
     },
     getSelectedRatedCard(id) {
       let self = this;
