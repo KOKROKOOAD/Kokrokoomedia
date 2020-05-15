@@ -15,6 +15,10 @@ class CreateAvatarsTable extends Migration
     {
         Schema::create('avatars', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('logo');
+            $table->string('file_path');
+            $table->string('file_size');
+            $table->string('client_id');
             $table->timestamps();
         });
     }

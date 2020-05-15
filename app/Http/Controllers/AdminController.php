@@ -58,7 +58,7 @@ class AdminController extends Controller
             'role' => $request->input('role'),
             'isActive'   => 'active',
             'client_id' => $unique_id,
-            'account_type' => 'media house',
+           /*  'account_type' => 'media house', */
             'created_by' => auth()->user()->client_id,
             'password' => Hash::make($password),
         ]);
@@ -69,7 +69,9 @@ class AdminController extends Controller
         ]);
 
         $this->dispatch(new SendAdminCredentialsJob($admin, $password));
-        $sendSMS = new SendTextMessage();
+
+        $sendMsg = new SendTextMessage(env("SMS_USERNAME"), env("SMS_PASSWORD"));
+/*         $sendSMS = new SendTextMessage(); */
 
         $sendSMS->message(
             $request->input('name'),

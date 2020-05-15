@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 03 Mar 2020 09:15:56 +0000.
+ * Date: Fri, 15 May 2020 14:16:55 +0000.
  */
 
 namespace App\Models;
@@ -13,31 +13,25 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * Class Message
  * 
  * @property int $id
+ * @property int $user_id
  * @property string $message
- * @property string $recipient
- * @property string $trans_id
+ * @property string $channel
  * @property string $status
- * @property string $method
- * @property string $customer_id
- * @property \Carbon\Carbon $time
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  *
  * @package App\Models
  */
 class Message extends Eloquent
 {
-	public $timestamps = false;
-
-	protected $dates = [
-		'time'
+	protected $casts = [
+		'user_id' => 'int'
 	];
 
 	protected $fillable = [
+		'user_id',
 		'message',
-		'recipient',
-		'trans_id',
-		'status',
-		'method',
-		'customer_id',
-		'time'
+		'channel',
+		'status'
 	];
 }

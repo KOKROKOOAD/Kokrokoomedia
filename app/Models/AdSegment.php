@@ -10,24 +10,20 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class AdminAuditTrail
+ * Class AdSegment
  * 
  * @property int $id
- * @property string $action_by
- * @property string $action
- * @property string $request_ip
- * @property string $activities
+ * @property string $client_id
+ * @property string $segments
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  *
  * @package App\Models
  */
-class AdminAuditTrail extends Eloquent
+class AdSegment extends Eloquent
 {
 	protected $fillable = [
-		'action_by',
-		'action',
-		'request_ip',
-		'activities'
+		'client_id',
+		'segments'
 	];
 }
