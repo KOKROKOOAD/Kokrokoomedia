@@ -16,6 +16,7 @@ class CreateRateCardTitlesTable extends Migration
         Schema::create('rate_card_titles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('rate_card_title_id');
+            $table->string('media_house_id')->nullable();
             $table->string('client_id');
             $table->string('rate_card_title');
             $table->timestamps();

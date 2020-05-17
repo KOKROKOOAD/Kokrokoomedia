@@ -16,6 +16,8 @@ class CreateAdminAuditTrailsTable extends Migration
         Schema::create('admin_audit_trails', function (Blueprint $table) {
             $table->increments('id');
             $table->string('action_by');
+            $table->string('action');
+            $table->string('request_ip');
             $table->string('activities');
             $table->timestamps();
         });

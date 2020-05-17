@@ -30,7 +30,7 @@ class RateCardController extends Controller
                 ->join('rate_card_titles', 'rate_cards.rate_card_title_id', '=', 'rate_card_titles.rate_card_title_id')
                 ->join('users', 'rate_cards.media_house_id', '=', 'users.client_id')
                 ->select('rate_cards.*', 'rate_card_titles.rate_card_title', 'users.media_house')
-                ->where('rate_card_titles.media_house_id', '=', auth()->user()->created_by)
+                ->where('rate_card_titles.media_house_id', '=', auth()->user()->client_id)
                 ->get();
             }
             else{
@@ -38,7 +38,7 @@ class RateCardController extends Controller
                 ->join('rate_card_titles', 'print_rate_cards.rate_card_title_id', '=', 'rate_card_titles.rate_card_title_id')
                 ->join('users', 'print_rate_cards.media_house_id', '=', 'users.client_id')
                 ->select('print_rate_cards.*', 'rate_card_titles.rate_card_title', 'users.media_house')
-                ->where('rate_card_titles.media_house_id', '=', auth()->user()->created_by)
+                ->where('rate_card_titles.media_house_id', '=', auth()->user()->client_id)
                 ->get();
             }
             
@@ -84,9 +84,9 @@ class RateCardController extends Controller
         }
 
 
-        RateCardTitles::create(['rate_card_title' => $request->input('rateCardTitle'), 'media_house_id' => Auth::guard()->user()->created_by, 'rate_card_title_id' => $unique_id]);
+        RateCardTitles::create(['rate_card_title' => $request->input('rateCardTitle'), 'media_house_id' => Auth::guard()->user()->client_id, 'rate_card_title_id' => $unique_id, 'client_id' => Auth::guard()->user()->client_id]);
 
-        $title = RateCardTitles::select('rate_card_title', 'rate_card_title_id')->where('media_house_id', Auth::guard()->user()->created_by)->where(function ($query) {
+        $title = RateCardTitles::select('rate_card_title', 'rate_card_title_id')->where('media_house_id', Auth::guard()->user()->client_id)->where(function ($query) {
             $query->where('rate_card_title', Input::get('rateCardTitle'));
         })->get();
 
@@ -95,7 +95,7 @@ class RateCardController extends Controller
 
         AdminAuditTrail::create([
             'action_by' => auth()->user()->name, 'action' => 'Create rate title',
-            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Created rate card title :" . $request->rateCardTitle, 'created_by' => auth()->user()->client_id
+            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Created rate card title :" . $request->rateCardTitle, /* 'created_by' => auth()->user()->client_id */
         ]);
 
 
@@ -121,6 +121,9 @@ class RateCardController extends Controller
 
     public  function storeRateCards(Request $request)
     {
+       /*  return $request->all(); */
+       
+
         $unique_id = uniqid('K', true);
         if (PrintRateCard::where('rate_card_id', '=', $unique_id)) {
             $unique_id = uniqid('K', true);
@@ -132,8 +135,8 @@ class RateCardController extends Controller
         } else {
 
             $rate_cards = RateCards::create([
-                'rate_card_id' => $unique_id, 'rate_card_title_id' => $request->input('rate_card_title_id'),
-                'media_house_id' => auth()->user()->created_by, 'days_of_week' => $request->input('mons_to_fridays'),
+                'rate_card_id' => $unique_id, 'rate_card_title_id' => $request->input('rate_card_title_id'), 'client_id' => auth()->user()->client_id,
+                'media_house_id' => auth()->user()->client_id, 'days_of_week' => $request->input('mons_to_fridays'),
                 'segments' => json_decode($request->input('weekdays')), 'days_of_weekend' => $request->input('sat_to_sun'),
                 'weekend_segments' => json_decode($request->input('weekends'))
             ]);
@@ -155,7 +158,7 @@ $rateCards  = DB::table('rate_card_titles')
             ->join('rate_cards', 'rate_card_titles.rate_card_title_id', '=', 'rate_cards.rate_card_title_id')
             ->select('rate_card_titles.*')
             ->where('rate_card_titles.media_house_id', '=', auth()->user()
-                ->client_id)->where('rate_cards.media_house_id', '=', auth()->user()->created_by)
+                ->client_id)->where('rate_cards.media_house_id', '=', auth()->user()->client_id)
             ->latest()->paginate(10);     //whereRate_card_title_id(Input::get('rateCardTitleId'))->g;
 
         return response()->json($rateCards);
@@ -165,7 +168,7 @@ $rateCards  = DB::table('rate_card_titles')
             ->join('rate_cards', 'rate_card_titles.rate_card_title_id', '=', 'print_rate_cards.rate_card_title_id')
             ->select('rate_card_titles.*')
             ->where('rate_card_titles.media_house_id', '=', auth()->user()
-                ->client_id)->where('print_rate_cards.media_house_id', '=', auth()->user()->created_by)
+                ->client_id)->where('print_rate_cards.media_house_id', '=', auth()->user()->client_id)
             ->latest()->paginate(10);     //whereRate_card_title_id(Input::get('rateCardTitleId'))->g;
           print_r($rateCard);
         return response()->json($rateCards);
@@ -189,7 +192,7 @@ $rateCards  = DB::table('rate_card_titles')
             $rate_cards  = DB::table('rate_card_titles')
                 ->join('rate_cards', 'rate_card_titles.rate_card_title_id', '=', 'rate_cards.rate_card_title_id')
                 ->select('rate_card_titles.rate_card_title', 'rate_cards.*')
-                ->where('rate_cards.media_house_id', '=', auth()->user()->created_by)->where('rate_card_titles.rate_card_title_id', '=', Input::get('rateCardTitleId'))->get();     //whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
+                ->where('rate_cards.media_house_id', '=', auth()->user()->client_id)->where('rate_card_titles.rate_card_title_id', '=', Input::get('rateCardTitleId'))->get();     //whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
 
             if ($rate_cards) {
                 $segments = $rate_cards[0]->segments;

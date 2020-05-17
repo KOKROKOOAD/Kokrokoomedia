@@ -53,7 +53,7 @@
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-default btn-sm"  data-toggle="modal" data-target=".bd-example-modal-lg1" @click="viewRateCard(cards.rate_card_title_id)"><i class="feather icon-eye"> </i></button>
-<!--                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" ><i class="fa fa-edit"> </i> </button>-->
+<!--                                   <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" ><i class="fa fa-edit"> </i> </button>-->
                                         <button type="button" class="btn btn-danger btn-sm"  @click="deleteRateCard(cards.rate_card_title_id)"><i class="fa fa-trash"> </i> </button>
 
                                     </div>

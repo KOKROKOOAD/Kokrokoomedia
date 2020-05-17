@@ -16,6 +16,7 @@ class CreateScheduledAdsTable extends Migration
         Schema::create('scheduled_ads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('client_id');
+            $table->string('rate_card_id')->unsigned();
             $table->string('media_house_id');
             $table->string('status');
             $table->json('created_ad_data');
@@ -23,6 +24,7 @@ class CreateScheduledAdsTable extends Migration
             $table->string('file_type');
             $table->string('file_path');
             $table->string('file_size');
+            $table->timestamp('delected_at');
             $table->timestamps();
         });
     }

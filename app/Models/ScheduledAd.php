@@ -48,6 +48,8 @@ class ScheduledAd extends Eloquent
 		'segments' => 'json'
 	];
 
+	protected $dates = ['deleted_at'];
+
 	protected $fillable = [
 		'subscription_id',
 		'client_id',

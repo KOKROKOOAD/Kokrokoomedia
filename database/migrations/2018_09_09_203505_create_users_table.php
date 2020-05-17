@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('title');
             $table->string('email')->unique();
             $table->string('phone1')->unique();
-            $table->string('phone2')->unique();
+            $table->string('phone2')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('media')->nullable();
             $table->string('media_house')->nullable();

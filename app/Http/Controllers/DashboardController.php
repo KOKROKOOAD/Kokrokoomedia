@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public  function fetchTotalSubs()
     {
 
-        $id = auth()->user()->created_by;
+        $id = auth()->user()->client_id;
         $totalSubs  =  ScheduledAd::select('id')->whereMediaHouseId($id)->whereNotIn('status', ['in cart'])->count();
 
         //  fetch active subscription associated with login in media admin

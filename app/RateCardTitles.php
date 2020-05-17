@@ -9,7 +9,8 @@ class RateCardTitles extends Model
     protected $fillable = [
         'media_house_id',
         'rate_card_title',
-        'rate_card_title_id'
+        'rate_card_title_id',
+        'client_id'
     ];
 
 

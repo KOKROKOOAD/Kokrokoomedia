@@ -39,7 +39,7 @@ class SubController extends Controller
     // login user fetch subscriptions
     public function fetchPendingSubs()
     {
-        $sub  =  ScheduledAd::whereMedia_house_id(auth()->user()->created_by)->whereStatus('pending')->latest()->paginate(50);
+        $sub  =  ScheduledAd::whereMedia_house_id(auth()->user()->client_id)->whereStatus('pending')->latest()->paginate(50);
         return  response()->json($sub);
     }
 

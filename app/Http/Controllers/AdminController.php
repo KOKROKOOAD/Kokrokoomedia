@@ -64,8 +64,8 @@ class AdminController extends Controller
         ]);
 
         AdminAuditTrail::create([
-            'action_by' => auth()->user()->name, 'action' => 'Create admin ',
-            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Created a new admin  " . $request->name, 'created_by' => auth()->user()->client_id
+            'action_by' => auth()->user()->client_id, 'action' => 'Create admin ',
+            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Created a new admin  " . $request->name, /* 'created_by' => auth()->user()->client_id */
         ]);
 
         $this->dispatch(new SendAdminCredentialsJob($admin, $password));

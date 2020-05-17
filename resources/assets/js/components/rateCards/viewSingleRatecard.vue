@@ -100,28 +100,28 @@
                         <th scope="row">{{index + 1}}</th>
                         <!--                                            <td>{{card.rate_card_id}}</td>-->
                         <td>
-                          {{card.mon_duration + checkTime(card.mon_duration) + ':' + card.mon_b_duration}} - {{ card.mon_c_duration + ':'+ card.mon_d_duration + checkTime(card.mon_c_duration)}}
+                          {{card.mon_duration +  ':' + card.mon_b_duration}} - {{ card.mon_c_duration + ':'+ card.mon_d_duration }}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
                           >{{'SPOTS :' + card.mon_spots}}</span>
                         </td>
                         <td>
-                          {{card.tue_duration + checkTime(card.tue_duration) + ':' + card.tue_b_duration}} - {{ card.tue_c_duration + ':'+ card.tue_d_duration + checkTime(card.tue_duration)}}
+                          {{card.tue_duration + ':' + card.tue_b_duration}} - {{ card.tue_c_duration + ':'+ card.tue_d_duration }}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
                           >{{'SPOTS :' + card.tue_spots}}</span>
                         </td>
                         <td>
-                          {{card.wed_duration + checkTime(card.wed_duration) + ':' + card.wed_b_duration}} - {{ card.wed_c_duration + ':'+ card.wed_d_duration + checkTime(card.wed_c_duration)}}
+                          {{card.wed_duration +  ':' + card.wed_b_duration}} - {{ card.wed_c_duration + ':'+ card.wed_d_duration  }}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
                           >{{'SPOTS :' + card.wed_spots}}</span>
                         </td>
                         <td>
-                          {{card.thu_duration + checkTime(card.thu_duration) + ':' + card.thu_b_duration}} - {{ card.thu_c_duration + ':'+ card.thu_d_duration + checkTime(card.thu_c_duration)}}
+                          {{card.thu_duration +  ':' + card.thu_b_duration}} - {{ card.thu_c_duration + ':'+ card.thu_d_duration }}
 
 
                           <span
@@ -130,7 +130,7 @@
                           >{{'SPOTS :' + card.thu_spots}}</span>
                         </td>
                         <td>
-                          {{card.fri_duration + checkTime(card.fri_duration) + ':' + card.fri_b_duration}} - {{ card.fri_c_duration + ':'+ card.fri_d_duration + checkTime(card.fri_c_duration)}}
+                          {{card.fri_duration + ':' + card.fri_b_duration}} - {{ card.fri_c_duration + ':'+ card.fri_d_duration }}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
@@ -153,14 +153,14 @@
                         <th scope="row">{{index + 1}}</th>
                         <!--                                            <td>{{card.rate_card_id}}</td>-->
                         <td>
-                          {{card.sat_duration + checkTime(card.sat_duration) + ':' + card.sat_b_duration}} - {{ card.sat_c_duration + ':'+ card.sat_d_duration + checkTime(card.sat_c_duration)}}
+                          {{card.sat_duration  + ':' + card.sat_b_duration}} - {{ card.sat_c_duration + ':'+ card.sat_d_duration  }}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
                           >{{'SPOTS :' + card.sat_spots}}</span>
                         </td>
                         <td>
-                          {{card.sun_duration + checkTime(card.sun_duration) + ':' + card.sun_b_duration}} - {{ card.sun_c_duration + ':'+ card.sun_d_duration + checkTime(card.sun_c_duration)}}
+                          {{card.sun_duration +  + ':' + card.sun_b_duration}} - {{ card.sun_c_duration + ':'+ card.sun_d_duration }}
                           <span
                             class="pull-right text-primary"
                             style="font-weight:bolder"
@@ -176,6 +176,7 @@
             </div>
           </div>
           <div class="modal-footer" v-show="processing">
+            <button type="button" class="btn btn-success" @click="editRateCard">Edit</button>
             <button
               type="button"
               v-show="media != 'Print'"
@@ -227,14 +228,12 @@ export default {
         self.getSelectedRatedCard(ratecard_id);
       });
     },
-    checkTime(time){
-      if(time >= 12){
-        return 'PM';
-      }
-      else{
-        return 'AM';
-      }
+
+    editRateCard(){
+
+
     },
+ 
     getSelectedRatedCard(id) {
       let self = this;
       self.loader = true;

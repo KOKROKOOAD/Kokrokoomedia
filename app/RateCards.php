@@ -20,6 +20,7 @@ class RateCards extends Model
         'weekend_segments',
         'rate_card_id',
         'days_of_week',
-        'days_of_weekend'
+        'days_of_weekend',
+        'client_id'
     ];
 }
