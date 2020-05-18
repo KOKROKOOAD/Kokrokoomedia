@@ -18,7 +18,7 @@ class CreateAvatarsTable extends Migration
             $table->string('logo');
             $table->string('file_path');
             $table->string('file_size');
-            $table->string('client_id');
+            $table->string('company_id');
             $table->timestamps();
         });
     }

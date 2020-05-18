@@ -68,12 +68,12 @@ class AdminController extends Controller
             'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Created a new admin  " . $request->name, /* 'created_by' => auth()->user()->client_id */
         ]);
 
-        $this->dispatch(new SendAdminCredentialsJob($admin, $password));
+       /*  SendAdminCredentialsJob::dispatch($admin, $password);
 
-        $sendMsg = new SendTextMessage(env("SMS_USERNAME"), env("SMS_PASSWORD"));
+        $sendMsg = new SendTextMessage(env("SMS_USERNAME"), env("SMS_PASSWORD")); */
 /*         $sendSMS = new SendTextMessage(); */
 
-        $sendSMS->message(
+     /*    $sendSMS->message(
             $request->input('name'),
             $request->input('email'),
             $password,
@@ -81,7 +81,7 @@ class AdminController extends Controller
             env('SMS_PASSWORD'),
             $request->input('phone1')
         );
-
+ */
         Session::flash('admin-created', 'Admin  successfully created');
         return redirect()->back();
     }

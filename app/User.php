@@ -26,15 +26,10 @@ class User extends Authenticatable
         'title',
         'email',
         'phone1',
-        'media',
-        'media_house',
-        'client_id',
-        'logo',
         'role',
         'isActive',
         'last_login',
-        'account_type',
-        'created_by',
+        'company_id',
         'password',
     ];
 
@@ -46,23 +41,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function avatar()
-    {
-        return $this->belongsTo(Avatar::class, 'client_id', 'client_id');
-    }
-
-    public function avatar2()
-    {
-        return $this->belongsTo(Avatar::class, 'created_by', 'created_by');
-    }
-
-    public function userProfile()
-    {
-        return $this->belongsTo(UserProfile::class, 'client_id', 'client_id');
-    }
-
-
 
 
     public function scheduledAds()
@@ -88,5 +66,11 @@ class User extends Authenticatable
     public function invoice()
     {
         return $this->hasMany(Invoices::class, 'client_id', 'client_id');
+    }
+
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
     }
 }

@@ -21,24 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone1')->unique();
             $table->string('phone2')->unique()->nullable();
-            $table->string('address')->nullable();
-            $table->string('media')->nullable();
-            $table->string('media_house')->nullable();
-            $table->string('website')->unique()->nullable();
-            $table->string('company_profile')->nullable();
-            $table->string('company_name')->unique()->nullable();
-            $table->string('industry_type')->nullable();
-            $table->string('policies')->nullable();
-            $table->string('logo')->nullable()->unique();
-            $table->string('file_path')->nullable();
-            $table->string('file_size')->nullable();
+            $table->string('company_id')->nullable();
             $table->string('role');
             $table->string('isActive')->default('pending');
             $table->string('activation_code')->nullable();
             $table->string('last_login')->nullable();
-            $table->string('created_by')->nullable();
-            
-          /*   $table->string('account_type'); */
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

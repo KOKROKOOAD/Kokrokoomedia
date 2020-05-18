@@ -131,7 +131,7 @@ class RateCardController extends Controller
 
         if (auth()->user()->media == 'Print') {
 
-            $rate_cards = PrintRateCard::create(['rate_card_title_id' => $request->input('rate_card_title_id'), 'rate_card_id' => $unique_id, 'rate_card_data' => $request->input('rateCardData'), 'media_house_id' => auth()->user()->created_by]);
+            $rate_cards = PrintRateCard::create(['rate_card_title_id' => $request->input('rate_card_title_id'), 'rate_card_id' => $unique_id, 'rate_card_data' => $request->input('rateCardData'), 'media_house_id' => auth()->user()->client_id]);
         } else {
 
             $rate_cards = RateCards::create([
@@ -202,7 +202,7 @@ $rateCards  = DB::table('rate_card_titles')
                 return response()->json(['rate_card' => $rate_cards, 'rate_card_title' => $rate_cards[0]->rate_card_title, 'segments' => $segments, 'days_of_week' => $days_of_week, 'days_of_weekends' => $days_of_weekends, 'w_segments' => $w_segments]);
             }
         } else{
-            $rate_cards = PrintRateCard::whereMediaHouseId(auth()->user()->created_by)->whereRateCardTitleId(Input::get('rateCardTitleId'))->get();
+            $rate_cards = PrintRateCard::whereMediaHouseId(auth()->user()->client_id)->whereRateCardTitleId(Input::get('rateCardTitleId'))->get();
             $print_segments = json_decode($rate_cards[0]->rate_card_data);
             $rate_cards_title = RateCardTitles::select('rate_card_title')->whereRate_card_title_id(Input::get('rateCardTitleId'))->get();
             return response()->json(['rate_card' => $print_segments, 'rate_card_title' => $rate_cards_title]);

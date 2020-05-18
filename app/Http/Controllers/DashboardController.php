@@ -16,48 +16,51 @@ class DashboardController extends Controller
     public  function fetchTotalSubs()
     {
 
-        $id = auth()->user()->client_id;
-        $totalSubs  =  ScheduledAd::select('id')->whereMediaHouseId($id)->whereNotIn('status', ['in cart'])->count();
+        $user =  auth()->user();
+        ;
+        $id = $user->company_id;
+        
+        $totalSubs  =  ScheduledAd::select('id')->whereCompanyId($id)->whereNotIn('status', ['in cart'])->count();
 
-        //  fetch active subscription associated with login in media admin
-        $totalAcceptSubs  =  ScheduledAd::select('status')->where('media_house_id', $id)->where(function ($query) {
+        //  fetch active subscription associated with login in media company
+        $totalAcceptSubs  =  ScheduledAd::select('status')->where('company_id', $id)->where(function ($query) {
             $query->where('status', 'accepted');
         })->count();
 
-        //  fetch rejected subscription associated with login in media admin
-        $totalRejSubs  =  ScheduledAd::select('status')->where('media_house_id', $id)->where(function ($query) {
+        //  fetch rejected subscription associated with login in media company
+        $totalRejSubs  =  ScheduledAd::select('status')->where('company_id', $id)->where(function ($query) {
             $query->where('status', 'rejected');
         })->count();
 
-        //  fetch expired subscription associated with login in media admin
-        $totalExpSubs  =  ScheduledAd::select('status')->where('media_house_id', $id)->where(function ($query) {
+        //  fetch expired subscription associated with login in media company
+        $totalExpSubs  =  ScheduledAd::select('status')->where('company_id', $id)->where(function ($query) {
             $query->where('status', 'completed');
         })->count();
 
         //  fetch pending subscription associated with login in media admin
-        $totalPenSubs  =  ScheduledAd::select('status')->where('media_house_id', $id)->where(function ($query) {
+        $totalPenSubs  =  ScheduledAd::select('status')->where('company_id', $id)->where(function ($query) {
             $query->where('status', 'pending');
         })->count();
 
         //  fetch reviewed subscription associated with login in media admin
-        $totalRevSubs  =  ScheduledAd::select('status')->where('media_house_id', $id)->where(function ($query) {
+        $totalRevSubs  =  ScheduledAd::select('status')->where('company_id', $id)->where(function ($query) {
             $query->where('status', 'active');
         })->count();
 
         //  fetch reviewed subscription associated with login in media admin
-        $totalLiveSubs  =  ScheduledAd::select('status')->where('media_house_id', $id)->where(function ($query) {
+        $totalLiveSubs  =  ScheduledAd::select('status')->where('company_id', $id)->where(function ($query) {
             $query->where('status', 'Live');
         })->count();
 
         // fetch transactions associated with login in media admin
-        $user = User::find($id);
-        $totalTrans = count($user->transaction->toArray());
+ 
+        $totalTrans = count($user->company->transaction->toArray());
 
         $daysCounts = ScheduledAd::select([
             DB::raw('DATE(updated_at) AS date'),
             DB::raw('COUNT(id) AS count'),
         ])
-            ->whereMediaHouseId($id)
+            ->whereCompanyId($id)
             //->whereNotIn('status', ['in cart'])
             ->whereBetween('updated_at', [Carbon::now()->subDays(7)->toDateString(), Carbon::now()->toDateString()])
             ->groupBy('date')
@@ -69,7 +72,7 @@ class DashboardController extends Controller
             DB::raw('DATE(updated_at) AS date'),
             DB::raw('COUNT(id) AS count'),
         ])
-            ->whereMediaHouseId($id)
+            ->whereCompanyId($id)
             //  ->whereTransactionStatus('paid')
             ->whereBetween('updated_at', [Carbon::now()->subDays(7)->toDateString(), Carbon::now()->toDateString()])
             ->groupBy('date')
@@ -113,8 +116,8 @@ class DashboardController extends Controller
 
     public function activeSubscriptions()
     {
-        $id = Auth()->user()->client_id;
-        $totalAcceptSubs  =  ScheduledAd::select('status')->where('media_house_id', '=', $id, 'and', 'status', '=', 'accepted')->count();
+        $id = Auth()->user()->company_id;
+        $totalAcceptSubs  =  ScheduledAd::select('status')->where('company_id', '=', $id, 'and', 'status', '=', 'accepted')->count();
         return response()->json($totalAcceptSubs);
     }
 }

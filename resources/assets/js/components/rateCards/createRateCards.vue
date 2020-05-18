@@ -461,11 +461,11 @@
         >Add Row</button>
       </div>
     </div>
-    <button
+ <!--    <button
       type="button"
       class="btn btn-danger waves-effect waves-light add pull-right"
       @click="insertResults()"
-    >Submit</button>
+    >Submit</button> -->
   </div>
 </template>
 

@@ -118,6 +118,7 @@ Vue.component('success-message', require('./components/notification/successMessa
 Vue.component('trans-subs', require('./components/payment/viewTransacSubs').default);
 Vue.component('daily-reports', require('./components/reports/dailyReports').default);
 Vue.component('general-reports', require('./components/reports/generalReports').default);
+Vue.component('edit-rate-card', require('./components/rateCards/editRatecard').default);
 
 
 

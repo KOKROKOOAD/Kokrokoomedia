@@ -75,14 +75,11 @@ Route::get('/down', 'ExcelController@downloads')->name('download');
 //
 //
 Route::middleware(['auth'])->prefix('media/admin')->group(function () {
-    Route::get('dashboard', function () {
 
-        return view('userDashboard.dashboard');
-    })->name('dashboard');
-
+/* 
     Route::get('/relation', function () {
         echo  User::find(13)->user_id;
-    });
+    }); */
 
 
     Route::get('/fetch', 'TestController@imagePaths');
@@ -141,10 +138,15 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
     })->name('sub.new');
 
     Route::get('dashboard', function () {
-        $media = \App\User::all('logo');
+        $media = \App\Models\Avatar::all('logo');
         return view('userDashboard.dashboard', ['media' => $media]);
     })->name('dashboard');
 
+/*     Route::get('dashboard', function () {
+
+        return view('userDashboard.dashboard');
+    })->name('dashboard'); 
+ */
     /* Route::get('/subscription', function () {
          
         $subs  =  ScheduledAd::whereMedia_house_id(auth()->user()->client_id)->latest()->paginate(50);

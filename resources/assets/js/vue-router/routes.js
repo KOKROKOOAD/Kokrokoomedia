@@ -31,5 +31,12 @@
           component : require('../components/subscriptions/printRateCare')
       },
 
+      {
+        name : 'edit-rate-card',
+        path : '/media-house-admin/edit-rate-card',
+        component : require('../components/rateCards/editRatecard')
+    },
+
+
   ];
 

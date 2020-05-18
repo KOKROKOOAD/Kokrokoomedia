@@ -28,6 +28,6 @@ class Avatar extends Eloquent
 		'logo',
 		'file_path',
 		'file_size',
-		'client_id'
+		'company_id'
 	];
 }

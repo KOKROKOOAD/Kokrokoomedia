@@ -10,6 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 class AdminCreationNotificaton extends Notification
 {
     use Queueable;
+
     public $user;
     public $password;
 
@@ -52,10 +53,10 @@ class AdminCreationNotificaton extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+/*     public function toArray($notifiable)
     {
         return [
             //
         ];
-    }
-}
+    }*/
+} 

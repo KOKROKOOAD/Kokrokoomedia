@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('transaction_id');
             $table->integer('subscription_id');
             $table->integer('invoice_id');
-            $table->integer('media_house_id');
+            $table->integer('company_id');
             $table->string('transaction_status');
             $table->string('amount');
             $table->string('payment_source');

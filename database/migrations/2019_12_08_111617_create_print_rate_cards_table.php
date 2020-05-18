@@ -17,6 +17,8 @@ class CreatePrintRateCardsTable extends Migration
             $table->increments('id');
             $table->string('rate_card_id');
             $table->string('rate_card_data');
+            $table->string('rate_card_title_id')->nullable();
+            $table->string('media_house_id')->nullable();
             $table->timestamps();
         });
     }
