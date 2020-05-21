@@ -96,6 +96,21 @@
                   </select>
                 </th>
 
+                <th class="create-ad-tb-th">
+                  <input
+                    type="number"
+                    class="spin"
+                    v-model="days_of_the_week_and_durations.sec6"
+                    style="width: 50px !important;border: none"
+                  />
+                  <select v-model="days_of_the_week_and_durations.time6">
+                    <option value disabled selected>TIME</option>
+                    <option v-for="s in time">{{s.sec}}</option>
+                    <option v-for=" min in time">{{min.min}}</option>
+                    <option v-for="hr in time">{{hr.hr}}</option>
+                  </select>
+                </th>
+
                 <th>Action</th>
               </tr>
             </thead>
@@ -270,6 +285,9 @@
                 <td>
                   <input type="text" style="border: none" v-model="dtl.sec5_rate" />
                 </td>
+                     <td>
+                  <input type="text" style="border: none" v-model="dtl.sec6_rate" />
+                </td>
                 <td>
                   <button type="button" class="btn btn-danger btn-sm" @click="delRow(index)">
                     <i class="fa fa-trash"></i>
@@ -279,6 +297,19 @@
             </tbody>
           </table>
         </div>
+
+        <div class="col-md-2" v-if="existing">
+
+          <select name="existing"  v-model="selected_rate_card_title" id="">
+
+                <option value disabled selected ></option>
+
+                <option v-for="oldtitles in existing_rate_card_titles" v-text="oldtitles"></option>
+
+          </select>
+
+        </div>
+
         <button
           type="button"
           class="btn btn-primary btn-sm waves-effect waves-light add"
@@ -372,6 +403,20 @@
                     <option v-for="hr in time">{{hr.hr}}</option>
                   </select>
                 </th>
+                 <th class="create-ad-tb-th">
+                  <input
+                    type="number"
+                    class="spin"
+                    v-model="wdurations.wsec6"
+                    style="width: 50px !important;border: none"
+                  />
+                  <select v-model="wdurations.time6">
+                    <option value disabled selected>TIME</option>
+                    <option v-for="s in time">{{s.sec}}</option>
+                    <option v-for=" min in time">{{min.min}}</option>
+                    <option v-for="hr in time">{{hr.hr}}</option>
+                  </select>
+                </th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -423,6 +468,7 @@
                   <input type="number" placeholder="Add spots" v-model="wdtl.sun_spots" />
                 </td>
 
+
                 <td>
                   <input
                     type="text"
@@ -443,8 +489,23 @@
                 <td>
                   <input type="text" style="border: none" v-model="wdtl.wsec5_rate" />
                 </td>
+                  <td>
+                  <input type="text" style="border: none" v-model="wdtl.wsec6_rate" />
+                </td>
 
                 <td>
+
+                <div class="col-md-2" v-if="existing">
+
+                  <select name="existing"  v-model="selected_rate_card_title" id="">
+
+                        <option value disabled selected ></option>
+
+                        <option v-for="oldtitles in existing_rate_card_titles" v-text="oldtitles"></option>
+
+                  </select>
+
+                </div>
                   <!--<button type="button" class="btn btn-info" @click="delwRow(index)"><i class="fa fa-minus-circle"></i> Delete row </button>-->
                   <button type="button" class="btn btn-danger btn-sm" @click="delwRow(index)">
                     <i class="fa fa-trash"></i>
@@ -461,11 +522,11 @@
         >Add Row</button>
       </div>
     </div>
- <!--    <button
+   <button
       type="button"
       class="btn btn-danger waves-effect waves-light add pull-right"
       @click="insertResults()"
-    >Submit</button> -->
+    >Submit</button> 
   </div>
 </template>
 
@@ -473,11 +534,14 @@
 import store from "../../vuex/store";
 
 export default {
-  props: ["rate_card_title_id", "media"],
+  props: ["rate_card_title_id", "media", 'existing'],
   name: "createRateCards",
   mounted() {
     //this.fetchRateCardTitle();
     // this.hour();
+
+    this.fetchExistingRateCardTitle()
+
   },
   data() {
     return {
@@ -492,11 +556,13 @@ export default {
         sec3: 25,
         sec4: 0,
         sec5: 0,
+        sec6: 0,
         time1: "",
         time2: "",
         time3: "",
         time4: "",
-        time5: ""
+        time5: "",
+        time6: ""
       },
       //weekend segment and durations
       wdurations: {
@@ -507,11 +573,13 @@ export default {
         wsec3: 0,
         wsec4: 0,
         wsec5: 0,
+        wsec6: 0,
         time1: "",
         time2: "",
         time3: "",
         time4: "",
-        time5: ""
+        time5: "",
+        time6: ""
       },
       time: [
         {
@@ -531,10 +599,14 @@ export default {
       r_animate: "",
       title: "",
       rate_card_title: null,
+      exiting: false,
+      existing_rate_card_titles: null,
+      selected_rate_card_title : "",
       hrs: [],
       create: "creating rate card......",
       show_rate: false,
       hour: [
+        "00",
         "01",
         "02",
         "03",
@@ -660,7 +732,8 @@ export default {
         sec2_rate: "",
         sec3_rate: "",
         sec4_rate: "",
-        sec5_rate: ""
+        sec5_rate: "",
+        sec6_rate: ""
 
         //durations
         //   dura : this.durations
@@ -684,6 +757,7 @@ export default {
         wsec3_rate: "",
         wsec4_rate: "",
         wsec5_rate: "",
+        wsec6_rate: "",
         sat_spots: "",
         sun_spots: ""
         //  wdura : this.wdurations,
@@ -725,11 +799,26 @@ export default {
     fetchRateCardTitle() {
       let self = this;
       axios.get("ratecard-title/api", +self.getRateCardId).then(function(res) {
-        console.log(res.data);
+   /*      console.log(res.data); */
         if (res.data) {
           self.rate_card_title = res.data;
         }
       });
+    },
+
+    fetchExistingRateCardTitle() {
+      let self = this;
+
+      console.log(this.getRateCardId)
+   /*    axios.get("/existing-ratecard-titles/"+self.getRateCardId).then(function(res) {
+        console.log(res.data);
+        if (res.data) {
+
+          self.exiting = true;
+
+          self.existing_ratecard_titles = res.data;
+        }
+      }); */
     },
     hours() {
       let hrss = 12;

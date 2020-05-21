@@ -14,13 +14,13 @@ class RateCards extends Model
     protected $casts =  ['segments'=> 'array', 'weekend_segments'=> 'array','days_of_week'=> 'array'];
 
     protected $fillable = [
-        'media_house_id',
+        'company_id',
         'rate_card_title_id',
         'segments',
         'weekend_segments',
         'rate_card_id',
         'days_of_week',
         'days_of_weekend',
-        'client_id'
+        ''
     ];
 }

@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class RateCardTitles extends Model
 {
     protected $fillable = [
-        'media_house_id',
+        'company_id',
         'rate_card_title',
         'rate_card_title_id',
-        'client_id'
+      
     ];
 
 

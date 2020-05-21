@@ -13,6 +13,11 @@ class Company extends Model
         return $this->hasMany('App\User');
     }
 
+    public function client()
+    {
+        return $this->hasMany('App\Client', 'user_id');
+    }
+
 
     public function avatar()
     {

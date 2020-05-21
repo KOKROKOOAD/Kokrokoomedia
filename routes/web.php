@@ -142,6 +142,8 @@ Route::middleware(['auth'])->prefix('media/admin')->group(function () {
         return view('userDashboard.dashboard', ['media' => $media]);
     })->name('dashboard');
 
+  /*   Route::get('/existing-') */
+
 /*     Route::get('dashboard', function () {
 
         return view('userDashboard.dashboard');
@@ -363,9 +365,7 @@ Route::prefix('media/staff')->group(function () {
         return view('staffDashboard.createRateCardTitle');
     })->name('staff.create.ratecard');
 
-    //    Route::get('downloadable-subscriptions',function (){
-    //        return view('staffDashboard.downloadable-subs');
-    //    })->name('downloadable.subs');
+       Route::get('/existing-ratecard-titles/{ratecardtitle}','RateCardController@existingTitles');
 
     Route::get('create-rate-card', function () {
         return view('staffDashboard.createRateCard');
@@ -386,11 +386,14 @@ Route::prefix('media/staff')->group(function () {
 
     /* Route::post('store-ratecard/api', 'RateCardController@storeRateCards'); */
     //   Route::post('rate-card-title/api-store', 'RateCardController@storeRateCardTitle')->name('store.rate.card.title');
-    Route::get('ratecard-title/api/{ratecard_id}', 'RateCardController@fetchRateCardTitle');
+
+
+
+ /*    Route::get('ratecard-title/api/{ratecard_id}', 'RateCardController@fetchRateCardTitle');
     Route::get('fetch-ratecards/api', 'RateCardController@getRateCards')->name('fetch.rate.cards');
     Route::get('view-ratecard/api', 'RateCardController@viewRateCard')->name('view.rate.card');
     Route::post('delete-ratecard/api', 'RateCardController@deleteRateCard')->name('delete.rate.card');
-
+ */
     // RATE  CARDS ENDS HERE
 
     Route::post('ads-store', 'SubController@createSub');

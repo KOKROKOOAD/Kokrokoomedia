@@ -24,8 +24,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 class RateCardTitle extends Eloquent
 {
 	protected $fillable = [
-		'rate_card_title_id',
-		'media_house_id',
-		'rate_card_title'
+		'company_id',
+        'rate_card_title',
+        'rate_card_title_id',
 	];
 }

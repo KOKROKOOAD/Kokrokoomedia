@@ -16,7 +16,8 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('address');
-            $table->string('media_house');
+            $table->string('media_house')->nullable();
+            $table->string('media_type')->nullable();
             $table->string('website')->unique();
             $table->text('company_profile');
             $table->string('company_name')->unique();
@@ -24,6 +25,7 @@ class CreateCompaniesTable extends Migration
             $table->text('policy');
             $table->string('business_cert')->nullable();
             $table->string('operation_cert')->nullable();
+            $table->string('company_type');
             $table->timestamps();
         });
     }

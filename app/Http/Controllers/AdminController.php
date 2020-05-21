@@ -13,7 +13,6 @@ use App\Services\SendTextMessage;
 use App\Jobs\SendAdminCredentialsJob;
 use App\User;
 use App\Notifications\AdminCreationNotificaton;
-use App\UserProfile;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +31,7 @@ class AdminController extends Controller
 
     public function viewAdmins()
     {
-        $admins = User::whereCreatedBy(auth()->user()->client_id)->latest()->paginate(10);
+        $admins = User::where('role', '!=', 'super_admin')->latest()->paginate(10);
         return view('userDashboard.manageAdmin')->with('admins', $admins);
     }
 
@@ -58,15 +57,16 @@ class AdminController extends Controller
             'role' => $request->input('role'),
             'isActive'   => 'active',
             'client_id' => $unique_id,
-           /*  'account_type' => 'media house', */
-            'created_by' => auth()->user()->client_id,
+            'company_id' => auth()->user()->company->id,
             'password' => Hash::make($password),
         ]);
 
         AdminAuditTrail::create([
-            'action_by' => auth()->user()->client_id, 'action' => 'Create admin ',
+            'user_id' => auth()->user()->client_id, 'action' => 'Create admin ',
             'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Created a new admin  " . $request->name, /* 'created_by' => auth()->user()->client_id */
         ]);
+
+        /* uncomment these later */
 
        /*  SendAdminCredentialsJob::dispatch($admin, $password);
 
@@ -82,7 +82,13 @@ class AdminController extends Controller
             $request->input('phone1')
         );
  */
+
+   /* uncomment part ends here */
+
         Session::flash('admin-created', 'Admin  successfully created');
+
+        return  redirect(route('manage.admins'))->with('admin-created', 'Admin successfully created');
+        
         return redirect()->back();
     }
 
@@ -117,9 +123,9 @@ class AdminController extends Controller
 
         User::whereClientId($request->input('id'))->update($admin_data);
         AdminAuditTrail::create([
-            'action_by' => auth()->user()->name, 'action' => 'update admin ',
+            'user_id' => auth()->user()->client_id, 'action' => 'update admin ',
             'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Updated admin "
-                . $request->name . " profile", 'created_by' => auth()->user()->client_id
+                . $request->name . " profile", 
         ]);
 
         return  redirect(route('manage.admins'))->with('updated-admin', 'Admin successfully updated');
@@ -135,7 +141,7 @@ class AdminController extends Controller
 
         AdminAuditTrail::create([
             'action_by' => auth()->user()->name, 'action' => 'block admin ',
-            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Set admin " . $request->name . " status to inactive ", 'created_by' => auth()->user()->client_id
+            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Set admin " . $request->name . " status to inactive "
         ]);
         return response()->json('success');
     }
@@ -146,8 +152,8 @@ class AdminController extends Controller
         User::whereClientId($request->input('adminId'))->update(['isActive' => 'active']);
         session()->flash('block-admin', "One Admin account successfully  unblocked");
         AdminAuditTrail::create([
-            'action_by' => auth()->user()->name, 'action' => 'Unblock admin ',
-            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Set admin " . $request->name . " status to active ", 'created_by' => auth()->user()->client_id
+            'user_id' => auth()->user()->client_id, 'action' => 'Unblock admin ',
+            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Set admin " . $request->name . " status to active ", 
         ]);
         return response()->json('success');
     }
@@ -158,8 +164,8 @@ class AdminController extends Controller
         $admin = User::whereClientId(auth()->user()->client_id)->delete();
         session()->flash('block-admin', "One Admin account account successfully deleted");
         AdminAuditTrail::create([
-            'action_by' => auth()->user()->name, 'action' => 'Delete admin ',
-            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Deleted admin " . $request->name . " from application ", 'created_by' => auth()->user()->client_id
+            'user_id' => auth()->user()->client_id, 'action' => 'Delete admin ',
+            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Deleted admin " . $request->name . " from application ", 
         ]);
         return response()->json('success');
     }
@@ -182,8 +188,8 @@ class AdminController extends Controller
         ]);
 
         AdminAuditTrail::create([
-            'action_by' => auth()->user()->name, 'action' => 'Update admin profile ',
-            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Admin " . $request->name . " updated profile", 'created_by' => auth()->user()->client_id
+            'user_id' => auth()->user()->name, 'action' => 'Update admin profile ',
+            'request_ip' => $_SERVER['REMOTE_ADDR'], 'activities' => "Admin " . $request->name . " updated profile", 
         ]);
         return  redirect(route('profile'))->with('admin-profile', 'Profile successfully updated');
     }

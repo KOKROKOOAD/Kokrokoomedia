@@ -11,5 +11,5 @@ class AdminAuditTrail extends Model
      *
      * @var array
      */
-    protected $fillable = ['action_by', 'activities', 'action', 'request_ip', 'created_by'];
+    protected $fillable = ['user_id', 'activities', 'action', 'request_ip',];
 }

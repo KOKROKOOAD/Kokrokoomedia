@@ -30,6 +30,7 @@ class User extends Authenticatable
         'isActive',
         'last_login',
         'company_id',
+        'client_id',
         'password',
     ];
 

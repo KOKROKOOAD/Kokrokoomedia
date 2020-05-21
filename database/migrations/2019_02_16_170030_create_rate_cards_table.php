@@ -17,7 +17,7 @@ class CreateRateCardsTable extends Migration
             $table->increments('id');
             $table->string('rate_card_id');
             $table->string('company_id')->nullable();
-            $table->string('title');
+            $table->string('rate_card_title_id');
             $table->json('days_of_week');
             $table->json('days_of_weekend');
             $table->json('segments');
